@@ -2,21 +2,21 @@
 # Build and run RootRouter dashboard on VPS (Docker + Caddy).
 #
 # Local (from dev machine — rsync + remote build):
-#   ROOTROUTER_VPS=gerry@109.199.99.188 bash scripts/deploy-dashboard-vps.sh
+#   ROOTROUTER_VPS=gerry@169.58.172.120 bash scripts/deploy-dashboard-vps.sh
 #
 # On VPS directly:
 #   bash ~/RootRouter/scripts/deploy-dashboard-vps.sh --local
 #
 # Env:
-#   ROOTROUTER_VPS          SSH target (default: gerry@109.199.99.188)
-#   ROOTROUTER_PUBLIC_URL   https://rootrouter.motusdao.org
+#   ROOTROUTER_VPS          SSH target (default: gerry@169.58.172.120)
+#   ROOTROUTER_PUBLIC_URL   https://rootrouter.brahma101.cyou
 #   NEXT_PUBLIC_CONVEX_URL  Convex URL (baked into image at build)
-#   ROOTROUTER_DOCKER_NETWORK  default openclaw_default
+#   ROOTROUTER_DOCKER_NETWORK  default brahma101-web_default
 
 set -euo pipefail
 
-ROOTROUTER_VPS="${ROOTROUTER_VPS:-gerry@109.199.99.188}"
-ROOTROUTER_PUBLIC_URL="${ROOTROUTER_PUBLIC_URL:-https://rootrouter.motusdao.org}"
+ROOTROUTER_VPS="${ROOTROUTER_VPS:-gerry@169.58.172.120}"
+ROOTROUTER_PUBLIC_URL="${ROOTROUTER_PUBLIC_URL:-https://rootrouter.brahma101.cyou}"
 REMOTE_REPO_DIR="${REMOTE_REPO_DIR:-/home/gerry/RootRouter}"
 LOCAL_REPO_DIR="${LOCAL_REPO_DIR:-$(cd "$(dirname "$0")/.." && pwd)}"
 LOCAL=false
@@ -33,7 +33,7 @@ die() { printf 'ERROR: %s\n' "$*" >&2; exit 1; }
 # Load NEXT_PUBLIC_CONVEX_URL from repo .env.local (not committed).
 load_convex_env() {
   local f
-  for f in "$LOCAL_REPO_DIR/.env.local" "$LOCAL_REPO_DIR/apps/dashboard/.env.local"; do
+  for f in "$LOCAL_REPO_DIR/.env.local" "$LOCAL_REPO_DIR/apps/dashboard/.env.local" "$LOCAL_REPO_DIR/deploy/dashboard.env"; do
     if [[ -f "$f" ]]; then
       # shellcheck disable=SC1090
       set -a && source "$f" && set +a
@@ -54,7 +54,7 @@ remote_build() {
 set -euo pipefail
 cd "$REMOTE_REPO_DIR"
 export NEXT_PUBLIC_CONVEX_URL="${NEXT_PUBLIC_CONVEX_URL:-}"
-export ROOTROUTER_DOCKER_NETWORK="${ROOTROUTER_DOCKER_NETWORK:-openclaw_default}"
+export ROOTROUTER_DOCKER_NETWORK="${ROOTROUTER_DOCKER_NETWORK:-brahma101-web_default}"
 
 if ! docker network inspect "\$ROOTROUTER_DOCKER_NETWORK" >/dev/null 2>&1; then
   echo "Docker network \$ROOTROUTER_DOCKER_NETWORK missing — create or set ROOTROUTER_DOCKER_NETWORK"
@@ -74,7 +74,7 @@ REMOTE
 local_build() {
   cd "$LOCAL_REPO_DIR"
   export NEXT_PUBLIC_CONVEX_URL="${NEXT_PUBLIC_CONVEX_URL:-}"
-  export ROOTROUTER_DOCKER_NETWORK="${ROOTROUTER_DOCKER_NETWORK:-openclaw_default}"
+  export ROOTROUTER_DOCKER_NETWORK="${ROOTROUTER_DOCKER_NETWORK:-brahma101-web_default}"
 
   if ! docker network inspect "$ROOTROUTER_DOCKER_NETWORK" >/dev/null 2>&1; then
     die "Docker network $ROOTROUTER_DOCKER_NETWORK missing. Create it or join OpenClaw stack first."
@@ -85,9 +85,9 @@ local_build() {
 }
 
 install_caddy_hint() {
-  log "Caddy: copy deploy/caddy/rootrouter.caddy to your Caddy sites dir, then reload."
-  log "  sudo cp $REMOTE_REPO_DIR/deploy/caddy/rootrouter.caddy /etc/caddy/sites/"
-  log "  sudo caddy validate --config /etc/caddy/Caddyfile && sudo systemctl reload caddy"
+  log "Caddy on vps-brahma is managed by the brahma101-web stack:"
+  log "  edit /home/agent/brahma101-web/Caddyfile (user agent)"
+  log "  docker exec brahma101-web-caddy-1 caddy reload --config /etc/caddy/Caddyfile"
 }
 
 verify() {
@@ -112,6 +112,7 @@ else
     --exclude packages/sdk/dist \
     --exclude packages/sdk/logs \
     --exclude .rootrouter \
+    --exclude '.env*' \
     "$LOCAL_REPO_DIR/" "${ROOTROUTER_VPS}:${REMOTE_REPO_DIR}/"
 
   log "Remote Docker build + start..."
