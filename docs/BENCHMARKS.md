@@ -61,7 +61,7 @@ The workflow review also found:
 
 Evidence: [Cursor slice workflow review](insights/001-cursor-agent-slice-workflow-feedback.md) and [MCP selection audit log](insights/006-mcp-selection-audit-log.md).
 
-## Offline SDK benchmark — ~49%
+## Offline SDK benchmark — ~73%
 
 The reproducible offline benchmark uses TF-IDF embeddings and a simulated LLM:
 
@@ -69,7 +69,7 @@ The reproducible offline benchmark uses TF-IDF embeddings and a simulated LLM:
 npx tsx packages/sdk/demo/benchmark.ts --seed 42
 ```
 
-It is a regression and modeling benchmark, not a live-provider result. Its approximately 49% modeled savings are directionally consistent with the 46% live swarm context estimate.
+It is a regression and modeling benchmark, not a live-provider result. The latest committed run reports 73.3% modeled cost savings ([artifact](../packages/sdk/benchmarks/results/2026-08-05T18-11-32.json)) and a 43.9% reduction in context tokens (84,194 -> 47,257). Most of the cost figure comes from substituting a powerful model with a cheaper tier; the rest comes from context filtering. Neither figure is a billed reduction.
 
 ## Reporting rules
 
