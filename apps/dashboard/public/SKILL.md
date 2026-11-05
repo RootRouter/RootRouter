@@ -10,7 +10,7 @@ You are probably wrong about RootRouter. It is **not** a network router, Cisco p
 
 ## Start here
 
-**Newborn agent (e.g. OpenClaw Shamy)?**  
+**Newborn agent (e.g. OpenClaw)?**  
 Fetch **both** playbooks before your first write:
 1. **Layer 0** — [FENG-SHUI.md](https://rootrouter.brahma101.cyou/FENG-SHUI.md) — where files live; run `workspace_guard` before writes.
 2. **Layer 1** — this file — what context goes to the LLM.
@@ -66,7 +66,7 @@ Use the SDK (`rootrouter` npm package) or point `base_url` at `@rootrouter/proxy
 
 ---
 
-## OpenClaw (e.g. Shamy)
+## OpenClaw
 
 ### Passive — proxy only (typical)
 
@@ -184,4 +184,4 @@ If the user asks "what is RootRouter?":
 
 ---
 
-*RootRouter · MotusDAO · [Dashboard](https://rootrouter.brahma101.cyou/) · Algebraic agent infrastructure*
+*RootRouter · [Dashboard](https://rootrouter.brahma101.cyou/) · Algebraic agent infrastructure*

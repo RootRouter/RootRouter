@@ -4,11 +4,19 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const navItems = [
-  { href: '/', label: 'Home' },
-  { href: '/FENG-SHUI.md', label: 'Feng Shui' },
-  { href: '/SKILL.md', label: 'SKILL.md' },
-  { href: '/dashboard', label: 'Dashboard' },
-  { href: '/dashboard/topology', label: 'Topology' },
+  { href: '/#product', label: 'Product' },
+  { href: '/#proof', label: 'Proof' },
+  { href: '/#routing', label: 'Routing' },
+  {
+    href: 'https://github.com/RootRouter/RootRouter#readme',
+    label: 'Docs',
+    external: true,
+  },
+  {
+    href: 'https://github.com/RootRouter/RootRouter',
+    label: 'GitHub',
+    external: true,
+  },
 ];
 
 export default function AppNav() {
@@ -24,7 +32,16 @@ export default function AppNav() {
         backdropFilter: 'blur(8px)',
       }}
     >
-      <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem' }}>
+      <div
+        style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '0.5rem',
+        }}
+      >
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <Link
             href="/"
@@ -37,39 +54,33 @@ export default function AppNav() {
               marginRight: '1.5rem',
             }}
           >
-            🌿 RootRouter
+            RootRouter
           </Link>
-          {navItems.map(({ href, label }) => {
-          const isActive =
-            pathname === href ||
-            (href !== '/' && href.endsWith('.md') && pathname === href) ||
-            (href !== '/' && !href.endsWith('.md') && pathname.startsWith(href));
-          return (
-            <Link
-              key={href}
-              href={href}
-              style={{
-                padding: '0.4rem 0.85rem',
-                borderRadius: 'var(--prism-radius-sm)',
-                fontSize: '0.875rem',
-                fontFamily: 'var(--font-display)',
-                textDecoration: 'none',
-                color: isActive ? 'var(--prism-cyan)' : 'var(--prism-text-muted)',
-                background: isActive ? 'rgba(0, 255, 204, 0.12)' : 'transparent',
-                border: `1px solid ${isActive ? 'rgba(0, 255, 204, 0.35)' : 'transparent'}`,
-              }}
-            >
-              {label}
-            </Link>
-          );
-        })}
+          {navItems.map(({ href, label, external }) => {
+            const isActive = href === '/' ? pathname === '/' : false;
+            return (
+              <Link
+                key={href}
+                href={href}
+                {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                style={{
+                  padding: '0.4rem 0.85rem',
+                  borderRadius: 'var(--prism-radius-sm)',
+                  fontSize: '0.875rem',
+                  fontFamily: 'var(--font-display)',
+                  textDecoration: 'none',
+                  color: isActive ? 'var(--prism-cyan)' : 'var(--prism-text-muted)',
+                  background: isActive ? 'rgba(0, 255, 204, 0.12)' : 'transparent',
+                  border: `1px solid ${isActive ? 'rgba(0, 255, 204, 0.35)' : 'transparent'}`,
+                }}
+              >
+                {label}
+              </Link>
+            );
+          })}
         </div>
-        <Link
-          href="/dashboard"
-          className="landing-cta-primary"
-          style={{ flexShrink: 0 }}
-        >
-          Open Dashboard
+        <Link href="/#audit" className="landing-cta-primary" style={{ flexShrink: 0 }}>
+          Get a free audit
         </Link>
       </div>
     </nav>

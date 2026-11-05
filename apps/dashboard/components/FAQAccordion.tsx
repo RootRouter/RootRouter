@@ -9,29 +9,39 @@ type FAQItem = {
 
 const faqData: FAQItem[] = [
   {
-    question: 'What savings should I expect?',
+    question: 'How much does it actually save?',
     answer:
-      'It depends on the path. Cursor MCP cold-slice selection saved 95.5% (~96%) against its full indexed-corpus baseline. A 24-step, three-agent NVIDIA NIM swarm saved an estimated 46% of accumulated chat context using real Nemotron 3 Ultra completions. OpenClaw proxy trims growing chat history every completion. The offline SDK benchmark models ~49% savings on a seeded 50-query run.',
+      'In our 50-query benchmark: 43.9% fewer context tokens and 73% lower modeled cost at Claude-tier prices. A live 24-step, three-agent run showed 46% estimated context savings, and a cold repo slice can cut ~95% of the indexed corpus. Your number depends on how much history and how many files you send — the free audit estimates it on your traffic.',
   },
   {
-    question: 'When do I use MCP vs the proxy?',
+    question: 'Does it change the answer quality?',
     answer:
-      'Proxy only: passive chat-history trim on every /chat/completions (OpenClaw, HTTP agents). MCP: active repo selection — index_repo once, then shaped select_context on cold slices. Use both together: MCP for codebase load, proxy for conversation trim. Do not stack proxy + SDK.chat() on the same request.',
+      'RootRouter selects by relevance and removes redundancy with MMR inside a token budget; the current request and the most relevant context stay. It is not a guarantee. Every pick is logged in selections.jsonl so you can inspect what was kept and dropped, and you should measure on your own tasks.',
   },
   {
-    question: 'What is Feng Shui vs RootRouter?',
+    question: 'Do you store my prompts?',
     answer:
-      'Feng Shui (Layer 0) is workspace placement — where agents write files, harmonize clutter, run workspace_guard before writes. RootRouter (Layer 1) is context routing — what goes in the prompt via MCP, proxy, and chambers. Placement first, context second.',
+      'RootRouter is self-hosted. The proxy and MCP server write a JSON context store on your machine, at a path you control. Nothing is sent to RootRouter servers. The model provider still receives the request you send, exactly as before.',
   },
   {
-    question: 'Is Celo required?',
+    question: 'Why not just use OpenRouter?',
     answer:
-      'No. Celo telemetry is optional. You can use MCP + proxy with zero on-chain setup. The dashboard can load contract stats when you configure RPC + agent address.',
+      'Different layer. OpenRouter chooses which provider or model API to call; RootRouter chooses what context gets sent. They stack: RootRouter trims the prompt, then the request goes to whichever provider you already use.',
   },
   {
-    question: 'What is root-pair telemetry?',
+    question: 'Does it add latency?',
     answer:
-      'Every interaction can produce a root vector (intent minus execution). Chambers and graphs use that structure for filtering and routing. This is research-grade machinery — read docs/architecture.md for depth. The landing page focuses on the operational harness; the math is linked, not hidden.',
+      'Selection runs locally and adds no extra LLM call. The proxy forwards the upstream stream unchanged; selection is milliseconds against multi-second completions.',
+  },
+  {
+    question: 'Does it work with Cursor, Codex and Claude Code?',
+    answer:
+      'Yes, through MCP: index the repo once, then select a budgeted slice per task. For any OpenAI-compatible client, the proxy needs only a base_url change.',
+  },
+  {
+    question: 'What is IRP and how does Antseed fit?',
+    answer:
+      'IRP is the Inference Routing Protocol. RootRouter can serve suggest-only rankings to marketplaces like Antseed: it ranks the buyer’s candidate models by task fit and expected cost and keeps zero state. See docs/irp.md for the endpoints and the privacy model.',
   },
 ];
 

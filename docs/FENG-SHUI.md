@@ -120,7 +120,7 @@ For code repositories, run RootRouter `index_repo` before restructuring modules 
 
 ---
 
-## Multi-agent hosts (e.g. OpenClaw Shamy)
+## Multi-agent hosts
 
 - One **projects root per agent persona** when possible: `~/Projects/<agent-name>/`.
 - Agent workspace (`AGENTS.md`, tools) stays separate from user project trees.
@@ -157,4 +157,4 @@ https://rootrouter.brahma101.cyou/SKILL.md and follow it.
 
 ---
 
-*Feng Shui · RootRouter workspace companion · MotusDAO*
+*Feng Shui · RootRouter workspace companion*

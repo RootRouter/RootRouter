@@ -1,63 +1,40 @@
 import Link from 'next/link';
-import FAQAccordion from '../components/FAQAccordion';
 import HeroSnapshotGraphs from '../components/HeroSnapshotGraphs';
-import GetStartedSection from '../components/GetStartedSection';
-import AgentOnboardingSection from '../components/AgentOnboardingSection';
-import ProofSection from '../components/ProofSection';
 import HowItWorksSection from '../components/HowItWorksSection';
-import ShamyProductionSection from '../components/ShamyProductionSection';
+import SurfacesSection from '../components/SurfacesSection';
+import ProofSection from '../components/ProofSection';
+import RoutingSection from '../components/RoutingSection';
+import PrivacySection from '../components/PrivacySection';
+import AuditSection from '../components/AuditSection';
+import InstallSection from '../components/InstallSection';
+import FAQAccordion from '../components/FAQAccordion';
 
 export const metadata = {
-  title: 'RootRouter — Agent Context & Operations Harness',
+  title: 'RootRouter — Cut AI agent context costs',
   description:
-    'Discipline AI agents: workspace placement (Feng Shui), budgeted context (MCP + proxy), auditable selection. Early beta. Shamy on OpenClaw in production.',
+    'Trim 44% of the context your agents send — up to 95% on cold repo slices. Self-hosted proxy, MCP server and IRP routing for Cursor, Codex, Claude Code and any OpenAI-compatible agent.',
 };
 
-const valueProps = [
+const problems = [
   {
-    title: 'Workspace discipline',
-    desc: 'Feng Shui (Layer 0) — agents validate where they write before creating mess at ~/Downloads. Harmonize with approval-first moves.',
-    icon: (
-      <svg className="landing-value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-        <path d="M9 22V12h6v10" />
-      </svg>
-    ),
+    title: 'The thread grows. So does the bill.',
+    desc: 'Every turn re-sends history the model does not need. Cost scales with the conversation, not with the task.',
   },
   {
-    title: 'Budgeted context',
-    desc: 'MCP selects repo chunks on cold slices (~96% in the persisted audit example). Proxy trims chat history on OpenClaw. No more “send the whole thread.”',
-    icon: (
-      <svg className="landing-value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-      </svg>
-    ),
+    title: 'The repo is bigger than the task.',
+    desc: 'Agents read everything to find three files, then pay for the other thousand.',
   },
   {
-    title: 'Auditable operations',
-    desc: 'selections.jsonl logs every MCP pick — tokens in, tokens out, percent saved. Optional Celo telemetry for on-chain stats.',
-    icon: (
-      <svg className="landing-value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-      </svg>
-    ),
+    title: 'Savings are unprovable.',
+    desc: 'Nobody can show what context was sent, what was dropped, or what it cost. RootRouter logs it.',
   },
-];
-
-const resources = [
-  { title: 'Feng Shui', desc: 'Layer 0 — workspace placement before first write', href: '/FENG-SHUI.md' },
-  { title: 'SKILL.md', desc: 'Layer 1 — context routing and MCP discipline', href: '/SKILL.md' },
-  { title: 'Dashboard', desc: 'Telemetry and topology snapshots', href: '/dashboard' },
-  { title: 'Topology', desc: 'Agent graph, RepoGraph, selection stats', href: '/dashboard/topology' },
-  { title: 'Architecture', desc: 'Chambers, graphs, the math', href: 'https://github.com/RootRouter/RootRouter/blob/main/docs/architecture.md', external: true },
-  { title: 'GitHub', desc: 'Source, demos, insights', href: 'https://github.com/RootRouter/RootRouter', external: true },
 ];
 
 const footerLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/FENG-SHUI.md', label: 'Feng Shui' },
-  { href: '/SKILL.md', label: 'SKILL.md' },
+  { href: 'https://github.com/RootRouter/RootRouter#readme', label: 'Docs', external: true },
   { href: '/dashboard', label: 'Dashboard' },
+  { href: '/SKILL.md', label: 'SKILL.md' },
+  { href: '/FENG-SHUI.md', label: 'Feng Shui' },
   { href: 'https://github.com/RootRouter/RootRouter', label: 'GitHub', external: true },
 ];
 
@@ -77,7 +54,7 @@ export default function HomePage() {
                 textTransform: 'uppercase',
               }}
             >
-              Early beta · self-hosted
+              Self-hosted · MIT · Any OpenAI-compatible agent
             </p>
             <h1
               style={{
@@ -90,7 +67,7 @@ export default function HomePage() {
                 marginBottom: '1rem',
               }}
             >
-              The agent operations harness — where they write, what they read, what it costs.
+              Your agents re-send everything. We fix that.
             </h1>
             <p
               style={{
@@ -98,23 +75,24 @@ export default function HomePage() {
                 color: 'var(--prism-text-muted)',
                 lineHeight: 1.6,
                 marginBottom: '1.5rem',
-                maxWidth: '30rem',
+                maxWidth: '32rem',
               }}
             >
-              RootRouter disciplines AI agents: Feng Shui for workspace placement, MCP for budgeted repo context,
-              proxy for chat trimming. Auditable selection logs. Shamy runs it on OpenClaw today.
+              RootRouter cuts the context your agents send — 44% in our benchmark, up to 95% on cold repo slices —
+              with one <code style={{ color: 'var(--prism-cyan)' }}>base_url</code> change or an MCP server for coding
+              agents.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center' }}>
-              <Link href="#agent-onboarding" className="landing-cta-primary">
-                Agent onboarding
+              <Link href="#audit" className="landing-cta-primary">
+                Get a free context audit
               </Link>
-              <Link href="#proof" className="landing-cta-secondary">
-                See evidence
-              </Link>
-              <Link href="#get-started" className="landing-cta-secondary">
-                Pick your path
+              <Link href="#install" className="landing-cta-secondary">
+                Install in 5 minutes
               </Link>
             </div>
+            <p style={{ color: 'var(--prism-text-dim)', fontSize: '0.9rem', marginTop: '1rem' }}>
+              Running in production on OpenClaw · No analytics, no phone-home.
+            </p>
           </div>
           <div className="landing-hero-visual">
             <HeroSnapshotGraphs />
@@ -122,120 +100,64 @@ export default function HomePage() {
         </div>
       </section>
 
-      <AgentOnboardingSection />
-      <ProofSection />
-      <HowItWorksSection />
-      <ShamyProductionSection />
+      <section className="landing-section landing-section-panel" style={{ paddingTop: '1.1rem', paddingBottom: '1.1rem' }}>
+        <div className="landing-section-inner" style={{ textAlign: 'center' }}>
+          <p style={{ color: 'var(--prism-text-dim)', fontSize: '0.9rem', fontFamily: 'var(--font-mono)', margin: 0 }}>
+            Works with Cursor · Codex · Claude Code · OpenClaw · any OpenAI-compatible API · MCP
+          </p>
+        </div>
+      </section>
 
-      <section className="landing-section landing-section-dark">
+      <section className="landing-section landing-section-dark" id="product">
         <div className="landing-section-inner">
           <h2
             style={{
               fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(1.25rem, 2vw, 1.5rem)',
+              fontSize: 'clamp(1.35rem, 2.2vw, 1.65rem)',
               fontWeight: 600,
               color: 'var(--prism-text)',
               textAlign: 'center',
               marginBottom: '0.5rem',
             }}
           >
-            Why RootRouter
+            Context is the bill nobody owns.
           </h2>
-          <p style={{ textAlign: 'center', color: 'var(--prism-text-muted)', fontSize: '1.05rem', marginBottom: '2rem' }}>
-            Agents get lost, stuff context, touch the wrong files, and leave no evidence. This fixes the operational layer first.
+          <p
+            style={{
+              color: 'var(--prism-text-muted)',
+              fontSize: '1.05rem',
+              lineHeight: 1.65,
+              textAlign: 'center',
+              maxWidth: '40rem',
+              margin: '0 auto 2rem',
+            }}
+          >
+            Agents send the whole thread, the whole repo and every tool output. It costs money, buries the signal and
+            leaves no evidence of what was sent.
           </p>
           <div className="landing-value-grid">
-            {valueProps.map((item, i) => (
-              <div key={i} className="landing-value-card">
-                {item.icon}
+            {problems.map((p) => (
+              <div key={p.title} className="landing-value-card">
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', color: 'var(--prism-text)', marginBottom: '0.5rem' }}>
-                  {item.title}
+                  {p.title}
                 </h3>
-                <p style={{ color: 'var(--prism-text-muted)', fontSize: '1.05rem', lineHeight: 1.6 }}>{item.desc}</p>
+                <p style={{ color: 'var(--prism-text-muted)', fontSize: '1rem', lineHeight: 1.6 }}>{p.desc}</p>
               </div>
             ))}
           </div>
+          <p style={{ color: 'var(--prism-text-dim)', fontSize: '0.95rem', textAlign: 'center', marginTop: '1.5rem' }}>
+            RootRouter fixes the context layer. The model and the agent framework stay yours.
+          </p>
         </div>
       </section>
 
-      <section className="landing-section landing-section-panel">
-        <div className="landing-section-inner landing-two-col">
-          <div>
-            <p style={{ fontSize: '1rem', color: 'var(--prism-cyan)', fontFamily: 'var(--font-display)', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              Optional
-            </p>
-            <h2
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(1.35rem, 2.2vw, 1.75rem)',
-                fontWeight: 600,
-                color: 'var(--prism-text)',
-                marginBottom: '1rem',
-                lineHeight: 1.25,
-              }}
-            >
-              On-chain telemetry on Celo
-            </h2>
-            <p style={{ color: 'var(--prism-text-muted)', fontSize: '1.05rem', lineHeight: 1.65, marginBottom: '1.25rem' }}>
-              Log agent stats to a Solidity contract for verifiable audit trails. ERC-8004 compatible. Not required for
-              MCP or proxy — an optional trust layer for swarms and delegation.
-            </p>
-            <Link href="/dashboard" className="landing-cta-secondary">
-              Open dashboard
-            </Link>
-          </div>
-          <div className="landing-hero-visual">
-            <div
-              className="holo-card-prism"
-              style={{
-                padding: '2rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--prism-cyan)',
-                fontFamily: 'var(--font-display)',
-                fontSize: '1.1rem',
-                textAlign: 'center',
-              }}
-            >
-              Audit trail · not a security product
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <GetStartedSection />
-
-      <section className="landing-section landing-section-panel">
-        <div className="landing-section-inner">
-          <h2
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(1.25rem, 2vw, 1.5rem)',
-              fontWeight: 600,
-              color: 'var(--prism-text)',
-              marginBottom: '1.5rem',
-            }}
-          >
-            Resources
-          </h2>
-          <div className="landing-resource-cards">
-            {resources.map((r, i) => (
-              <Link
-                key={i}
-                href={r.href}
-                className="landing-resource-card"
-                {...(r.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-              >
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.05rem', color: 'var(--prism-cyan)', marginBottom: '0.35rem' }}>
-                  {r.title} →
-                </h3>
-                <p style={{ fontSize: '0.95rem', color: 'var(--prism-text-muted)', lineHeight: 1.4 }}>{r.desc}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <HowItWorksSection />
+      <SurfacesSection />
+      <ProofSection />
+      <RoutingSection />
+      <PrivacySection />
+      <AuditSection />
+      <InstallSection />
 
       <section className="landing-section landing-section-dark">
         <div className="landing-section-inner">
@@ -251,7 +173,7 @@ export default function HomePage() {
             FAQ
           </h2>
           <p style={{ color: 'var(--prism-text-muted)', fontSize: '1.05rem', marginBottom: '1.5rem' }}>
-            Savings, paths, and what RootRouter is not.
+            Cost, quality, data, and how it fits with the tools you already use.
           </p>
           <FAQAccordion />
         </div>
@@ -262,23 +184,23 @@ export default function HomePage() {
           <h2
             style={{
               fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(1.25rem, 2vw, 1.5rem)',
+              fontSize: 'clamp(1.35rem, 2.4vw, 1.8rem)',
               fontWeight: 600,
               color: 'var(--prism-text)',
               marginBottom: '0.75rem',
             }}
           >
-            RootRouter is the nervous system. Shamy is the first body.
+            Start with your own numbers.
           </h2>
-          <p style={{ color: 'var(--prism-text-muted)', fontSize: '1.05rem', marginBottom: '1.5rem', maxWidth: '32rem', margin: '0 auto 1.5rem' }}>
-            Fetch both playbooks, pick your path, and measure what you save.
+          <p style={{ color: 'var(--prism-text-muted)', fontSize: '1.05rem', marginBottom: '1.5rem', maxWidth: '34rem', margin: '0 auto 1.5rem' }}>
+            One trace or one repo is enough to see what you are re-sending and what RootRouter would cut.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', justifyContent: 'center' }}>
-            <Link href="/FENG-SHUI.md" className="landing-cta-primary">
-              Feng Shui skill
+            <Link href="#audit" className="landing-cta-primary">
+              Get a free context audit
             </Link>
-            <Link href="/SKILL.md" className="landing-cta-secondary">
-              RootRouter SKILL
+            <Link href="#install" className="landing-cta-secondary">
+              Install in 5 minutes
             </Link>
           </div>
         </div>
@@ -297,7 +219,7 @@ export default function HomePage() {
             ))}
           </div>
           <span style={{ fontSize: '0.95rem', color: 'var(--prism-text-dim)' }}>
-            Agent operations harness · MotusDAO · Early beta
+            Self-hosted · MIT · No analytics
           </span>
         </div>
       </footer>

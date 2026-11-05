@@ -9,8 +9,9 @@ import ConvexClientProvider from '../components/ConvexClientProvider';
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: { default: 'RootRouter', template: '%s — RootRouter' },
-  description: 'Agent context and operations harness — Feng Shui, MCP, proxy. Early beta.',
+  title: { default: 'RootRouter — Cut AI agent context costs', template: '%s — RootRouter' },
+  description:
+    'Trim 44% of the context your agents send. Self-hosted proxy, MCP server and IRP routing for Cursor, Codex, Claude Code and any OpenAI-compatible agent.',
 };
 
 type RootLayoutProps = {

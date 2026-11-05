@@ -1,9 +1,9 @@
 /**
- * Landing page evidence — synced from benchmarks/results/nim-latest.json after live runs.
- * Current headline artifact: npm run demo:benchmark-live:swarm
+ * Landing page evidence — keep every number tied to a committed artifact.
+ * Baselines and caveats live next to the value, not in a footnote nobody reads.
  */
 
-export type EvidenceMethod = 'audited' | 'production' | 'simulated' | 'live-api';
+export type EvidenceMethod = 'audited' | 'simulated' | 'live-api';
 
 export interface EvidenceMetric {
   id: string;
@@ -17,56 +17,45 @@ export interface EvidenceMetric {
 
 export const evidenceMetrics: EvidenceMetric[] = [
   {
-    id: 'mcp-cold-slice',
-    path: 'Cursor MCP · cold slice',
-    value: '~96%',
-    label: 'context tokens saved',
-    detail: 'Audited cold-slice selection: about 134k indexed-corpus tokens → about 6k selected',
-    method: 'audited',
-    footnote: '95.5%, rounded. Best for cold, spec-driven slices; not an every-request result.',
+    id: 'sdk-benchmark',
+    path: 'SDK benchmark · offline',
+    value: '43.9%',
+    label: 'fewer context tokens',
+    detail:
+      '50-query TF-IDF + simulated-LLM benchmark (seed 42). The same run models 73% lower cost.',
+    method: 'simulated',
+    footnote: 'Modeled cost at Claude-tier prices, not a billed reduction.',
   },
   {
     id: 'nim-live-api',
     path: 'NVIDIA NIM · live API',
     value: '46%',
-    label: 'chat context saved (swarm)',
+    label: 'estimated context saved',
     detail:
-      'Real completions — swarm profile: 24 steps, 3 agents, nvidia/nemotron-3-ultra-550b-a55b (2026-07-01)',
+      'Swarm profile: 24 steps, 3 agents, real nvidia/nemotron-3-ultra-550b-a55b completions.',
     method: 'live-api',
-    footnote:
-      'Estimated filter savings over accumulated history. Aligns with ~49% offline SDK benchmark. Reproduce: npm run demo:benchmark-live:swarm',
+    footnote: 'Estimated over accumulated history; not an API-billed figure.',
   },
   {
-    id: 'openclaw-proxy',
-    path: 'OpenClaw proxy · Shamy',
-    value: 'Live',
-    label: 'production path',
-    detail: 'Venice via rootrouter/* — trims chat history every completion',
-    method: 'production',
-    footnote: 'x-rootrouter-tokens-saved on proxy responses',
-  },
-  {
-    id: 'sdk-benchmark',
-    path: 'SDK benchmark · offline',
-    value: '~49%',
-    label: 'simulated demo savings',
-    detail: '50-query TF-IDF + simulated LLM (npm run demo:benchmark -- --seed 42) — not live API',
-    method: 'simulated',
+    id: 'mcp-cold-slice',
+    path: 'MCP · cold slice',
+    value: '95.5%',
+    label: 'context tokens saved',
+    detail: '~134k indexed-corpus tokens → ~6k selected for a spec-driven slice.',
+    method: 'audited',
+    footnote: 'Best case for a cold, spec-driven slice; not an every-request result.',
   },
 ];
 
-export const realApiBenchmark = {
-  provider: 'NVIDIA NIM',
-  status: 'complete' as 'pending' | 'in_progress' | 'complete',
-  headline: 'Live API benchmark published',
-  description:
-    'Swarm profile on Nemotron 3 Ultra — 134,226 accumulated-history tokens → 72,450 selected, a 46% estimated reduction across 24 multi-agent steps. Cursor MCP cold-slice selection saved ~96% against its indexed-corpus baseline.',
-  resultUrl: 'https://github.com/RootRouter/RootRouter/blob/main/benchmarks/results/nim-latest.json',
+export const headline = {
+  tokens: '43.9%',
+  cost: '73%',
+  baseline:
+    '50-query SDK benchmark · seed 42 · TF-IDF + simulated LLM · modeled cost at Claude-tier prices, not billed',
 };
 
 export const methodLabels: Record<EvidenceMethod, string> = {
   audited: 'Audited',
-  production: 'Production',
   simulated: 'Simulated',
   'live-api': 'Live API',
 };
