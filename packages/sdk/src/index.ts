@@ -189,3 +189,30 @@ export {
   resolveActiveSpecPath,
 } from './spec';
 export type { ParsedSpec, SpecSelectionHints } from './spec';
+
+// Inference Routing Protocol (IRP) — suggest-only routing service
+export {
+  rankCandidates,
+  requiredTier,
+  candidateTier,
+  qualityFit,
+  estimateCandidateCostUsd,
+  listIrpModels,
+  IRP_WILDCARD_MODEL,
+  DEFAULT_MAX_TOKENS,
+  DEFAULT_COST_QUALITY_TRADEOFF,
+  DEFAULT_ROUTER_ID,
+} from './irp';
+export type {
+  RankCandidatesOptions,
+  IrpMessage,
+  IrpPricing,
+  IrpCandidate,
+  IrpRankRequest,
+  IrpRankedCandidate,
+  IrpRanking,
+  IrpModel,
+  IrpModelList,
+  IrpProblem,
+  IrpRankResult,
+} from './irp';
