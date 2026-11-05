@@ -6,7 +6,7 @@ import ProofSection from '../components/ProofSection';
 import RoutingSection from '../components/RoutingSection';
 import PrivacySection from '../components/PrivacySection';
 import AuditSection from '../components/AuditSection';
-import InstallSection from '../components/InstallSection';
+import AgentTerminalSection from '../components/AgentTerminalSection';
 import FAQAccordion from '../components/FAQAccordion';
 
 export const metadata = {
@@ -100,13 +100,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="landing-section landing-section-panel" style={{ paddingTop: '1.1rem', paddingBottom: '1.1rem' }}>
-        <div className="landing-section-inner" style={{ textAlign: 'center' }}>
-          <p style={{ color: 'var(--prism-text-dim)', fontSize: '0.9rem', fontFamily: 'var(--font-mono)', margin: 0 }}>
-            Works with Cursor · Codex · Claude Code · OpenClaw · any OpenAI-compatible API · MCP
-          </p>
-        </div>
-      </section>
+      <AgentTerminalSection />
 
       <section className="landing-section landing-section-dark" id="product">
         <div className="landing-section-inner">
@@ -157,7 +151,6 @@ export default function HomePage() {
       <RoutingSection />
       <PrivacySection />
       <AuditSection />
-      <InstallSection />
 
       <section className="landing-section landing-section-dark">
         <div className="landing-section-inner">
