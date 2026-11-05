@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: Build and test
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+      ROOTROUTER_STORE_PATH: ${{ github.workspace }}/.tmp/e2e-store.json
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci --no-audit --no-fund
+
+      - name: Build SDK, proxy and MCP
+        run: npm run build:all
+
+      - name: SDK tests
+        run: npm test
+
+      - name: Proxy tests
+        run: npm test -w @rootrouter/proxy
+
+      - name: SDK end-to-end
+        run: npm run test:e2e -w rootrouter
+
+      - name: Proxy end-to-end
+        run: |
+          mkdir -p .tmp
+          npm run test:e2e -w @rootrouter/proxy
+
+      - name: MCP smoke test
+        run: npm run test:smoke -w @rootrouter/mcp
+
+      - name: Dashboard build
+        run: npm run dashboard:build

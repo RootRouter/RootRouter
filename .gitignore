@@ -29,3 +29,8 @@ deploy/dashboard.env
 /deliverables/
 /assets/
 /archive/
+
+# Local test and build artifacts
+.tmp/
+packages/sdk/test/e2e-logs/
+*.tsbuildinfo
