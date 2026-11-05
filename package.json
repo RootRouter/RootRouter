@@ -37,5 +37,8 @@
     "url": "https://github.com/RootRouter/RootRouter.git"
   },
   "author": "Gerry Alvarez <gerry@motusdao.org>",
-  "license": "MIT"
+  "license": "MIT",
+  "overrides": {
+    "tmp": "^0.2.7"
+  }
 }
