@@ -8,6 +8,7 @@
  * @module
  */
 
+import type * as auditRequests from "../auditRequests.js";
 import type * as runSnapshots from "../runSnapshots.js";
 import type * as telemetry from "../telemetry.js";
 
@@ -18,6 +19,7 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  auditRequests: typeof auditRequests;
   runSnapshots: typeof runSnapshots;
   telemetry: typeof telemetry;
 }>;

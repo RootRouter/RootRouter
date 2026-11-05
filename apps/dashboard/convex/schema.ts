@@ -31,4 +31,16 @@ export default defineSchema({
     .index('by_run', ['runId'])
     .index('by_agent', ['agentId'])
     .index('by_created', ['createdAt']),
+
+  auditRequests: defineTable({
+    email: v.string(),
+    stack: v.optional(v.string()),
+    monthlyTokens: v.optional(v.string()),
+    repoUrl: v.optional(v.string()),
+    notes: v.optional(v.string()),
+    source: v.optional(v.string()),
+    createdAt: v.number(),
+  })
+    .index('by_email', ['email'])
+    .index('by_created', ['createdAt']),
 });
