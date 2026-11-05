@@ -13,7 +13,7 @@
     "prepublishOnly": "node ../../scripts/sync-legal.mjs && npm run build",
     "start": "node dist/server.js",
     "dev": "tsx src/server.ts",
-    "test": "tsx test/filter.test.ts && tsx test/stateful.test.ts && tsx test/lightweightRouter.test.ts",
+    "test": "tsx test/filter.test.ts && tsx test/stateful.test.ts && tsx test/lightweightRouter.test.ts && tsx test/hermesAgentId.test.ts && tsx test/contextMeter.test.ts",
     "test:e2e": "node test/e2e.mjs && node test/e2e-stateful.mjs"
   },
   "keywords": ["openai-proxy", "llm-proxy", "rootrouter", "context-selection", "token-reduction", "ai-agents"],

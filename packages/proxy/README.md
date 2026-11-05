@@ -142,6 +142,7 @@ Implementation: [`src/lightweightRouter.ts`](src/lightweightRouter.ts), [`src/ro
 | Variable | Default | Purpose |
 |----------|---------|---------|
 | `PORT` | `8787` | Port the proxy listens on |
+| `ROOTROUTER_HOST` | `127.0.0.1` | Bind address. Loopback-only by default; set `0.0.0.0` to expose on all interfaces |
 | `ROOTROUTER_UPSTREAM_ORIGIN` | `https://openrouter.ai` | Origin to forward to (path is preserved) |
 | `ROOTROUTER_MODEL_ROUTING` | `false` | Enable lightweight model tier + catalog routing |
 | `MODEL_CATALOG` | `off` | `off` \| `auto` \| `venice` \| `openrouter` (same as SDK) |
@@ -149,6 +150,7 @@ Implementation: [`src/lightweightRouter.ts`](src/lightweightRouter.ts), [`src/ro
 | `VENICE_PRIVACY` | `private` | Venice catalog privacy preference |
 | `ROOTROUTER_STORE_PATH` | `~/.rootrouter/store.json` | Persistent cross-session context store |
 | `ROOTROUTER_STORE_SHARE` | `0.5` | Fraction of `contextBudget` for store recall vs in-request |
+| `ROOTROUTER_SESSION_SCOPE` | `true` | Append Hermes session id to agent scope; skip store recall when the session header is missing |
 | `ROOTROUTER_MAX_ITEMS` | unbounded | Cap stored items (oldest evicted) |
 | `ROOTROUTER_CONTEXT_BUDGET` | `4000` | Token budget for the selectable prior-turn context |
 | `ROOTROUTER_MIN_TOKENS_TO_FILTER` | `6000` | Only trim when the prompt exceeds this many tokens |
@@ -166,6 +168,7 @@ Implementation: [`src/lightweightRouter.ts`](src/lightweightRouter.ts), [`src/ro
 | `x-rootrouter-disable: true` | Skip trimming for this request |
 | `x-rootrouter-budget: <n>` | Override the context token budget for this request |
 | `x-rootrouter-agent-id: <id>` | Scope store recall/recording per agent (default `default`) |
+| `x-rootrouter-session-id: <id>` | Hermes session id. When `ROOTROUTER_SESSION_SCOPE` is on (default), recall is `agentId:sessionId` so `/new` does not inherit prior chats |
 | `x-rootrouter-recall-feedback: down` | Thumbs-down hook: log dropped turns as bad recall signal |
 | `x-rootrouter-force-model: true` | Skip model routing rewrite for this request |
 

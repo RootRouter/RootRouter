@@ -90,7 +90,66 @@ async function main() {
     assert((out.storeRecalled ?? 0) === 0, 'no store recall for isolated agent');
   }
 
-  console.log('\n=== Stateful: below threshold still records (no trim) ===');
+  console.log('\n=== Stateful: session-scoped agent ids do not leak ===');
+  {
+    const engine = new ContextEngine({ store: new InMemoryContextStore() });
+    const project = 'hermes-coo:motusdao';
+
+    await filterMessages(
+      [
+        {
+          role: 'user',
+          content: long('analyze Tu encuadre listo en 20 minutos and Benjamin checklist'),
+        },
+        { role: 'assistant', content: long('encuadre scores 6 of 10 cold academic exercise') },
+      ],
+      {
+        contextBudget: 400,
+        minTokensToFilter: 10,
+        engine,
+        agentId: `${project}:session-old`,
+        storeShare: 1,
+      }
+    );
+
+    const out = await filterMessages(
+      [{ role: 'user', content: 'help me plan an instagram lunarpunk channel' }],
+      {
+        contextBudget: 400,
+        minTokensToFilter: 10,
+        engine,
+        agentId: `${project}:session-new`,
+        storeShare: 1,
+      }
+    );
+
+    const text = out.messages.map((m) => String(m.content)).join(' ');
+    assert((out.storeRecalled ?? 0) === 0, 'new session does not recall old session store');
+    assert(!text.includes('encuadre'), 'new session prompt has no encuadre leak');
+  }
+
+  console.log('\n=== Stateful: disableStoreRecall skips injection ===');
+  {
+    const engine = new ContextEngine({ store: new InMemoryContextStore() });
+    await filterMessages(
+      [{ role: 'user', content: long('secret project alpha recipe') }],
+      { contextBudget: 400, minTokensToFilter: 10, engine, agentId: 'same-agent', storeShare: 1 }
+    );
+    const out = await filterMessages(
+      [{ role: 'user', content: 'what was the secret project' }],
+      {
+        contextBudget: 400,
+        minTokensToFilter: 10,
+        engine,
+        agentId: 'same-agent',
+        storeShare: 1,
+        disableStoreRecall: true,
+      }
+    );
+    const text = out.messages.map((m) => String(m.content)).join(' ');
+    assert((out.storeRecalled ?? 0) === 0, 'disableStoreRecall recalls nothing');
+    assert(!text.includes('secret project alpha'), 'disabled recall does not inject prior turn');
+  }
   {
     const storePath = path.join(os.tmpdir(), `rr-stateful-${Date.now()}.json`);
     const engine = new ContextEngine({

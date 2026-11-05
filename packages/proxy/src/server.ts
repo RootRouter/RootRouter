@@ -14,12 +14,17 @@ import { applyLightweightModelRouting } from './lightweightRouter.js';
 import { getProxyRoutingConfig, isModelRoutingEnabled } from './routingConfig.js';
 import {
   hermesAutoProjectEnabled,
+  hermesSessionScopeEnabled,
   readHermesActiveProjectSlug,
   resolveProxyAgentId,
+  sanitizeSessionId,
+  withSessionAgentId,
 } from './hermesAgentId.js';
 import { getContextMeterSnapshot, recordContextSample } from './contextMeter.js';
 
 const PORT = Number(process.env.PORT ?? 8787);
+/** Loopback-only by default. `listen(PORT)` with no host binds all interfaces. */
+const HOST = process.env.ROOTROUTER_HOST ?? '127.0.0.1';
 const UPSTREAM_ORIGIN = (process.env.ROOTROUTER_UPSTREAM_ORIGIN ?? 'https://openrouter.ai').replace(/\/$/, '');
 const CONTEXT_BUDGET = Number(process.env.ROOTROUTER_CONTEXT_BUDGET ?? 4000);
 const MIN_TOKENS_TO_FILTER = Number(process.env.ROOTROUTER_MIN_TOKENS_TO_FILTER ?? 6000);
@@ -107,6 +112,7 @@ async function handle(req: http.IncomingMessage, res: http.ServerResponse): Prom
         modelCatalog: routingConfig?.modelCatalog ?? 'off',
         hermesAutoProject: hermesAuto,
         hermesActiveSlug: hermesAuto ? readHermesActiveProjectSlug() : null,
+        sessionScope: hermesSessionScopeEnabled(),
       })
     );
     return;
@@ -153,7 +159,14 @@ async function handle(req: http.IncomingMessage, res: http.ServerResponse): Prom
     headerAgentId: (req.headers['x-rootrouter-agent-id'] ?? 'default').toString(),
     lockHeader: lockAgentId,
   });
-  const agentId = resolvedAgent.agentId;
+  const sessionId = sanitizeSessionId(
+    (req.headers['x-rootrouter-session-id'] ?? '').toString()
+  );
+  const sessionScope = hermesSessionScopeEnabled();
+  const projectAgentId = resolvedAgent.agentId;
+  const agentId =
+    sessionScope && sessionId ? withSessionAgentId(projectAgentId, sessionId) : projectAgentId;
+  const disableStoreRecall = sessionScope && !sessionId;
   agentIdSourceHeader = resolvedAgent.source;
   const recallFeedbackHeader = (req.headers['x-rootrouter-recall-feedback'] ?? '')
     .toString()
@@ -177,6 +190,7 @@ async function handle(req: http.IncomingMessage, res: http.ServerResponse): Prom
           engine: getEngine(),
           agentId,
           storeShare: STORE_SHARE,
+          disableStoreRecall,
           baseline: 'window',
           baselineWindowSize: BASELINE_WINDOW,
           recallFeedback: recallFeedbackHeader === 'down' ? 'down' : undefined,
@@ -216,7 +230,9 @@ async function handle(req: http.IncomingMessage, res: http.ServerResponse): Prom
           console.error(
             `[rootrouter-proxy] trimmed ${outcome.tokensBefore}->${outcome.tokensAfter} tokens ` +
               `(saved ${outcome.tokensSaved}; kept ${outcome.keptCandidates}/${outcome.totalCandidates}; ` +
-              `store recalled ${outcome.storeRecalled ?? 0})${droppedMsg}${droppedStore}`
+              `store recalled ${outcome.storeRecalled ?? 0} agent=${agentId}` +
+              `${sessionId ? ` session=${sessionId}` : ' session=none'}` +
+              `${disableStoreRecall ? ' recall=off' : ''})${droppedMsg}${droppedStore}`
           );
         } else {
           await getEngine().save();
@@ -271,6 +287,7 @@ async function handle(req: http.IncomingMessage, res: http.ServerResponse): Prom
   respHeaders['x-rootrouter-store-recalled'] = storeRecalledHeader;
   respHeaders['x-rootrouter-agent-id'] = agentId;
   respHeaders['x-rootrouter-agent-id-source'] = agentIdSourceHeader;
+  if (sessionId) respHeaders['x-rootrouter-session-id'] = sessionId;
   if (modelSelectedHeader) {
     respHeaders['x-rootrouter-model-selected'] = modelSelectedHeader;
     respHeaders['x-rootrouter-tier'] = tierHeader;
@@ -295,12 +312,13 @@ async function main() {
     });
   });
 
-  server.listen(PORT, () => {
-    console.error(`[rootrouter-proxy] listening on http://localhost:${PORT} -> ${UPSTREAM_ORIGIN}`);
+  server.listen(PORT, HOST, () => {
+    console.error(`[rootrouter-proxy] listening on http://${HOST}:${PORT} -> ${UPSTREAM_ORIGIN}`);
     console.error(
       `[rootrouter-proxy] store=${resolveStorePath()} contextBudget=${CONTEXT_BUDGET} ` +
         `storeShare=${STORE_SHARE} modelRouting=${MODEL_ROUTING_ENABLED} ` +
-        `hermesAutoProject=${hermesAutoProjectEnabled()}`
+        `hermesAutoProject=${hermesAutoProjectEnabled()} ` +
+        `sessionScope=${hermesSessionScopeEnabled()}`
     );
   });
 }

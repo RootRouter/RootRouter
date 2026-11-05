@@ -29,6 +29,8 @@ export interface FilterOptions {
   agentId?: string;
   /** Fraction of contextBudget for store hits when engine is set (default 0.5). */
   storeShare?: number;
+  /** Skip persistent-store recall (still records). Used when session id is missing. */
+  disableStoreRecall?: boolean;
   /** Savings baseline: 'window' compares last N turns; 'all' uses full candidate pool. */
   baseline?: 'all' | 'window';
   /** Window size when baseline is 'window'. Default 20. */
@@ -226,10 +228,14 @@ async function filterStateful(
       .filter((m) => typeof m.content === 'string')
       .map((m) => messageText(m.content))
   );
-  const storeItems = storeItemsExcludingRequest(engine.getStore().all(agentId), requestTexts);
+  const storeItems = options.disableStoreRecall
+    ? []
+    : storeItemsExcludingRequest(engine.getStore().all(agentId), requestTexts);
 
-  // Short requests with no in-request history still recall from store (cross-session memory).
-  const needsStoreRecall = requestItems.length === 0 && storeItems.length > 0;
+  // Short requests with no in-request history still recall from store.
+  // storeShare=0 disables that path (session isolation / opt-out).
+  const needsStoreRecall =
+    requestItems.length === 0 && storeItems.length > 0 && storeShare > 0;
 
   if (!shouldTrim && !needsStoreRecall) {
     await engine.save();

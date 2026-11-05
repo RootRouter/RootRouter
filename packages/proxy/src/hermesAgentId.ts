@@ -75,6 +75,29 @@ export function resolveProxyAgentId(input: {
   return { agentId: `${PERSONA}:default`, source: 'hermes-default' };
 }
 
+/** Session-scoped auto-recall. Default on. Set ROOTROUTER_SESSION_SCOPE=false to revert. */
+export function hermesSessionScopeEnabled(): boolean {
+  const v = (process.env.ROOTROUTER_SESSION_SCOPE ?? 'true').toLowerCase();
+  return v !== '0' && v !== 'false' && v !== 'no' && v !== 'off';
+}
+
+/** Hermes session ids look like 20260822_134405_25a3a010. */
+export function sanitizeSessionId(raw: string | undefined | null): string | null {
+  if (!raw) return null;
+  const cleaned = String(raw)
+    .trim()
+    .slice(0, 80)
+    .replace(/[^a-zA-Z0-9._-]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return cleaned || null;
+}
+
+/** hermes-coo:motusdao + session → hermes-coo:motusdao:<session>. */
+export function withSessionAgentId(projectAgentId: string, sessionId: string | null): string {
+  if (!sessionId) return projectAgentId;
+  return `${projectAgentId}:${sessionId}`;
+}
+
 /** Test helper */
 export function clearHermesAgentIdCache(): void {
   cached = null;
