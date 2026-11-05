@@ -1,11 +1,11 @@
 ---
 name: feng-shui
-description: Establish and preserve orderly agent workspaces before files are created. Workspace companion to RootRouter (Layer 0). Use when scaffolding repos, choosing output directories, reorganizing workspaces, or harmonizing clutter. Hosted at https://rootrouter.motusdao.org/FENG-SHUI.md
+description: Establish and preserve orderly agent workspaces before files are created. Workspace companion to RootRouter (Layer 0). Use when scaffolding repos, choosing output directories, reorganizing workspaces, or harmonizing clutter. Hosted at https://rootrouter.brahma101.cyou/FENG-SHUI.md
 ---
 
 # Feng Shui (RootRouter workspace companion)
 
-Canonical agent playbook: **https://rootrouter.motusdao.org/FENG-SHUI.md**
+Canonical agent playbook: **https://rootrouter.brahma101.cyou/FENG-SHUI.md**
 
 Repo copy: [`docs/FENG-SHUI.md`](../../FENG-SHUI.md)
 

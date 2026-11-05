@@ -1,6 +1,6 @@
 # Organize Space — Harmonize workflow
 
-Companion to [FENG-SHUI.md](https://rootrouter.motusdao.org/FENG-SHUI.md). Use when a workspace is messy and needs assessment or reorganization.
+Companion to [FENG-SHUI.md](https://rootrouter.brahma101.cyou/FENG-SHUI.md). Use when a workspace is messy and needs assessment or reorganization.
 
 ## Safety contract
 

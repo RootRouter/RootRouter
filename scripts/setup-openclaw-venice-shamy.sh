@@ -186,7 +186,7 @@ REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 SHAMY_WORKSPACE="${SHAMY_WORKSPACE:-$HOME/data/shamy/workspace}"
 FENG_SHUI_SRC="$REPO_ROOT/docs/skills/feng-shui"
 ORGANIZE_SRC="$REPO_ROOT/docs/skills/organize-space"
-PUBLIC_URL="${ROOTROUTER_PUBLIC_URL:-https://rootrouter.motusdao.org}"
+PUBLIC_URL="${ROOTROUTER_PUBLIC_URL:-https://rootrouter.brahma101.cyou}"
 PLAYBOOK_URL="$PUBLIC_URL/SKILL.md"
 FENG_SHUI_URL="$PUBLIC_URL/FENG-SHUI.md"
 

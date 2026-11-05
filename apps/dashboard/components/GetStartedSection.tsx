@@ -149,9 +149,9 @@ function OpenClawPanel() {
         {'\n'}
         bash ~/RootRouter/scripts/setup-openclaw-venice-shamy.sh
         {'\n\n'}
-        curl -s https://rootrouter.motusdao.org/FENG-SHUI.md
+        curl -s https://rootrouter.brahma101.cyou/FENG-SHUI.md
         {'\n'}
-        curl -s https://rootrouter.motusdao.org/SKILL.md
+        curl -s https://rootrouter.brahma101.cyou/SKILL.md
       </code>
     </pre>
   );

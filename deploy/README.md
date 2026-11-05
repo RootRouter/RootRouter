@@ -2,8 +2,8 @@
 
 Self-host on your VPS when the GitHub repo is private (Vercel Hobby cannot deploy private repos).
 
-**Public URL (Motus):** `https://rootrouter.motusdao.org`  
-**Agent playbook:** `https://rootrouter.motusdao.org/SKILL.md`
+**Public URL (Motus):** `https://rootrouter.brahma101.cyou`  
+**Agent playbook:** `https://rootrouter.brahma101.cyou/SKILL.md`
 
 ---
 
@@ -13,7 +13,7 @@ Self-host on your VPS when the GitHub repo is private (Vercel Hobby cannot deplo
 |------|--------|
 | Docker | Same host as OpenClaw / Caddy |
 | Network `openclaw_default` | Dashboard joins it so Caddy can `reverse_proxy rootrouter-dashboard:3000` |
-| DNS | `rootrouter.motusdao.org` → VPS IP |
+| DNS | `rootrouter.brahma101.cyou` → VPS IP |
 | Convex (optional) | `NEXT_PUBLIC_CONVEX_URL` for topology snapshots |
 
 ---
@@ -57,15 +57,15 @@ sudo caddy validate --config /etc/caddy/Caddyfile
 sudo systemctl reload caddy
 ```
 
-Snippet routes `rootrouter.motusdao.org` → `rootrouter-dashboard:3000`.
+Snippet routes `rootrouter.brahma101.cyou` → `rootrouter-dashboard:3000`.
 
 ---
 
 ## 3. Verify
 
 ```bash
-curl -sI https://rootrouter.motusdao.org/SKILL.md
-curl -sI https://rootrouter.motusdao.org/
+curl -sI https://rootrouter.brahma101.cyou/SKILL.md
+curl -sI https://rootrouter.brahma101.cyou/
 docker logs rootrouter-dashboard --tail 30
 ```
 
@@ -74,7 +74,7 @@ docker logs rootrouter-dashboard --tail 30
 ## 4. SDK snapshots → dashboard
 
 ```bash
-export DASHBOARD_URL=https://rootrouter.motusdao.org
+export DASHBOARD_URL=https://rootrouter.brahma101.cyou
 npx rootrouter snapshot
 ```
 

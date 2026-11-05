@@ -4,7 +4,7 @@
 #
 # Requires rootrouter-dashboard on network openclaw_default (docker-compose.dashboard.yml).
 
-rootrouter.motusdao.org {
+rootrouter.brahma101.cyou {
 	encode gzip
 
 	# Agent playbooks — served by Next from apps/dashboard/public/

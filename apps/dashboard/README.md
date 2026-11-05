@@ -2,7 +2,7 @@
 
 Next.js app for live Celo telemetry, topology snapshots, and public agent playbooks at `/SKILL.md` and `/FENG-SHUI.md`.
 
-**Production:** VPS at [rootrouter.motusdao.org](https://rootrouter.motusdao.org) — see [`deploy/README.md`](../../deploy/README.md).  
+**Production:** VPS at [rootrouter.brahma101.cyou](https://rootrouter.brahma101.cyou) — see [`deploy/README.md`](../../deploy/README.md).  
 **Not on npm** — ships via Docker only; SDK (`rootrouter`) is separate.
 
 ---
@@ -35,9 +35,9 @@ Then install Caddy site: `deploy/caddy/rootrouter.caddy` → reload Caddy.
 Verify:
 
 ```bash
-curl -sI https://rootrouter.motusdao.org/SKILL.md
-curl -sI https://rootrouter.motusdao.org/FENG-SHUI.md
-curl -sI https://rootrouter.motusdao.org/
+curl -sI https://rootrouter.brahma101.cyou/SKILL.md
+curl -sI https://rootrouter.brahma101.cyou/FENG-SHUI.md
+curl -sI https://rootrouter.brahma101.cyou/
 ```
 
 ---
