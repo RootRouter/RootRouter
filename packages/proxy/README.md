@@ -244,3 +244,20 @@ Returns last request (`tokensBefore` / `tokensAfter` / `tokensSaved` / `budgetFi
               │  ModelRouter           │
               │  Celo telemetry        │
               └────────────────────────┘
+---
+
+## IRP routing service (optional)
+
+The same package ships a second entry point, `rootrouter-irp`, which serves
+[Inference Routing Protocol](https://github.com/inference-routing/spec)
+suggest-only rankings for inference marketplaces such as Antseed. It is
+stateless, logs no prompt content and makes no outbound calls.
+
+```bash
+npm run build:all
+IRP_ROUTER_API_KEY=<key> npm run irp:start -w @rootrouter/proxy
+# listening on http://127.0.0.1:8788
+```
+
+See [`docs/irp.md`](../../docs/irp.md) for the protocol, ranking logic, limits
+and privacy guarantees.
