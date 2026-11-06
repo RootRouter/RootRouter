@@ -34,3 +34,6 @@ deploy/dashboard.env
 .tmp/
 packages/sdk/test/e2e-logs/
 *.tsbuildinfo
+# The monorepo installs from the root lockfile; nested lockfiles only create drift
+packages/*/package-lock.json
+apps/*/package-lock.json
