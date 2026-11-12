@@ -3,7 +3,7 @@
     "rootrouter": {
       "command": "node",
       "args": [
-        "/Users/brahma101/Projects/Work/RootRouter/packages/mcp/dist/server.js"
+        "/Users/brahma101/Projects/Work/RootRouter/Repositories/RootRouter/packages/mcp/dist/server.js"
       ],
       "env": {
         "ROOTROUTER_STORE_PATH": "/Users/brahma101/.rootrouter/rootrouter/cursor-store.json",
