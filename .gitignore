@@ -37,3 +37,6 @@ packages/sdk/test/e2e-logs/
 # The monorepo installs from the root lockfile; nested lockfiles only create drift
 packages/*/package-lock.json
 apps/*/package-lock.json
+
+# Local sandbox with other repo clones (not part of this project)
+/Repositories/
