@@ -23,13 +23,6 @@ deploy/dashboard.env
 .DS_Store
 **/.DS_Store
 
-# Feng Shui gravity (COO local workspace material — not product source)
-/inbox/
-/documents/
-/deliverables/
-/assets/
-/archive/
-
 # Local test and build artifacts
 .tmp/
 packages/sdk/test/e2e-logs/
@@ -37,6 +30,3 @@ packages/sdk/test/e2e-logs/
 # The monorepo installs from the root lockfile; nested lockfiles only create drift
 packages/*/package-lock.json
 apps/*/package-lock.json
-
-# Local sandbox with other repo clones (not part of this project)
-/Repositories/
