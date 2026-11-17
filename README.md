@@ -94,7 +94,7 @@ See [Benchmark evidence and methodology](docs/BENCHMARKS.md), the committed [NVI
 ## Install
 
 ```bash
-npm install rootrouter@beta
+npm install rootrouter @rootrouter/proxy @rootrouter/mcp
 ```
 
 > Also available on npm: [npmjs.com/package/rootrouter](https://www.npmjs.com/package/rootrouter)
@@ -149,8 +149,8 @@ Use MCP for cold starts, unfamiliar repositories, cross-module work, and spec-dr
 
 ```bash
 # Run inside the project you want to configure
-npx rootrouter@beta init cursor --project-store --project-agent-id my-project
-npx rootrouter@beta init codex --project-store --write-agents-md --project-agent-id my-project
+npx rootrouter init cursor --project-store --project-agent-id my-project
+npx rootrouter init codex --project-store --write-agents-md --project-agent-id my-project
 ```
 
 `--project-store` isolates repositories under `~/.rootrouter/<project>/` so chunks from unrelated codebases do not contaminate selection. Add `--local-embeddings` for local MiniLM embeddings; otherwise RootRouter uses zero-dependency TF-IDF.
@@ -173,7 +173,7 @@ The intended loop is **cold task → index once → select a slice → read spec
 Use the OpenAI-compatible proxy when the agent should not need to call RootRouter tools:
 
 ```bash
-npx -p @rootrouter/proxy@beta rootrouter-proxy
+npx -p @rootrouter/proxy rootrouter-proxy
 ```
 
 Point the agent's existing `base_url` at `http://localhost:8787` while preserving the provider path. The proxy:
@@ -190,8 +190,8 @@ Inspect managed-context health at `GET /context` (or `/v1/context`): last-reques
 #### Hermes and other runtimes
 
 ```bash
-npx rootrouter@beta init hermes --project-slug my-project
-npx rootrouter@beta doctor
+npx rootrouter init hermes --project-slug my-project
+npx rootrouter doctor
 ```
 
 Hermes setup wires its OpenAI-compatible provider to the proxy and scopes context with `x-rootrouter-agent-id`. Cursor currently uses the MCP path; Codex can use MCP and the proxy/shared store; OpenClaw and generic stdio MCP clients can run `rootrouter-mcp` directly. The supported combinations and storage policies are documented in [`docs/deployment-matrix.md`](docs/deployment-matrix.md).
