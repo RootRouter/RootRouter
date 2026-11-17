@@ -1,5 +1,9 @@
 # Changelog — rootrouter
 
+## 1.0.2 — 2026-11-17
+
+- Fix npmjs README display: publish from `packages/sdk` so registry receives `readme` metadata.
+
 ## 1.0.1 — 2026-11-17
 
 - npm README, description, and keywords aligned with proxy-first 1.0 positioning (SDD slice A).

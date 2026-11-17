@@ -1,6 +1,6 @@
 {
   "name": "@rootrouter/proxy",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "OpenAI-compatible context proxy with cross-session memory — trim, recall, /metrics and /topology. Primary RootRouter surface for headless agents.",
   "type": "module",
   "main": "dist/server.js",
@@ -23,7 +23,7 @@
   "author": "Gerry Alvarez <aszalvarez@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "rootrouter": "^1.0.1"
+    "rootrouter": "^1.0.2"
   },
   "repository": {
     "type": "git",

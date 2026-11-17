@@ -1,6 +1,6 @@
 {
   "name": "rootrouter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Context engine, CLI, and repo indexing for RootRouter — proxy-first agent memory (pairs with @rootrouter/proxy and @rootrouter/mcp)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

@@ -35,9 +35,12 @@ node packages/proxy/dist/server.js
 
 ```bash
 npm run publish:packages
+npm run verify:published-readme
 ```
 
-This builds all three packages and publishes each with the **`beta`** dist-tag (so `latest` stays on the previous stable until you ship 1.0).
+Publishes from each package directory (not `npm publish -w` only) so **README.md** is attached for npmjs.com.
+
+If the website still says “no README” but `npm view rootrouter readme` shows text, hard-refresh after 2–5 minutes (npm CDN).
 
 Verify after publish:
 
@@ -49,7 +52,7 @@ npm view @rootrouter/mcp version
 
 ## Versioning
 
-Current release: **1.0.1** (SDD 001 — see [BETA.md](../BETA.md) and [docs/SDD/PROGRESS.md](./SDD/PROGRESS.md)).
+Current release: **1.0.2** (SDD 001 — see [BETA.md](../BETA.md) and [docs/SDD/PROGRESS.md](./SDD/PROGRESS.md)).
 
 npm maintainer: **gerryalvrz** (`rootrouter` and `@rootrouter/*`).
 
