@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Publish SDK, proxy, MCP from each package directory so npm attaches README.md
- * to the registry packument (npm publish -w from monorepo root often leaves readme empty).
+ * to the version manifest (npm publish -w from monorepo root often leaves versions[].readme empty).
  */
 import { execSync } from 'child_process';
 import fs from 'fs';
@@ -29,12 +29,23 @@ for (const pkg of order) {
     process.exit(1);
   }
   console.log(`\nPublishing ${pkg.name} from ${pkg.dir} (README ${size}B)...`);
-  execSync('npm publish --access public', {
+
+  // Pack + publish .tgz avoids workspace root confusing npm's readme injection.
+  const tgz = execSync('npm pack --pack-destination .', { cwd, encoding: 'utf8' })
+    .trim()
+    .split('\n')
+    .pop();
+  const tgzPath = path.join(cwd, tgz);
+  if (!fs.existsSync(tgzPath)) {
+    console.error(`Expected tarball ${tgzPath}`);
+    process.exit(1);
+  }
+  execSync(`npm publish "${tgz}" --access public`, {
     cwd,
     stdio: 'inherit',
     env: { ...process.env, npm_config_workspace: '' },
   });
+  fs.unlinkSync(tgzPath);
 }
 
-console.log('\nDone. Verify: npm view rootrouter readme');
-console.log('If npmjs.com still blank, wait 2–5 min and hard-refresh (readme is processed async).');
+console.log('\nDone. Verify: npm run verify:published-readme');
