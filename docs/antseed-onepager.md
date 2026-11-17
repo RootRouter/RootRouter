@@ -68,9 +68,20 @@ curl -s http://localhost:8377/v1/chat/completions \
 - Inference privacy is between buyer and seller; RootRouter does not proxy or store inference traffic.
 - The buyer proxy/MCP may store local state by design; see the repo docs.
 
+## Trust, stake, and points (Antseed Points)
+
+Per [recognized usage](https://antseed.com/docs/recognized-usage/) and [antseedpoints.com](https://antseedpoints.com/#how):
+
+- **Boost = ANTS staked behind the provider.** RootRouter agent `1165698` currently has **0 ANTS** → **0× boost** → paid usage through this seller earns **no buyer points** for anyone.
+- **Selling still works** without stake (`minSellerPoolStake = 0`), but you do not appear on the provider leaderboard or share staker/usage ANTS emissions like GesundAI / Open Forge.
+- **ANTS transfers** are gated (whitelist). With **0 ANTS** on the seller wallet, `antseed seller stake` is not available yet; options are **lANTS** (stake NFT), **claim/restake rewards**, or **whitelist** from the team.
+- **Model verification** (SP1) adds up to **+50%** on recognized seller usage points; see `antseed ants verify`.
+
+**Buyer side (same wallet `0x59c6…0dbc`):** lifetime **buyer points 0** on-chain — VPN/relayer spend must use this wallet as the **authorized rewards wallet** in the AI VPN console, and spend must hit **paid** usage on **boosted** providers (e.g. GesundAI 69×, Open Forge 22×). USDC in the hot wallet does not earn points until usage settles under that identity.
+
 ## Trust and roadmap
 
-- New seller: trust 5 today; identity verification and pool/staking are in progress.
+- New seller: low trust score; identity is registered (GitHub + domains). Pool staking is the main gap for points.
 - Until trust reaches the default 60, pin the peer or use a buyer with `minTrustScore=0`.
 - Design partners: agent launchers running persistent OpenClaw/Hermes agents; paid pilots.
 
