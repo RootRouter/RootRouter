@@ -13,6 +13,7 @@ const DEFAULT_IGNORE_DIRS = new Set([
   'venv',
   'graphify-out',
   '.rootrouter',
+  '_generated',
 ]);
 
 const DEFAULT_EXTENSIONS = new Set([

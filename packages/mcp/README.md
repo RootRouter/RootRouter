@@ -77,13 +77,13 @@ This produces `packages/mcp/dist/server.js` (an executable `rootrouter-mcp` bin)
 From any project directory:
 
 ```bash
-npx rootrouter@beta init codex    # appends ~/.codex/config.toml
-npx rootrouter@beta init codex --project-store --write-agents-md   # per-repo config/store + AGENTS.md
-npx rootrouter@beta init codex --project-store --write-agents-md --project-agent-id academy --local-embeddings
-npx rootrouter@beta init cursor --project-store   # Motus / production — per-repo store
-npx rootrouter@beta init cursor --project-store --project-agent-id my-app --local-embeddings
-npx rootrouter@beta init cursor --active-spec docs/specs/slice-4.md   # demos may omit --project-store (global store)
-npx rootrouter@beta index ./my-repo
+npx rootrouter init codex    # appends ~/.codex/config.toml
+npx rootrouter init codex --project-store --write-agents-md   # per-repo config/store + AGENTS.md
+npx rootrouter init codex --project-store --write-agents-md --project-agent-id academy --local-embeddings
+npx rootrouter init cursor --project-store   # Motus / production — per-repo store
+npx rootrouter init cursor --project-store --project-agent-id my-app --local-embeddings
+npx rootrouter init cursor --active-spec docs/specs/slice-4.md   # demos may omit --project-store (global store)
+npx rootrouter index ./my-repo
 ```
 
 Multi-repo Codex: use `--project-store` so each repo gets `~/.rootrouter/<slug>/codex-store.json`. Use `--write-agents-md` for persistent cold/warm discipline in `~/.codex/AGENTS.md` and `./AGENTS.md`. See [`docs/deployment-matrix.md`](../../docs/deployment-matrix.md).
@@ -101,7 +101,7 @@ Multi-repo Codex: use `--project-store` so each repo gets `~/.rootrouter/<slug>/
   "mcpServers": {
     "rootrouter": {
       "command": "npx",
-      "args": ["-p", "@rootrouter/mcp@beta", "rootrouter-mcp"],
+      "args": ["-p", "@rootrouter/mcp", "rootrouter-mcp"],
       "env": {
         "ROOTROUTER_STORE_PATH": "~/.rootrouter/store.json"
       }
@@ -188,7 +188,7 @@ From the shell (same env as MCP):
 ```bash
 npm run audit:mcp
 # or
-npx rootrouter@beta audit --limit 30 --json
+npx rootrouter audit --limit 30 --json
 ```
 
 Reads `selections.jsonl` and prints per-query savings. In Cursor, call MCP `list_selections` for the same data without leaving the agent.

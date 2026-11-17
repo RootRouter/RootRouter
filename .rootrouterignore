@@ -1,0 +1,4 @@
+# SDD slice C — trim noisy UI / generated surfaces from default index
+apps/dashboard/components/GridScan.tsx
+**/_generated/**
+benchmarks/results/**

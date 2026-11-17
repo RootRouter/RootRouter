@@ -1,0 +1,7 @@
+{
+  "name": "chambers-boost",
+  "tokenBudget": 4000,
+  "useChambers": true,
+  "mmrLambda": 0.7,
+  "embedding": "tfidf"
+}

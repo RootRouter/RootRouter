@@ -1,0 +1,7 @@
+{
+  "name": "default-tfidf",
+  "tokenBudget": 2000,
+  "useChambers": false,
+  "mmrLambda": 0.7,
+  "embedding": "tfidf"
+}

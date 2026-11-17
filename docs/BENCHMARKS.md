@@ -71,6 +71,25 @@ npx tsx packages/sdk/demo/benchmark.ts --seed 42
 
 It is a regression and modeling benchmark, not a live-provider result. The latest committed run reports 73.3% modeled cost savings ([artifact](../packages/sdk/benchmarks/results/2026-08-05T18-11-32.json)) and a 43.9% reduction in context tokens (84,194 -> 47,257). Most of the cost figure comes from substituting a powerful model with a cheaper tier; the rest comes from context filtering. Neither figure is a billed reduction.
 
+## Repository selection eval (SDD slice B)
+
+Reproducible recall / precision on this monorepo (53 labeled queries, TF-IDF default):
+
+```bash
+npm run eval:selection
+npm run eval:selection -- --config packages/sdk/evals/selection/configs/default.json --config packages/sdk/evals/selection/configs/chambers.json
+```
+
+Latest artifact: [`benchmarks/results/eval-selection-latest.json`](../benchmarks/results/eval-selection-latest.json). CI enforces `recallAt10 >= 0.26` per [`eval-selection-threshold.json`](../benchmarks/results/eval-selection-threshold.json).
+
+| Metric (default config) | Value |
+|-------------------------|------:|
+| recall@10 | ~0.28 |
+| precision@10 | ~0.03 |
+| nDCG@10 | ~0.22 |
+
+**Agent baseline (heuristic):** locating the same files via undirected `Grep` + full-file `Read` would spend roughly 3–8× more tokens than `select_context` at budget 2000 (same query set). This is modeled, not measured in CI.
+
 ## Reporting rules
 
 When citing RootRouter results:

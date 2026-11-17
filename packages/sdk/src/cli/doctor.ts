@@ -252,11 +252,19 @@ export async function runDoctorCli(options: DoctorCliOptions = {}): Promise<numb
   const exitOk = blocking.length === 0;
 
   let recommendedNextStep =
-    store.items === 0
-      ? 'Run: rootrouter index ./repo (or MCP index_repo once per cold slice)'
-      : audit.totalEntries === 0
-        ? 'Run a cold slice flow: select_for_spec or select_context, then rootrouter audit'
-        : 'Looks healthy. Continue with slice work and use stats/list_selections at handoff.';
+    'Headless default: npx -p @rootrouter/proxy rootrouter-proxy → point agent base_url at it (see packages/proxy/README.md).';
+
+  if (store.items === 0) {
+    recommendedNextStep +=
+      ' Index once: rootrouter index ./repo (or MCP index_repo for Cursor cold slices).';
+  } else if (audit.totalEntries === 0) {
+    recommendedNextStep +=
+      ' Warm up selection: select_for_spec or select_context, then rootrouter audit.';
+  } else if (!mcp.ok) {
+    recommendedNextStep += ' Cursor: rootrouter init cursor --project-store.';
+  } else {
+    recommendedNextStep += ' Looks healthy — use stats/list_selections at slice handoff.';
+  }
 
   if (usingGlobal) {
     recommendedNextStep =

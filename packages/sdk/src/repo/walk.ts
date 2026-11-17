@@ -1,6 +1,11 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { detectLanguage } from './imports';
+import {
+  contentLooksLikeSecret,
+  loadDefaultPathExcludes,
+  loadRootrouterIgnore,
+} from './rootrouterignore';
 import { isAllowedExtension, isIgnoredDir, readFileSafe, resolveJailedPath } from './security';
 import type { RepoLanguage } from './types';
 
@@ -20,6 +25,8 @@ export function walkRepo(
 ): ScannedFile[] {
   const root = path.resolve(rootPath);
   const files: ScannedFile[] = [];
+  const shouldIgnore = loadRootrouterIgnore(root);
+  const defaultExclude = loadDefaultPathExcludes(root);
 
   function walk(dir: string): void {
     let entries: fs.Dirent[];
@@ -32,6 +39,8 @@ export function walkRepo(
     for (const ent of entries) {
       const full = path.join(dir, ent.name);
       if (ent.isDirectory()) {
+        const dirRel = path.relative(root, full).replace(/\\/g, '/');
+        if (shouldIgnore(dirRel ? `${dirRel}/` : '')) continue;
         if (isIgnoredDir(ent.name, options.ignoreDirs)) continue;
         walk(full);
         continue;
@@ -45,9 +54,14 @@ export function walkRepo(
         continue;
       }
 
+      if (shouldIgnore(rel) || defaultExclude(rel)) continue;
+      const base = path.basename(rel);
+      if (base.startsWith('.env') || base.endsWith('.pem') || base.endsWith('.key')) continue;
+
       if (!isAllowedExtension(rel, options.extensions)) continue;
       const content = readFileSafe(full, options.maxFileBytes);
       if (content === null) continue;
+      if (contentLooksLikeSecret(content)) continue;
 
       files.push({
         relativePath: rel,

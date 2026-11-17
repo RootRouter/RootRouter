@@ -19,6 +19,7 @@ import {
 } from './init';
 import { runAuditCli } from './audit';
 import { runDoctorCli } from './doctor';
+import { runStoreExport, runStoreLs, runStorePurge, runStoreRm, runStoreShow } from './storeCli';
 
 interface ParsedArgs {
   command: string;
@@ -64,11 +65,15 @@ function parseArgs(argv: string[]): ParsedArgs {
     command = 'index';
   }
 
-  if (command === 'init' && args[1] && !args[1].startsWith('-')) {
+  if (
+    (command === 'init' || command === 'store') &&
+    args[1] &&
+    !args[1].startsWith('-')
+  ) {
     subcommand = args[1];
   }
 
-  const start = command === 'init' ? 2 : 1;
+  const start = command === 'init' || command === 'store' ? 2 : 1;
   for (let i = start; i < args.length; i++) {
     const a = args[i];
     if (a === '--store' && args[i + 1]) {
@@ -133,11 +138,12 @@ Usage:
   rootrouter snapshot [--store <store.json>] [--dashboard <url>]
   rootrouter audit [--limit <n>] [--agent <id>] [--json]
   rootrouter doctor [--store <store.json>] [--proxy-url <url>] [--json]
+  rootrouter store ls|show|rm|export|purge --store <file> [--agent <id>] [--item <id>] [--out <file>]
 
 One-liners (beta on npm):
-  npx rootrouter@beta index ./my-repo
-  npx -p @rootrouter/proxy@beta rootrouter-proxy
-  npx -p @rootrouter/mcp@beta rootrouter-mcp
+  npx rootrouter index ./my-repo
+  npx -p @rootrouter/proxy rootrouter-proxy
+  npx -p @rootrouter/mcp rootrouter-mcp
 `);
 }
 
@@ -245,6 +251,9 @@ async function runInit(
     console.error(`Store: ${result.storePath}`);
     console.error(`Default agentId: ${result.agentId}`);
     console.error('');
+    console.error(
+      'Default for headless agents: npx -p @rootrouter/proxy rootrouter-proxy (see packages/proxy/README.md).'
+    );
     console.error('Agent rule: .cursor/rules/rootrouter-mcp.mdc (cold vs warm path — skip on single-file fixes)');
     console.error('Handoff template: docs/templates/slice-handoff.md');
     console.error('Storage policy: docs/insights/009-cursor-project-store-parity.md');
@@ -408,6 +417,43 @@ async function main(): Promise<void> {
   if (command === 'doctor') {
     const code = await runDoctorCli({ storePath, proxyUrl, json });
     process.exit(code);
+  }
+
+  if (command === 'store') {
+    const storeFile = storePath ?? process.env.ROOTROUTER_STORE_PATH;
+    if (!storeFile) {
+      console.error('store requires --store or ROOTROUTER_STORE_PATH');
+      process.exit(1);
+    }
+    const action = subcommand;
+    const itemId = process.env.ROOTROUTER_STORE_ITEM; // placeholder — use argv in future
+    const args = process.argv.slice(3);
+    const itemFlag = args.indexOf('--item');
+    const outFlag = args.indexOf('--out');
+    const resolvedItem = itemFlag >= 0 ? args[itemFlag + 1] : undefined;
+    const outPath = outFlag >= 0 ? args[outFlag + 1] : undefined;
+    if (action === 'ls') {
+      await runStoreLs({ storePath: storeFile, agentId });
+      return;
+    }
+    if (action === 'show' && resolvedItem) {
+      await runStoreShow({ storePath: storeFile, agentId, itemId: resolvedItem });
+      return;
+    }
+    if (action === 'rm' && resolvedItem) {
+      await runStoreRm({ storePath: storeFile, agentId, itemId: resolvedItem });
+      return;
+    }
+    if (action === 'export' && outPath) {
+      await runStoreExport({ storePath: storeFile, agentId, outPath });
+      return;
+    }
+    if (action === 'purge') {
+      await runStorePurge({ storePath: storeFile, agentId });
+      return;
+    }
+    console.error('Usage: rootrouter store ls|show|rm|export|purge --store <file> [--agent <id>] [--item <id>] [--out <file>]');
+    process.exit(1);
   }
 
   printUsage();

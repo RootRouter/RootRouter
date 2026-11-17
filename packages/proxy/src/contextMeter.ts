@@ -32,6 +32,8 @@ export interface ContextMeterSnapshot {
   uptimeSec: number;
   contextBudget: number;
   minTokensToFilter: number;
+  cachedTokensLast: number;
+  cachedTokensSession: number;
   last: ContextRequestSample | null;
   session: {
     requests: number;
@@ -53,6 +55,8 @@ const session = {
   tokensSaved: 0,
   storeRecalled: 0,
 };
+let cachedTokensSession = 0;
+let cachedTokensLast = 0;
 
 function emptyRollup(agentId: string): ContextAgentRollup {
   return {
@@ -109,6 +113,11 @@ export function recordContextSample(input: {
   return sample;
 }
 
+export function recordCachedTokens(n: number): void {
+  cachedTokensLast = n;
+  cachedTokensSession += n;
+}
+
 export function getContextMeterSnapshot(opts: {
   contextBudget: number;
   minTokensToFilter: number;
@@ -119,6 +128,8 @@ export function getContextMeterSnapshot(opts: {
     uptimeSec: Math.floor((Date.now() - startedAt.getTime()) / 1000),
     contextBudget: opts.contextBudget,
     minTokensToFilter: opts.minTokensToFilter,
+    cachedTokensLast,
+    cachedTokensSession,
     last,
     session: { ...session },
     byAgent: [...byAgent.values()].sort((a, b) => b.tokensSaved - a.tokensSaved),
@@ -134,4 +145,6 @@ export function resetContextMeterForTests(): void {
   session.tokensAfter = 0;
   session.tokensSaved = 0;
   session.storeRecalled = 0;
+  cachedTokensSession = 0;
+  cachedTokensLast = 0;
 }

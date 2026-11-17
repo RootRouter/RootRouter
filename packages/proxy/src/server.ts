@@ -8,7 +8,7 @@
  */
 import * as http from 'http';
 import { Readable } from 'stream';
-import { filterMessages, type ChatMessage } from './filter.js';
+import { filterMessages, messageText, type ChatMessage } from './filter.js';
 import { getEngine, initEngine, resolveStorePath } from './engine.js';
 import { applyLightweightModelRouting } from './lightweightRouter.js';
 import { getProxyRoutingConfig, isModelRoutingEnabled } from './routingConfig.js';
@@ -17,7 +17,16 @@ import {
   readHermesActiveProjectSlug,
   resolveProxyAgentId,
 } from './hermesAgentId.js';
-import { getContextMeterSnapshot, recordContextSample } from './contextMeter.js';
+import { getContextMeterSnapshot, recordCachedTokens, recordContextSample } from './contextMeter.js';
+import { renderPrometheusMetrics, recordPrometheusRequest } from './prometheus.js';
+import {
+  exportTopologyJson,
+  initTopologyFromSnapshot,
+  recordTopologyRequest,
+  recommendAgentForQuery,
+} from './topologyTracker.js';
+import { loadTopologySnapshot, persistTopology } from './topologyPersistence.js';
+import { handleStoreAdmin } from './storeAdmin.js';
 
 const PORT = Number(process.env.PORT ?? 8787);
 const UPSTREAM_ORIGIN = (process.env.ROOTROUTER_UPSTREAM_ORIGIN ?? 'https://openrouter.ai').replace(/\/$/, '');
@@ -89,6 +98,11 @@ function copyUpstreamResponseHeaders(upstream: Response): Record<string, string>
 async function handle(req: http.IncomingMessage, res: http.ServerResponse): Promise<void> {
   const url = req.url ?? '/';
 
+  if (url.startsWith('/store/')) {
+    const handled = await handleStoreAdmin(req, res, url.replace(/\?.*$/, ''), getEngine());
+    if (handled) return;
+  }
+
   if (req.method === 'GET' && (url === '/healthz' || url === '/')) {
     const engine = getEngine();
     const stats = engine.stats();
@@ -138,6 +152,25 @@ async function handle(req: http.IncomingMessage, res: http.ServerResponse): Prom
     return;
   }
 
+  if (req.method === 'GET' && (url === '/metrics' || url === '/v1/metrics')) {
+    res.writeHead(200, { 'content-type': 'text/plain; version=0.0.4' });
+    res.end(renderPrometheusMetrics(CONTEXT_BUDGET, MIN_TOKENS_TO_FILTER));
+    return;
+  }
+
+  if (req.method === 'GET' && (url === '/topology' || url.startsWith('/topology?'))) {
+    res.writeHead(200, { 'content-type': 'application/json' });
+    res.end(JSON.stringify(exportTopologyJson()));
+    return;
+  }
+
+  if (req.method === 'GET' && url.startsWith('/v1/recommend-agent')) {
+    const q = new URL(url, 'http://local').searchParams.get('q') ?? '';
+    res.writeHead(200, { 'content-type': 'application/json' });
+    res.end(JSON.stringify(recommendAgentForQuery(q)));
+    return;
+  }
+
   const rawBody = await readBody(req);
   let outBody: Buffer = rawBody;
   let savedHeader = '0';
@@ -145,8 +178,12 @@ async function handle(req: http.IncomingMessage, res: http.ServerResponse): Prom
   let modelSelectedHeader = '';
   let tierHeader = '';
   let agentIdSourceHeader = 'header';
+  let recommendedAgentHeader = '';
 
+  let degraded = false;
   const disabled = (req.headers['x-rootrouter-disable'] ?? '').toString().toLowerCase() === 'true';
+  const delegatedFrom = (req.headers['x-rootrouter-delegated-from'] ?? '').toString().trim() || undefined;
+  const swarmMode = (process.env.ROOTROUTER_SWARM_ROUTING ?? 'off').toLowerCase();
   const lockAgentId =
     (req.headers['x-rootrouter-agent-id-lock'] ?? '').toString().toLowerCase() === 'true';
   const resolvedAgent = resolveProxyAgentId({
@@ -170,37 +207,66 @@ async function handle(req: http.IncomingMessage, res: http.ServerResponse): Prom
         const budgetHeader = req.headers['x-rootrouter-budget'];
         const contextBudget = budgetHeader ? Number(budgetHeader) || CONTEXT_BUDGET : CONTEXT_BUDGET;
 
-        const outcome = await filterMessages(parsed.messages, {
-          contextBudget,
-          minTokensToFilter: MIN_TOKENS_TO_FILTER,
-          mmrLambda: MMR_LAMBDA,
-          engine: getEngine(),
-          agentId,
-          storeShare: STORE_SHARE,
-          baseline: 'window',
-          baselineWindowSize: BASELINE_WINDOW,
-          recallFeedback: recallFeedbackHeader === 'down' ? 'down' : undefined,
-          onRecallFeedback: (payload) => {
-            console.error(
-              `[rootrouter-proxy] recall feedback down agent=${payload.agentId} ` +
-                `dropped_msgs=[${payload.droppedMessageIndices.join(',')}] ` +
-                `dropped_store=[${payload.droppedStoreIds.join(',')}]`
-            );
-          },
-        });
+        let outcome;
+        try {
+          outcome = await filterMessages(parsed.messages, {
+            contextBudget,
+            minTokensToFilter: MIN_TOKENS_TO_FILTER,
+            mmrLambda: MMR_LAMBDA,
+            engine: getEngine(),
+            agentId,
+            storeShare: STORE_SHARE,
+            baseline: 'window',
+            baselineWindowSize: BASELINE_WINDOW,
+            recallFeedback: recallFeedbackHeader === 'down' ? 'down' : undefined,
+            onRecallFeedback: (payload) => {
+              console.error(
+                `[rootrouter-proxy] recall feedback down agent=${payload.agentId} ` +
+                  `dropped_msgs=[${payload.droppedMessageIndices.join(',')}] ` +
+                  `dropped_store=[${payload.droppedStoreIds.join(',')}]`
+              );
+            },
+          });
+        } catch (filterErr) {
+          degraded = true;
+          console.error(
+            '[rootrouter-proxy] filter failed (fail-open):',
+            filterErr instanceof Error ? filterErr.message : String(filterErr)
+          );
+          outcome = null;
+        }
 
-        recordContextSample({
-          agentId,
-          model: typeof parsed.model === 'string' ? parsed.model : undefined,
-          filtered: outcome.filtered,
-          tokensBefore: outcome.tokensBefore,
-          tokensAfter: outcome.tokensAfter,
-          tokensSaved: outcome.tokensSaved,
-          storeRecalled: outcome.storeRecalled ?? 0,
-          contextBudget,
-        });
+        if (outcome) {
+          recordContextSample({
+            agentId,
+            model: typeof parsed.model === 'string' ? parsed.model : undefined,
+            filtered: outcome.filtered,
+            tokensBefore: outcome.tokensBefore,
+            tokensAfter: outcome.tokensAfter,
+            tokensSaved: outcome.tokensSaved,
+            storeRecalled: outcome.storeRecalled ?? 0,
+            contextBudget,
+          });
+          recordTopologyRequest({
+            agentId,
+            delegatedFrom,
+            tokensBefore: outcome.tokensBefore,
+            tokensSaved: outcome.tokensSaved,
+            model: typeof parsed.model === 'string' ? parsed.model : undefined,
+          });
+          recordPrometheusRequest({
+            tokensBefore: outcome.tokensBefore,
+            tokensSaved: outcome.tokensSaved,
+          });
+          persistTopology();
+          if (swarmMode === 'suggest') {
+            const lastUser = [...parsed.messages].reverse().find((m) => m.role === 'user');
+            const q = lastUser ? messageText(lastUser.content) : '';
+            recommendedAgentHeader = recommendAgentForQuery(q).agentId;
+          }
+        }
 
-        if (outcome.filtered) {
+        if (outcome?.filtered) {
           parsed.messages = outcome.messages;
           bodyMutated = true;
           savedHeader = String(outcome.tokensSaved);
@@ -218,7 +284,7 @@ async function handle(req: http.IncomingMessage, res: http.ServerResponse): Prom
               `(saved ${outcome.tokensSaved}; kept ${outcome.keptCandidates}/${outcome.totalCandidates}; ` +
               `store recalled ${outcome.storeRecalled ?? 0})${droppedMsg}${droppedStore}`
           );
-        } else {
+        } else if (outcome) {
           await getEngine().save();
         }
 
@@ -275,9 +341,39 @@ async function handle(req: http.IncomingMessage, res: http.ServerResponse): Prom
     respHeaders['x-rootrouter-model-selected'] = modelSelectedHeader;
     respHeaders['x-rootrouter-tier'] = tierHeader;
   }
+  if (recommendedAgentHeader) {
+    respHeaders['x-rootrouter-recommended-agent'] = recommendedAgentHeader;
+  }
+  if (degraded) {
+    respHeaders['x-rootrouter-degraded'] = 'true';
+  }
+
+  const upstreamType = (upstream.headers.get('content-type') ?? '').toLowerCase();
+  const isSse = upstreamType.includes('text/event-stream');
+
+  if (!isSse && upstream.body) {
+    const buf = Buffer.from(await upstream.arrayBuffer());
+  try {
+      const parsedUsage = JSON.parse(buf.toString('utf8')) as {
+        usage?: {
+          prompt_tokens_details?: { cached_tokens?: number };
+          cache_read_input_tokens?: number;
+        };
+      };
+      const cached =
+        parsedUsage.usage?.prompt_tokens_details?.cached_tokens ??
+        parsedUsage.usage?.cache_read_input_tokens ??
+        0;
+      if (cached > 0) recordCachedTokens(cached);
+    } catch {
+      /* not JSON */
+    }
+    res.writeHead(upstream.status, respHeaders);
+    res.end(buf);
+    return;
+  }
 
   res.writeHead(upstream.status, respHeaders);
-
   if (upstream.body) {
     Readable.fromWeb(upstream.body as unknown as Parameters<typeof Readable.fromWeb>[0]).pipe(res);
   } else {
@@ -287,6 +383,8 @@ async function handle(req: http.IncomingMessage, res: http.ServerResponse): Prom
 
 async function main() {
   await initEngine();
+  const topo = loadTopologySnapshot();
+  initTopologyFromSnapshot(topo?.ranking);
   const server = http.createServer((req, res) => {
     handle(req, res).catch((err) => {
       console.error('[rootrouter-proxy] handler error:', err);

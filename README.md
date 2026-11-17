@@ -1,23 +1,20 @@
 # 🌿 RootRouter
 
-### Context infrastructure, routing, and telemetry for AI agents and swarms
+### Context proxy with memory for self-hosted agents and swarms
 
-**Give agents a bounded, relevant, auditable working context—through an SDK,
-transparent proxy, or MCP tools—without discarding the algebraic and graph-based
-routing layer that adapts as agents work.**
+**OpenAI-compatible proxy that trims chat history, recalls cross-session context, and
+indexes repositories for bounded selection—plus MCP tools for IDE cold slices. One shared
+engine (MMR, RepoGraph, file store) under the hood.**
 
-*Early beta · Self-hosted MIT · See [BETA.md](./BETA.md)*
+*Early beta · Self-hosted MIT · See [BETA.md](./BETA.md)* · Experimental: [algebraic layer](./docs/experimental/algebraic-layer.md) · [Celo telemetry](./docs/experimental/celo-telemetry.md) (frozen)
 
-*Verifiable on-chain analytics on Celo · ERC-8004 compatible*
-
-[![Celo Hackathon](https://img.shields.io/badge/Celo-Hackathon_2026-35D07F?style=for-the-badge&logo=celo)](https://celo.org)
 [![Track](https://img.shields.io/badge/Track-Best_Agent_Infra-blue?style=for-the-badge)](https://github.com/RootRouter/RootRouter)
 [![npm version](https://img.shields.io/npm/v/rootrouter?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/rootrouter)
 [![npm downloads](https://img.shields.io/npm/dm/rootrouter?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/rootrouter)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](https://github.com/RootRouter/RootRouter/blob/main/LICENSE)
 [![Live Demo](https://img.shields.io/badge/Live-rootrouter.brahma101.cyou-black?style=for-the-badge)](https://rootrouter.brahma101.cyou)
 
-> 📄 Backed by two working papers on algebraic AI architecture and graph-theoretic agent topology — see [The Math](#the-math)
+> 📄 Algebraic research track (papers, chambers): [The Math](#the-math) and [docs/experimental/](./docs/experimental/README.md) — **off by default** in MCP/proxy.
 
 ---
 
@@ -35,15 +32,15 @@ The result: agents often send large amounts of irrelevant context on every call,
 
 ## The Solution
 
-RootRouter is an early-beta context-management and routing platform. A shared TypeScript engine combines practical repository selection—semantic relevance, RepoGraph expansion, MMR deduplication, and strict token budgets—with an experimental adaptive layer based on root-pair telemetry, PCA-derived chambers, interaction graphs, and agent topology.
+RootRouter is an early-beta **context proxy and selection engine**. Default production behavior is semantic relevance, RepoGraph expansion, MMR deduplication, and strict token budgets (TF-IDF or local MiniLM). Chambers, reflection, and on-chain telemetry are [experimental](./docs/experimental/README.md).
 
-Use the same engine in three ways:
+Use the same engine in three ways (recommended order for most agent deployments):
 
 | Surface | Best for | Behavior |
 |---|---|---|
-| **`rootrouter` SDK + CLI** | Applications and custom agent runtimes | Direct context selection, LLM orchestration, model routing, graphs, telemetry, and repository indexing |
-| **`@rootrouter/proxy`** | Existing OpenAI-compatible agents | Automatically trims growing chat history and recalls relevant cross-session context with no agent code changes |
-| **`@rootrouter/mcp`** | Cursor, Codex, OpenClaw, Hermes, and other MCP clients | Lets an agent explicitly index a repository, record context, select a budgeted slice, and audit savings |
+| **`@rootrouter/proxy`** | Headless agents, swarms, OpenClaw/Hermes | Trims growing chat history, recalls cross-session store context; OpenAI-compatible `base_url` |
+| **`rootrouter` SDK + CLI** | Custom runtimes, indexing, store admin | Direct selection, indexing, model routing, topology graph, optional SDK pipeline |
+| **`@rootrouter/mcp`** | Cursor, Codex (cold slices) | `index_repo` + `select_context` / `select_for_spec`; explicit control, higher fixed tool cost |
 
 The dashboard visualizes interaction telemetry, graph topology, savings metrics, agent onboarding, and optional Celo data. The proxy exposes its own process-local context-health endpoint. RootRouter does three things across these surfaces:
 
@@ -97,7 +94,7 @@ See [Benchmark evidence and methodology](docs/BENCHMARKS.md), the committed [NVI
 ## Install
 
 ```bash
-npm install rootrouter@beta
+npm install rootrouter @rootrouter/proxy @rootrouter/mcp
 ```
 
 > Also available on npm: [npmjs.com/package/rootrouter](https://www.npmjs.com/package/rootrouter)
@@ -152,8 +149,8 @@ Use MCP for cold starts, unfamiliar repositories, cross-module work, and spec-dr
 
 ```bash
 # Run inside the project you want to configure
-npx rootrouter@beta init cursor --project-store --project-agent-id my-project
-npx rootrouter@beta init codex --project-store --write-agents-md --project-agent-id my-project
+npx rootrouter init cursor --project-store --project-agent-id my-project
+npx rootrouter init codex --project-store --write-agents-md --project-agent-id my-project
 ```
 
 `--project-store` isolates repositories under `~/.rootrouter/<project>/` so chunks from unrelated codebases do not contaminate selection. Add `--local-embeddings` for local MiniLM embeddings; otherwise RootRouter uses zero-dependency TF-IDF.
@@ -176,7 +173,7 @@ The intended loop is **cold task → index once → select a slice → read spec
 Use the OpenAI-compatible proxy when the agent should not need to call RootRouter tools:
 
 ```bash
-npx -p @rootrouter/proxy@beta rootrouter-proxy
+npx -p @rootrouter/proxy rootrouter-proxy
 ```
 
 Point the agent's existing `base_url` at `http://localhost:8787` while preserving the provider path. The proxy:
@@ -193,8 +190,8 @@ Inspect managed-context health at `GET /context` (or `/v1/context`): last-reques
 #### Hermes and other runtimes
 
 ```bash
-npx rootrouter@beta init hermes --project-slug my-project
-npx rootrouter@beta doctor
+npx rootrouter init hermes --project-slug my-project
+npx rootrouter doctor
 ```
 
 Hermes setup wires its OpenAI-compatible provider to the proxy and scopes context with `x-rootrouter-agent-id`. Cursor currently uses the MCP path; Codex can use MCP and the proxy/shared store; OpenClaw and generic stdio MCP clients can run `rootrouter-mcp` directly. The supported combinations and storage policies are documented in [`docs/deployment-matrix.md`](docs/deployment-matrix.md).

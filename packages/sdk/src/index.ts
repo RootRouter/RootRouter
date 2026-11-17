@@ -175,6 +175,9 @@ export type {
   RepoLanguage,
 } from './repo';
 
+export { recommendAgentFromTopologyFile, defaultTopologyPath } from './topology/loadRecommend';
+export type { TopologyRecommendResult } from './topology/loadRecommend';
+
 // Spec-native selection helpers
 export {
   buildQueryFromSpec,

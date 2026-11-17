@@ -1,4 +1,5 @@
 import { selectContext, estimateTokens, type ContextEngine, type ContextItem } from 'rootrouter';
+import { shouldTrimAtTokens } from './trimSession.js';
 import {
   messagesToRequestCandidates,
   messagesToStoreItems,
@@ -140,7 +141,8 @@ export async function filterMessages(
     return filterStateful(messages, options, tokensBefore, lastUserIndex, query);
   }
 
-  if (tokensBefore < options.minTokensToFilter) return noop;
+  const agentForTrim = options.agentId ?? 'default';
+  if (!shouldTrimAtTokens(agentForTrim, tokensBefore, options.minTokensToFilter)) return noop;
   return filterStateless(messages, options, tokensBefore, lastUserIndex, query);
 }
 
@@ -219,7 +221,7 @@ async function filterStateful(
   // Always persist turns from this request (even if we don't trim).
   engine.record(messagesToStoreItems(messages, agentId));
 
-  const shouldTrim = tokensBefore >= options.minTokensToFilter;
+  const shouldTrim = shouldTrimAtTokens(agentId, tokensBefore, options.minTokensToFilter);
   const requestItems = messagesToRequestCandidates(messages, lastUserIndex);
   const requestTexts = new Set(
     messages

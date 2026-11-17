@@ -1,0 +1,5 @@
+{
+  "recallAt10Min": 0.26,
+  "committedAt": "2026-11-17",
+  "notes": "SDD B5 baseline on RootRouter monorepo, TF-IDF, tokenBudget 2000. Raise as slice C/D improve precision."
+}

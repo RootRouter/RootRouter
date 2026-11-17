@@ -188,10 +188,10 @@ curl -i http://localhost:8787/healthz
 Codex full-stack one-liner (shared MCP + proxy store):
 
 ```bash
-npx rootrouter@beta init codex --local-embeddings && \
+npx rootrouter init codex --local-embeddings && \
 ROOTROUTER_STORE_PATH="$HOME/.rootrouter/store.json" \
 ROOTROUTER_REPO_PATH="$(pwd)" \
-npx -p @rootrouter/proxy@beta rootrouter-proxy
+npx -p @rootrouter/proxy rootrouter-proxy
 ```
 
 ## Health check

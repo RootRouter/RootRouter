@@ -11,11 +11,11 @@ Three npm packages ship from this monorepo (publish **in this order**):
 ## One-liner install (after publish)
 
 ```bash
-npm install rootrouter@beta @rootrouter/proxy@beta @rootrouter/mcp@beta
-npx rootrouter@beta index ./my-repo
-npx rootrouter@beta init codex
-npx -p @rootrouter/proxy@beta rootrouter-proxy
-npx -p @rootrouter/mcp@beta rootrouter-mcp
+npm install rootrouter @rootrouter/proxy @rootrouter/mcp
+npx rootrouter index ./my-repo
+npx rootrouter init codex --project-store
+npx -p @rootrouter/proxy rootrouter-proxy
+npx -p @rootrouter/mcp rootrouter-mcp
 ```
 
 ## Local monorepo usage
@@ -35,9 +35,12 @@ node packages/proxy/dist/server.js
 
 ```bash
 npm run publish:packages
+npm run verify:published-readme
 ```
 
-This builds all three packages and publishes each with the **`beta`** dist-tag (so `latest` stays on the previous stable until you ship 1.0).
+Publishes from each package directory (not `npm publish -w` only) so **README.md** is attached for npmjs.com.
+
+If the website still says “no README” but `npm view rootrouter readme` shows text, hard-refresh after 2–5 minutes (npm CDN).
 
 Verify after publish:
 
@@ -49,7 +52,11 @@ npm view @rootrouter/mcp version
 
 ## Versioning
 
-Current release: **0.2.0-beta.0** (early beta — see [BETA.md](../BETA.md)).
+Current release: **1.0.2** (SDD 001 — see [BETA.md](../BETA.md) and [docs/SDD/PROGRESS.md](./SDD/PROGRESS.md)).
+
+**Git:** merge SDD / release work to **`main`** before tagging or publishing (npm tarballs can come from any branch, but `repository.directory` and GitHub should match what users install).
+
+npm maintainer: **gerryalvrz** (`rootrouter` and `@rootrouter/*`).
 
 Bump versions together in:
 
@@ -68,8 +75,8 @@ npm run legal:sync
 ## Agent setup (no publish required)
 
 ```bash
-npx rootrouter@beta init cursor   # writes .cursor/mcp.json (MCP via npx -p @rootrouter/mcp@beta)
-npx rootrouter@beta init codex    # appends ~/.codex/config.toml
+npx rootrouter init cursor   # writes .cursor/mcp.json (MCP via npx -p @rootrouter/mcp)
+npx rootrouter init codex    # appends ~/.codex/config.toml
 ```
 
 Optional proxy env snippet is printed after `init cursor`.
@@ -93,7 +100,7 @@ Push context-engine stats to the topology dashboard:
 ```bash
 export ROOTROUTER_STORE_PATH=~/.rootrouter/store.json
 export DASHBOARD_URL=http://localhost:3000
-npx rootrouter@beta snapshot
+npx rootrouter snapshot
 ```
 
 Demos also attach `selectionStats` + `repoGraph` when `ROOTROUTER_STORE_PATH` is set.

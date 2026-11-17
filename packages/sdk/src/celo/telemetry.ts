@@ -9,6 +9,7 @@ const ABI = [
 ];
 
 /**
+ * @experimental Celo on-chain telemetry — frozen; not on the production path (SDD slice K).
  * CeloTelemetry: Logs agent telemetry on-chain to the Celo blockchain.
  * If not configured (no private key), all methods gracefully return null.
  */

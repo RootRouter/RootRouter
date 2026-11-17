@@ -44,7 +44,7 @@ export function resolveMcpLaunch(): { command: string; args: string[] } {
   if (fs.existsSync(monorepoMcp)) return { command: 'node', args: [monorepoMcp] };
 
   const mcpPkg =
-    process.env.ROOTROUTER_MCP_PACKAGE?.trim() || '@rootrouter/mcp@beta';
+    process.env.ROOTROUTER_MCP_PACKAGE?.trim() || '@rootrouter/mcp';
   return { command: 'npx', args: ['-p', mcpPkg, 'rootrouter-mcp'] };
 }
 
@@ -193,6 +193,18 @@ export function writeCursorRootRouterRule(
 
   fs.mkdirSync(rulesDir, { recursive: true });
   fs.writeFileSync(rulePath, content, 'utf8');
+
+  const fullCandidates = [
+    path.resolve(__dirname, '../../templates/cursor-rootrouter-mcp-rule-full.mdc'),
+    path.resolve(__dirname, '../../../../docs/templates/cursor-rootrouter-mcp-rule-full.mdc'),
+  ];
+  const fullTemplate = fullCandidates.find((p) => fs.existsSync(p));
+  if (fullTemplate) {
+    let full = fs.readFileSync(fullTemplate, 'utf8');
+    full = full.replaceAll('{{AGENT_ID}}', agentId).replaceAll('{{STORE_PATH}}', storePath);
+    fs.writeFileSync(path.join(rulesDir, 'rootrouter-mcp-full.mdc'), full, 'utf8');
+  }
+
   return `wrote agent rule at ${rulePath}`;
 }
 
@@ -289,7 +301,7 @@ export function proxyEnvSnippet(paths: InitPaths): string {
     'export ROOTROUTER_REPO_PATH="' + paths.repoPath + '"',
     'export ROOTROUTER_MIN_TOKENS_TO_FILTER=6000',
     'export ROOTROUTER_CONTEXT_BUDGET=4000',
-    '# npx -p @rootrouter/proxy@beta rootrouter-proxy',
+    '# npx -p @rootrouter/proxy rootrouter-proxy',
     '# Point your agent base_url at http://localhost:8787 (path depends on provider)',
   ].join('\n');
 }
