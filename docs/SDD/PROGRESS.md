@@ -35,3 +35,5 @@ Estado: **100 % AC cerrados** · **cerrado para producción 1.0.x**
 | Imagen `ghcr.io/rootrouter/proxy` | manual | Push con credenciales GHCR; ver `packages/proxy/Dockerfile` |
 
 **Post-merge checklist (opcional):** `scripts/verify-compose.sh` en VPS; `npm run verify:published-readme` (puede fallar si `versions[].readme` está vacío aunque npmjs renderice el tarball).
+
+**VPS (`vps-brahma`, 2026-11-17):** `main` @ `bf5da73`; `verify-compose` OK; dashboard rebuild (`deploy-dashboard-vps.sh --local`).
