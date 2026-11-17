@@ -44,7 +44,7 @@ export function resolveMcpLaunch(): { command: string; args: string[] } {
   if (fs.existsSync(monorepoMcp)) return { command: 'node', args: [monorepoMcp] };
 
   const mcpPkg =
-    process.env.ROOTROUTER_MCP_PACKAGE?.trim() || '@rootrouter/mcp@beta';
+    process.env.ROOTROUTER_MCP_PACKAGE?.trim() || '@rootrouter/mcp';
   return { command: 'npx', args: ['-p', mcpPkg, 'rootrouter-mcp'] };
 }
 
@@ -301,7 +301,7 @@ export function proxyEnvSnippet(paths: InitPaths): string {
     'export ROOTROUTER_REPO_PATH="' + paths.repoPath + '"',
     'export ROOTROUTER_MIN_TOKENS_TO_FILTER=6000',
     'export ROOTROUTER_CONTEXT_BUDGET=4000',
-    '# npx -p @rootrouter/proxy@beta rootrouter-proxy',
+    '# npx -p @rootrouter/proxy rootrouter-proxy',
     '# Point your agent base_url at http://localhost:8787 (path depends on provider)',
   ].join('\n');
 }

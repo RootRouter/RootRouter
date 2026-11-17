@@ -75,8 +75,8 @@ npm run legal:sync
 ## Agent setup (no publish required)
 
 ```bash
-npx rootrouter@beta init cursor   # writes .cursor/mcp.json (MCP via npx -p @rootrouter/mcp@beta)
-npx rootrouter@beta init codex    # appends ~/.codex/config.toml
+npx rootrouter init cursor   # writes .cursor/mcp.json (MCP via npx -p @rootrouter/mcp)
+npx rootrouter init codex    # appends ~/.codex/config.toml
 ```
 
 Optional proxy env snippet is printed after `init cursor`.
@@ -100,7 +100,7 @@ Push context-engine stats to the topology dashboard:
 ```bash
 export ROOTROUTER_STORE_PATH=~/.rootrouter/store.json
 export DASHBOARD_URL=http://localhost:3000
-npx rootrouter@beta snapshot
+npx rootrouter snapshot
 ```
 
 Demos also attach `selectionStats` + `repoGraph` when `ROOTROUTER_STORE_PATH` is set.

@@ -141,9 +141,9 @@ Usage:
   rootrouter store ls|show|rm|export|purge --store <file> [--agent <id>] [--item <id>] [--out <file>]
 
 One-liners (beta on npm):
-  npx rootrouter@beta index ./my-repo
-  npx -p @rootrouter/proxy@beta rootrouter-proxy
-  npx -p @rootrouter/mcp@beta rootrouter-mcp
+  npx rootrouter index ./my-repo
+  npx -p @rootrouter/proxy rootrouter-proxy
+  npx -p @rootrouter/mcp rootrouter-mcp
 `);
 }
 

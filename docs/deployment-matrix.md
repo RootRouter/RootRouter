@@ -36,7 +36,7 @@ Where each layer runs, what it does, and how to combine them without stepping on
 **Recommended setup**
 
 ```bash
-npx rootrouter@beta init cursor --project-store --project-agent-id <slug>
+npx rootrouter init cursor --project-store --project-agent-id <slug>
 # optional: --local-embeddings, --active-spec path/to/spec.md
 ```
 
@@ -58,7 +58,7 @@ Set `ROOTROUTER_ACTIVE_SPEC` in MCP env when working spec-driven slices.
 
 ```bash
 cd your-repo
-npx rootrouter@beta init codex \
+npx rootrouter init codex \
   --project-store \
   --write-agents-md \
   --project-agent-id your-project-slug \
@@ -152,8 +152,8 @@ See [slice-handoff template](./templates/slice-handoff.md) for session handoffs.
 ## Diagnostics
 
 ```bash
-npx rootrouter@beta doctor          # env, store, MCP launch path
-npx rootrouter@beta audit --limit 20  # recent selection audit log
+npx rootrouter doctor          # env, store, MCP launch path
+npx rootrouter audit --limit 20  # recent selection audit log
 ```
 
 ---
