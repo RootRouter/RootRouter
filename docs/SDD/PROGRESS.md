@@ -1,7 +1,7 @@
 # SDD 001 — progreso de implementación
 
-Rama: `sdd/001-production-readiness`  
-Estado: **100 % AC cerrados** (2026-11-17)
+Rama: **`main`** (merge PR #5, 2026-11-17)  
+Estado: **100 % AC cerrados** · **cerrado para producción 1.0.x**
 
 | Slice | Estado |
 |-------|--------|
@@ -14,7 +14,7 @@ Estado: **100 % AC cerrados** (2026-11-17)
 | G | ✅ (`deploy/compose`, Dockerfile, Grafana JSON, `scripts/verify-compose.sh`) |
 | H | ✅ (`/topology`, `demo:swarm-proxy`, MCP `recommend_agent`) |
 | I | ✅ (`rootrouter store *`, admin `/store`, TTL env, `docs/privacy.md`) |
-| J | ✅ (`1.0.0`, CHANGELOGs, `publish:packages` gates, BETA exit criteria) |
+| J | ✅ (`1.0.2` npm, CHANGELOGs, `publish-packages.mjs` + verify, BETA exit criteria) |
 | K | ✅ |
 
 ## Métricas (sección 7)
@@ -26,4 +26,12 @@ Estado: **100 % AC cerrados** (2026-11-17)
 | Proxy p95 ≤ 50 ms | ✅ healthz regression |
 | docker compose | ✅ `scripts/verify-compose.sh` |
 
-Release: **1.0.0** en npm (`publish:packages` desde mantenedor). Imagen: `packages/proxy/Dockerfile` → `ghcr.io/rootrouter/proxy` (push manual con credenciales).
+## Release
+
+| Artefacto | Versión | Notas |
+|-----------|---------|--------|
+| npm `rootrouter`, `@rootrouter/proxy`, `@rootrouter/mcp` | **1.0.2** | `npm run publish:packages` → `scripts/publish-packages.mjs` (pack + publish por paquete); README visible en npmjs |
+| Git | `main` | SDD 001 mergeado |
+| Imagen `ghcr.io/rootrouter/proxy` | manual | Push con credenciales GHCR; ver `packages/proxy/Dockerfile` |
+
+**Post-merge checklist (opcional):** `scripts/verify-compose.sh` en VPS; `npm run verify:published-readme` (puede fallar si `versions[].readme` está vacío aunque npmjs renderice el tarball).

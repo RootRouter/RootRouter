@@ -21,6 +21,6 @@ RootRouter **0.2.0-beta.1** is early beta software.
 - [x] F — proxy regression in `npm test -w @rootrouter/proxy`
 - [x] G — `scripts/verify-compose.sh`
 
-**Shipped:** `1.0.0` — see [docs/SDD/PROGRESS.md](./docs/SDD/PROGRESS.md)
+**Shipped:** `1.0.2` on npm — see [docs/SDD/PROGRESS.md](./docs/SDD/PROGRESS.md)
 
 Report issues: https://github.com/RootRouter/RootRouter/issues
