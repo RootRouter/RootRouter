@@ -11,11 +11,11 @@ Three npm packages ship from this monorepo (publish **in this order**):
 ## One-liner install (after publish)
 
 ```bash
-npm install rootrouter@beta @rootrouter/proxy@beta @rootrouter/mcp@beta
-npx rootrouter@beta index ./my-repo
-npx rootrouter@beta init codex
-npx -p @rootrouter/proxy@beta rootrouter-proxy
-npx -p @rootrouter/mcp@beta rootrouter-mcp
+npm install rootrouter @rootrouter/proxy @rootrouter/mcp
+npx rootrouter index ./my-repo
+npx rootrouter init codex --project-store
+npx -p @rootrouter/proxy rootrouter-proxy
+npx -p @rootrouter/mcp rootrouter-mcp
 ```
 
 ## Local monorepo usage
@@ -49,7 +49,9 @@ npm view @rootrouter/mcp version
 
 ## Versioning
 
-Current release: **1.0.0** (SDD 001 — see [BETA.md](../BETA.md) and [docs/SDD/PROGRESS.md](./SDD/PROGRESS.md)).
+Current release: **1.0.1** (SDD 001 — see [BETA.md](../BETA.md) and [docs/SDD/PROGRESS.md](./SDD/PROGRESS.md)).
+
+npm maintainer: **gerryalvrz** (`rootrouter` and `@rootrouter/*`).
 
 Bump versions together in:
 

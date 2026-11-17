@@ -1,7 +1,7 @@
 {
   "name": "rootrouter",
-  "version": "1.0.0",
-  "description": "Algebraic agent infrastructure for AI swarms on Celo — root-pair telemetry, interaction graphs, symmetry-aware routing, and context selection",
+  "version": "1.0.1",
+  "description": "Context engine, CLI, and repo indexing for RootRouter — proxy-first agent memory (pairs with @rootrouter/proxy and @rootrouter/mcp)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
@@ -35,8 +35,8 @@
     "deploy:contract": "tsx scripts/deploy.ts",
     "index": "tsx src/cli/index.ts"
   },
-  "keywords": ["ai-agents", "celo", "agent-infrastructure", "weyl-chambers", "openrouter", "llm", "context-filtering", "telemetry", "root-systems", "knowledge-graph"],
-  "author": "Gerry Alvarez <gerry@motusdao.org>",
+  "keywords": ["ai-agents", "llm-proxy", "context-selection", "mcp", "openai-proxy", "token-reduction", "repo-graph", "agent-memory", "swarm"],
+  "author": "Gerry Alvarez <aszalvarez@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
