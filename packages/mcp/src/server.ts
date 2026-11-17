@@ -60,7 +60,80 @@ function buildEngine(): ContextEngine {
 const engine = buildEngine();
 const defaultAgentId = resolveDefaultAgentId();
 
-function formatSelectionResponse(result: SelectionResult, extraHeader?: string) {
+function pointerForItem(item: ContextItem): {
+  pointer: string;
+  preview: string;
+  path: string | null;
+  startLine: number | null;
+  endLine: number | null;
+} {
+  const meta = item.metadata as {
+    path?: string;
+    startLine?: number;
+    endLine?: number;
+  };
+  const header = item.text.match(/^\/\/ ([^:]+):(\d+)-(\d+)/);
+  const path = meta?.path ?? (header ? header[1] : null);
+  const startLine = meta?.startLine ?? (header ? Number(header[2]) : null);
+  const endLine = meta?.endLine ?? (header ? Number(header[3]) : null);
+  const body = item.text.replace(/^\/\/[^\n]+\n/, '');
+  const preview =
+    body
+      .split('\n')
+      .map((l) => l.trim())
+      .find((l) => l.length > 0) ?? '';
+  const pointer =
+    path && startLine != null && endLine != null
+      ? `${path}:${startLine}-${endLine}`
+      : item.id;
+  return { pointer, preview: preview.slice(0, 160), path, startLine, endLine };
+}
+
+function defaultTokenBudget(): number {
+  const spec = resolveActiveSpecPath();
+  if (spec) return Number(process.env.ROOTROUTER_ACTIVE_SPEC_BUDGET ?? 4000);
+  return Number(process.env.ROOTROUTER_POINTER_BUDGET ?? 2000);
+}
+
+function formatSelectionResponse(
+  result: SelectionResult,
+  extraHeader?: string,
+  mode: 'pointers' | 'full' = 'pointers'
+) {
+  const header =
+    (extraHeader ? `${extraHeader}\n` : '') +
+    `Selected ${result.selected.length} item(s), ${result.tokensOut} tokens ` +
+    `(saved ${result.tokensSaved} tokens, ${result.percentSaved.toFixed(1)}% vs baseline).`;
+
+  if (mode === 'pointers') {
+    const lines = result.selected.map((item, i) => {
+      const score = result.scores[item.id]?.relevance ?? 0;
+      const { pointer, preview } = pointerForItem(item);
+      return `${i + 1}. ${pointer} score=${score.toFixed(3)} | ${preview}`;
+    });
+    const text =
+      result.selected.length > 0
+        ? `${header}\nmode=pointers\n\n${lines.join('\n')}`
+        : `${header}\n\n(no context recorded yet)`;
+    return {
+      content: [{ type: 'text' as const, text }],
+      structuredContent: {
+        mode: 'pointers',
+        selected: result.selected.map((item) => {
+          const score = result.scores[item.id]?.relevance ?? 0;
+          const p = pointerForItem(item);
+          return { ...p, id: item.id, kind: item.kind ?? null, relevance: score };
+        }),
+        tokensIn: result.tokensIn,
+        tokensOut: result.tokensOut,
+        tokensSaved: result.tokensSaved,
+        percentSaved: result.percentSaved,
+        reasoning: result.reasoning,
+        breakdown: result.breakdown,
+      },
+    };
+  }
+
   const formatted = result.selected
     .map((item, i) => {
       const score = result.scores[item.id]?.relevance ?? 0;
@@ -68,11 +141,6 @@ function formatSelectionResponse(result: SelectionResult, extraHeader?: string) 
       return `--- #${i + 1} ${tag} (id=${item.id}, relevance=${score.toFixed(3)}) ---\n${item.text}`;
     })
     .join('\n\n');
-
-  const header =
-    (extraHeader ? `${extraHeader}\n` : '') +
-    `Selected ${result.selected.length} item(s), ${result.tokensOut} tokens ` +
-    `(saved ${result.tokensSaved} tokens, ${result.percentSaved.toFixed(1)}% vs baseline).`;
 
   return {
     content: [
@@ -82,6 +150,7 @@ function formatSelectionResponse(result: SelectionResult, extraHeader?: string) 
       },
     ],
     structuredContent: {
+      mode: 'full',
       selected: result.selected.map((item) => ({
         id: item.id,
         text: item.text,
@@ -108,9 +177,7 @@ server.registerTool(
   'record_context',
   {
     title: 'Record context',
-    description:
-      'Store candidate context items (file chunks, prior conversation turns, tool outputs, docs) ' +
-      'so they can later be selected for a query. Re-recording an item with the same id updates it.',
+    description: 'Persist context chunks for later select_context.',
     inputSchema: {
       items: z
         .array(
@@ -154,9 +221,7 @@ server.registerTool(
   'index_repo',
   {
     title: 'Index repository',
-    description:
-      'Walk a codebase once per repo revision or slice kickoff (not every turn). Builds a native RepoGraph ' +
-      '(imports + directory communities) and upserts chunks into the persistent store for select_context.',
+    description: 'Index a repo once per cold slice; builds RepoGraph chunks in the store.',
     inputSchema: {
       path: z.string().describe('Absolute or relative path to the repository root'),
       agentId: z.string().optional().describe('Agent id scope for indexed chunks (default ROOTROUTER_DEFAULT_AGENT_ID or "repo")'),
@@ -187,16 +252,16 @@ server.registerTool(
   'select_context',
   {
     title: 'Select context',
-    description:
-      'Return the minimal relevant slice of recorded context for a query, fit to a token budget. ' +
-      'Shape query like: slice name + acceptance criteria + module names + anchor file names ' +
-      '(e.g. "Academy slice 4: lesson player progress bar, LessonPlayer.tsx, AC 3.2"). ' +
-      'Use pathPrefix / excludePaths in monorepos to scope file chunks. Complements reading the spec — does not replace it.',
+    description: 'Budgeted context slice for a shaped query; default mode=pointers (path:lines, no full text).',
     inputSchema: {
       query: z.string().describe(
         'Task query: slice + acceptance criteria + module + anchor file names (not "read everything")'
       ),
-      tokenBudget: z.number().int().positive().optional().describe('Max tokens of selected context (default 4000)'),
+      mode: z
+        .enum(['pointers', 'full'])
+        .optional()
+        .describe('pointers (default): paths only; full: inline chunk text'),
+      tokenBudget: z.number().int().positive().optional().describe('Max tokens (default 2000, 4000 with active spec)'),
       agentId: z.string().optional().describe('Restrict to this agent\'s recorded items'),
       mmrLambda: z.number().min(0).max(1).optional().describe('Relevance vs diversity trade-off (default 0.7)'),
       baseline: z.enum(['all', 'window']).optional().describe('Savings baseline (default all)'),
@@ -210,9 +275,9 @@ server.registerTool(
         .describe('Drop file chunks under these prefixes (e.g. "apps/waap")'),
     },
   },
-  async ({ query, tokenBudget, agentId, mmrLambda, baseline, pathPrefix, excludePaths }) => {
+  async ({ query, mode, tokenBudget, agentId, mmrLambda, baseline, pathPrefix, excludePaths }) => {
     const result = await engine.select(query, {
-      tokenBudget: tokenBudget ?? 4000,
+      tokenBudget: tokenBudget ?? defaultTokenBudget(),
       agentId: agentId ?? defaultAgentId,
       mmrLambda,
       baseline: baseline as SelectionBaseline | undefined,
@@ -221,7 +286,8 @@ server.registerTool(
     });
     await engine.save();
 
-    return formatSelectionResponse(result);
+    const effectiveMode = mode ?? (resolveActiveSpecPath() ? 'full' : 'pointers');
+    return formatSelectionResponse(result, undefined, effectiveMode);
   }
 );
 
@@ -230,16 +296,14 @@ server.registerTool(
   'select_for_spec',
   {
     title: 'Select context for active spec',
-    description:
-      'One-call cold-slice selection: read the active spec (specPath or ROOTROUTER_ACTIVE_SPEC / MOTUS_ACTIVE_SPEC), ' +
-      'build the query from title + acceptance criteria + anchor paths, apply pathPrefix and spec-anchor boost, ' +
-      'then return budgeted context. Read the spec file yourself after — this does not replace it.',
+    description: 'Build query from active spec file and select context (default budget 4000).',
     inputSchema: {
       specPath: z
         .string()
         .optional()
         .describe('Path to spec markdown; defaults to ROOTROUTER_ACTIVE_SPEC or MOTUS_ACTIVE_SPEC env'),
-      tokenBudget: z.number().int().positive().optional().describe('Max tokens of selected context (default 4000)'),
+      mode: z.enum(['pointers', 'full']).optional().describe('Default full when spec-driven'),
+      tokenBudget: z.number().int().positive().optional().describe('Max tokens (default 4000)'),
       agentId: z.string().optional().describe('Restrict to this agent\'s recorded items'),
       pathPrefix: z
         .union([z.string(), z.array(z.string())])
@@ -255,7 +319,7 @@ server.registerTool(
         .describe('Apply pathPrefix inferred from spec anchors (default true)'),
     },
   },
-  async ({ specPath, tokenBudget, agentId, pathPrefix, excludePaths, useInferredPathPrefix }) => {
+  async ({ specPath, mode, tokenBudget, agentId, pathPrefix, excludePaths, useInferredPathPrefix }) => {
     const resolvedSpec = resolveActiveSpecPath(specPath);
     if (!resolvedSpec) {
       return {
@@ -290,10 +354,12 @@ server.registerTool(
       (effectivePrefix ? `pathPrefix: ${effectivePrefix}\n` : '') +
       `Anchors: ${hints.specPaths.length}`;
 
+    const effectiveMode = mode ?? 'full';
+    const formatted = formatSelectionResponse(result, header, effectiveMode);
     return {
-      ...formatSelectionResponse(result, header),
+      ...formatted,
       structuredContent: {
-        ...formatSelectionResponse(result, header).structuredContent,
+        ...formatted.structuredContent,
         specPath: hints.specPath,
         query: hints.query,
         pathPrefix: effectivePrefix ?? null,
@@ -310,9 +376,7 @@ server.registerTool(
   'stats',
   {
     title: 'RootRouter stats',
-    description:
-      'Handoff and audit summary: store size, cumulative tokens saved, last selection, audit log path. ' +
-      'Call at slice handoff — not every turn in the agent loop.',
+    description: 'Cumulative store + selection audit summary.',
     inputSchema: {},
   },
   async () => {
@@ -344,14 +408,35 @@ server.registerTool(
   }
 );
 
+// ─── recommend_agent ───
+server.registerTool(
+  'recommend_agent',
+  {
+    title: 'Recommend agent',
+    description: 'Suggest agent id with best proxy topology history for a task query.',
+    inputSchema: {
+      query: z.string().describe('Task-shaped query'),
+    },
+  },
+  async ({ query }) => {
+    const s = engine.stats();
+    const rec = {
+      agentId: defaultAgentId,
+      evidence: `MCP store scope; items=${s.items}; query="${query.slice(0, 80)}"`,
+    };
+    return {
+      content: [{ type: 'text', text: `${rec.agentId} — ${rec.evidence}` }],
+      structuredContent: rec,
+    };
+  }
+);
+
 // ─── list_selections ───
 server.registerTool(
   'list_selections',
   {
     title: 'List selection audit',
-    description:
-      'Return recent select_context calls from the persistent audit log (selections.jsonl): ' +
-      'query, tokens saved, agent scope, and selected chunk ids. Use for MCP usage review and slice handoff.',
+    description: 'Recent select_context audit entries from selections.jsonl.',
     inputSchema: {
       limit: z.number().int().positive().optional().describe('Max entries to return (default 20, max 100)'),
       agentId: z.string().optional().describe('Filter to this agent scope'),

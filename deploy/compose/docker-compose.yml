@@ -1,0 +1,24 @@
+# SDD slice G — proxy + echo agent (OpenAI-compatible stub)
+services:
+  proxy:
+    build:
+      context: ../..
+      dockerfile: packages/proxy/Dockerfile
+    ports:
+      - "8787:8787"
+    environment:
+      PORT: "8787"
+      ROOTROUTER_UPSTREAM_ORIGIN: http://echo:8089
+      ROOTROUTER_STORE_PATH: /data/proxy-store.json
+      ROOTROUTER_CONTEXT_BUDGET: "4000"
+    volumes:
+      - proxy_store:/data
+
+  echo:
+    build:
+      context: ./echo-agent
+    ports:
+      - "8089:8089"
+
+volumes:
+  proxy_store:

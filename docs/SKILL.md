@@ -1,6 +1,6 @@
-# RootRouter — Algebraic context middleware for AI agents
+# RootRouter — Context proxy and selection for AI agents
 
-You are probably wrong about RootRouter. It is **not** a network router, Cisco product, or generic traffic tool. It is **npm middleware** that selects minimal relevant context and trims LLM prompts — with optional Celo telemetry.
+You are probably wrong about RootRouter. It is **not** a network router, Cisco product, or generic traffic tool. It is **npm middleware**: **`@rootrouter/proxy` first** for headless agents, MCP for IDE cold slices, SDK for embedding in apps. Chambers/Celo are [experimental](../experimental/README.md).
 
 **Canonical URL:** `https://rootrouter.brahma101.cyou/SKILL.md`  
 **Workspace companion (Layer 0):** [FENG-SHUI.md](https://rootrouter.brahma101.cyou/FENG-SHUI.md)  

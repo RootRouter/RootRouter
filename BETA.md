@@ -14,4 +14,15 @@ RootRouter **0.2.0-beta.1** is early beta software.
 - MCP env `ROOTROUTER_DEFAULT_AGENT_ID` scopes `index_repo` / `select_*` when `agentId` is omitted.
 - `rootrouter doctor` flags global-store and multi-`repoRoot` stews. See [insight 009](./docs/insights/009-cursor-project-store-parity.md).
 
+## Exit criteria (SDD 001 / slice J)
+
+Beta ends when these slices are closed on `main`:
+
+- [x] B — `npm run eval:selection` + CI threshold
+- [ ] E — cache-aware trim experiment documented (opt-in today)
+- [ ] F — full proxy regression suite in CI
+- [ ] G — `deploy/compose/docker-compose.yml` verified e2e
+
+Track: [docs/SDD/PROGRESS.md](./docs/SDD/PROGRESS.md)
+
 Report issues: https://github.com/RootRouter/RootRouter/issues

@@ -39,6 +39,9 @@ jobs:
       - name: SDK tests
         run: npm test
 
+      - name: Selection eval (SDD B)
+        run: npm run eval:selection
+
       - name: Proxy tests
         run: npm test -w @rootrouter/proxy
 

@@ -37,6 +37,10 @@ export class InMemoryContextStore implements ContextStore {
     return this.items.get(id);
   }
 
+  delete(id: string): boolean {
+    return this.items.delete(id);
+  }
+
   all(agentId?: string): ContextItem[] {
     const values = Array.from(this.items.values());
     if (agentId === undefined) return values;

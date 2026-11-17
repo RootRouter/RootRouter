@@ -1,0 +1,426 @@
+[
+  {
+    "id": "context-engine-mmr",
+    "query": "ContextEngine MMR selection token budget, anchor packages/sdk/src/select/contextEngine.ts",
+    "expectedPaths": [
+      "packages/sdk/src/select/contextEngine.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "context-selector",
+    "query": "ContextSelector similarity MMR dedup, anchor packages/sdk/src/select/selector.ts",
+    "expectedPaths": [
+      "packages/sdk/src/select/selector.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "repo-index",
+    "query": "indexRepo walk repository chunks RepoGraph, anchor packages/sdk/src/repo/indexRepo.ts",
+    "expectedPaths": [
+      "packages/sdk/src/repo/indexRepo.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "repo-walk",
+    "query": "walkRepo ignore directories security, anchor packages/sdk/src/repo/walk.ts",
+    "expectedPaths": [
+      "packages/sdk/src/repo/walk.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "repo-graph",
+    "query": "wireEdges import communities chunk, anchor packages/sdk/src/repo/graph.ts",
+    "expectedPaths": [
+      "packages/sdk/src/repo/graph.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "proxy-filter",
+    "query": "filterMessages trim chat history minTokensToFilter, anchor packages/proxy/src/filter.ts",
+    "expectedPaths": [
+      "packages/proxy/src/filter.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "proxy-server",
+    "query": "rootrouter-proxy OpenAI compatible server, anchor packages/proxy/src/server.ts",
+    "expectedPaths": [
+      "packages/proxy/src/server.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "proxy-engine",
+    "query": "proxy ContextEngine stateful recall, anchor packages/proxy/src/engine.ts",
+    "expectedPaths": [
+      "packages/proxy/src/engine.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "proxy-context-meter",
+    "query": "GET context tokens saved trim, anchor packages/proxy/src/contextMeter.ts",
+    "expectedPaths": [
+      "packages/proxy/src/contextMeter.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "mcp-server",
+    "query": "MCP index_repo select_context tools, anchor packages/mcp/src/server.ts",
+    "expectedPaths": [
+      "packages/mcp/src/server.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "embedding-tfidf",
+    "query": "TfIdfEmbeddingProvider zero dependency, anchor packages/sdk/src/select/embedding/tfidfProvider.ts",
+    "expectedPaths": [
+      "packages/sdk/src/select/embedding/tfidfProvider.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "embedding-build",
+    "query": "buildEmbeddingProviderFromEnv local api, anchor packages/sdk/src/select/embedding/buildProvider.ts",
+    "expectedPaths": [
+      "packages/sdk/src/select/embedding/buildProvider.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "file-store",
+    "query": "FileContextStore persistent JSON store, anchor packages/sdk/src/select/store/fileStore.ts",
+    "expectedPaths": [
+      "packages/sdk/src/select/store/fileStore.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "selection-audit",
+    "query": "selections.jsonl append audit log, anchor packages/sdk/src/logs/selectionAudit.ts",
+    "expectedPaths": [
+      "packages/sdk/src/logs/selectionAudit.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "spec-selection",
+    "query": "select_for_spec buildSelectionFromSpec, anchor packages/sdk/src/spec/buildQueryFromSpec.ts",
+    "expectedPaths": [
+      "packages/sdk/src/spec/buildQueryFromSpec.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "cli-doctor",
+    "query": "rootrouter doctor store isolation MCP, anchor packages/sdk/src/cli/doctor.ts",
+    "expectedPaths": [
+      "packages/sdk/src/cli/doctor.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "cli-init",
+    "query": "init cursor project-store mcp.json, anchor packages/sdk/src/cli/initCursor.ts",
+    "expectedPaths": [
+      "packages/sdk/src/cli/init.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "agent-graph",
+    "query": "AgentTopologyGraph swarm delegation, anchor packages/sdk/src/core/agentGraph.ts",
+    "expectedPaths": [
+      "packages/sdk/src/core/agentGraph.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "model-router",
+    "query": "ModelRouter chamber difficulty tier, anchor packages/sdk/src/core/router.ts",
+    "expectedPaths": [
+      "packages/sdk/src/core/router.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "vector-space",
+    "query": "StructuredVectorSpace PCA chambers experimental, anchor packages/sdk/src/core/vectorSpace.ts",
+    "expectedPaths": [
+      "packages/sdk/src/core/vectorSpace.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "irp-server",
+    "query": "IRP context relay proxy, anchor packages/proxy/src/irpServer.ts",
+    "expectedPaths": [
+      "packages/proxy/src/irpServer.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "hermes-agent-id",
+    "query": "x-rootrouter-agent-id header parse, anchor packages/proxy/src/hermesAgentId.ts",
+    "expectedPaths": [
+      "packages/proxy/src/hermesAgentId.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "message-store",
+    "query": "messagesToStoreItems conversation persistence, anchor packages/proxy/src/messageStore.ts",
+    "expectedPaths": [
+      "packages/proxy/src/messageStore.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "lightweight-router",
+    "query": "lightweight model tier routing proxy, anchor packages/proxy/src/lightweightRouter.ts",
+    "expectedPaths": [
+      "packages/proxy/src/lightweightRouter.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "benchmark-demo",
+    "query": "offline benchmark demo savings, anchor packages/sdk/demo/benchmark.ts",
+    "expectedPaths": [
+      "packages/sdk/demo/benchmark.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "swarm-demo",
+    "query": "multi-agent swarm demo topology, anchor packages/sdk/demo/swarm.ts",
+    "expectedPaths": [
+      "packages/sdk/demo/swarm.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "celo-telemetry",
+    "query": "Celo batch telemetry contract experimental, anchor packages/sdk/src/celo/telemetry.ts",
+    "expectedPaths": [
+      "packages/sdk/src/celo/telemetry.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "contracts-solidity",
+    "query": "RootRouterTelemetry.sol ERC-8004, anchor contracts/RootRouterTelemetry.sol",
+    "expectedPaths": [
+      "contracts/RootRouterTelemetry.sol"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "architecture-doc",
+    "query": "system architecture context engine proxy, anchor docs/architecture.md",
+    "expectedPaths": [
+      "docs/architecture.md"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "benchmarks-doc",
+    "query": "benchmark methodology recall selection, anchor docs/BENCHMARKS.md",
+    "expectedPaths": [
+      "docs/BENCHMARKS.md"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "sdd-readiness",
+    "query": "production readiness SDD slices, anchor docs/SDD/001-production-readiness.md",
+    "expectedPaths": [
+      "docs/SDD/001-production-readiness.md"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "decision-product",
+    "query": "ADR product shape proxy privacy, anchor docs/decisions/0001-product-shape.md",
+    "expectedPaths": [
+      "docs/decisions/0001-product-shape.md"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "decision-positioning",
+    "query": "positioning proxy first headless, anchor docs/decisions/0002-positioning.md",
+    "expectedPaths": [
+      "docs/decisions/0002-positioning.md"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "ci-workflow",
+    "query": "GitHub Actions build test proxy MCP, anchor .github/workflows/ci.yml",
+    "expectedPaths": [
+      ".github/workflows/ci.yml"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "root-package",
+    "query": "monorepo workspaces scripts build, anchor package.json",
+    "expectedPaths": [
+      "package.json"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "proxy-package",
+    "query": "@rootrouter/proxy package json, anchor packages/proxy/package.json",
+    "expectedPaths": [
+      "packages/proxy/package.json"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "mcp-package",
+    "query": "@rootrouter/mcp package entry, anchor packages/mcp/package.json",
+    "expectedPaths": [
+      "packages/mcp/package.json"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "sdk-export",
+    "query": "rootrouter package public exports index, anchor packages/sdk/src/index.ts",
+    "expectedPaths": [
+      "packages/sdk/src/index.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "repo-security",
+    "query": "resolveJailedPath path traversal jail, anchor packages/sdk/src/repo/security.ts",
+    "expectedPaths": [
+      "packages/sdk/src/repo/security.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "repo-rootignore",
+    "query": "rootrouterignore gitignore style excludes, anchor packages/sdk/src/repo/rootrouterignore.ts",
+    "expectedPaths": [
+      "packages/sdk/src/repo/rootrouterignore.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "ann-hnsw",
+    "query": "HnswIndex approximate nearest neighbors, anchor packages/sdk/src/select/ann/hnswIndex.ts",
+    "expectedPaths": [
+      "packages/sdk/src/select/ann/hnswIndex.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "snapshot-selection",
+    "query": "buildSelectionSnapshot dashboard, anchor packages/sdk/src/select/snapshot.ts",
+    "expectedPaths": [
+      "packages/sdk/src/select/snapshot.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "pipeline-chat",
+    "query": "chat pipeline RootRouter SDK, anchor packages/sdk/src/pipeline/chatPipeline.ts",
+    "expectedPaths": [
+      "packages/sdk/src/pipeline/chatPipeline.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "root-router-class",
+    "query": "RootRouter class chat telemetry, anchor packages/sdk/src/rootRouter.ts",
+    "expectedPaths": [
+      "packages/sdk/src/rootRouter.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "deploy-readme",
+    "query": "VPS deploy Caddy proxy, anchor deploy/README.md",
+    "expectedPaths": [
+      "deploy/README.md"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "templates-slice",
+    "query": "slice handoff template MCP audit, anchor docs/templates/slice-handoff.md",
+    "expectedPaths": [
+      "docs/templates/slice-handoff.md"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "insights-workflow",
+    "query": "Cursor agent slice workflow feedback, anchor docs/insights/001-cursor-agent-slice-workflow-feedback.md",
+    "expectedPaths": [
+      "docs/insights/001-cursor-agent-slice-workflow-feedback.md"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "insights-problem",
+    "query": "how rootrouter works problem fix, anchor docs/insights/003-how-rootrouter-works-problem-and-fix.md",
+    "expectedPaths": [
+      "docs/insights/003-how-rootrouter-works-problem-and-fix.md"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "experimental-readme",
+    "query": "experimental features flags chambers celo, anchor docs/experimental/README.md",
+    "expectedPaths": [
+      "docs/experimental/README.md"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "where-mcp-select",
+    "query": "where is select_context MCP implementation, anchor packages/mcp/src/server.ts",
+    "expectedPaths": [
+      "packages/mcp/src/server.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "where-proxy-filter",
+    "query": "where does proxy trim messages, anchor packages/proxy/src/filter.ts",
+    "expectedPaths": [
+      "packages/proxy/src/filter.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "bugfix-store",
+    "query": "FileContextStore load save corrupt json, anchor packages/sdk/src/select/store/fileStore.ts",
+    "expectedPaths": [
+      "packages/sdk/src/select/store/fileStore.ts"
+    ],
+    "category": "repo"
+  },
+  {
+    "id": "spec-driven",
+    "query": "ROOTROUTER_ACTIVE_SPEC select_for_spec path, anchor packages/sdk/src/spec/buildQueryFromSpec.ts",
+    "expectedPaths": [
+      "packages/sdk/src/spec/buildQueryFromSpec.ts"
+    ],
+    "category": "repo"
+  }
+]

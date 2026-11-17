@@ -28,6 +28,7 @@
     "demo:benchmark-live:swarm": "tsx demo/benchmark-live.ts --profile swarm",
     "demo:benchmark-live:full": "tsx demo/benchmark-live.ts --profile benchmark",
     "test": "tsx test/math.test.ts && tsx test/select.test.ts && tsx test/repo.test.ts && tsx test/models.test.ts && tsx test/benchmark.test.ts && tsx test/initHermes.test.ts && tsx test/irp.test.ts",
+    "eval:selection": "tsx evals/run-selection-eval.ts",
     "test:e2e": "tsx test/chat-pipeline.e2e.ts",
     "test:all": "npm run test && npm run test:e2e",
     "deploy:contract": "tsx scripts/deploy.ts",
