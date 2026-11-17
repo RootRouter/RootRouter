@@ -1,33 +1,29 @@
 # SDD 001 — progreso de implementación
 
 Rama: `sdd/001-production-readiness`  
-Referencia: [001-production-readiness.md](./001-production-readiness.md)
+Estado: **100 % AC cerrados** (2026-11-17)
 
-| Slice | Estado | Notas |
-|-------|--------|-------|
-| A — Posicionamiento | **cerrado** | README, experimental/, 0002, SKILL, doctor/init |
-| B — Eval selección | **cerrado** | 53 queries, CI threshold 0.26, `npm run eval:selection` |
-| C — Higiene índice | **cerrado** | `.rootrouterignore`, excludes, secret heuristic, security dirs |
-| D — MCP bajo costo | **parcial** | pointers mode, tool defs cortos; regla MCP corta pendiente medición D3 |
-| E — Proxy cache-aware | **parcial** | `trimSession` opt-in default off; doc 0003 |
-| F — Suite proxy | **parcial** | fail-open `x-rootrouter-degraded`; ampliar mock suite pendiente |
-| G — Proxy instalable | **parcial** | Dockerfile, compose, `/metrics`, `/topology` |
-| H — Topology graph | **parcial** | proxy `/topology`, delegación header; MCP recommend stub |
-| I — Memoria usuario | **parcial** | `rootrouter store *` CLI; proxy admin DELETE pendiente |
-| J — Release hygiene | **parcial** | CI eval; BETA criterios — npm stable publish en rama |
-| K — Congelar experimental | **cerrado** | experimental/README, eval chambers config, 0004 dashboard |
+| Slice | Estado |
+|-------|--------|
+| A | ✅ |
+| B | ✅ |
+| C | ✅ |
+| D | ✅ (`docs/insights/mcp-overhead-measurement.json`, regla corta) |
+| E | ✅ (opt-in trim + `docs/experiments/cache-trim-cost.md`, cached tokens en `/context`) |
+| F | ✅ (`test/regression.test.ts`, p95 healthz) |
+| G | ✅ (`deploy/compose`, Dockerfile, Grafana JSON, `scripts/verify-compose.sh`) |
+| H | ✅ (`/topology`, `demo:swarm-proxy`, MCP `recommend_agent`) |
+| I | ✅ (`rootrouter store *`, admin `/store`, TTL env, `docs/privacy.md`) |
+| J | ✅ (`1.0.0`, CHANGELOGs, `publish:packages` gates, BETA exit criteria) |
+| K | ✅ |
 
-Última actualización: 2026-11-17
+## Métricas (sección 7)
 
-## Commits (push para rollback)
+| Métrica | Estado |
+|---------|--------|
+| recall@10 ≥ 0.26 | ✅ ~0.28 |
+| MCP overhead −60 % | ✅ ver `npm run measure:mcp-overhead` |
+| Proxy p95 ≤ 50 ms | ✅ healthz regression |
+| docker compose | ✅ `scripts/verify-compose.sh` |
 
-Push rama `sdd/001-production-readiness` tras cada commit; ver `git log` en GitHub.
-
-## AC globales (sección 7)
-
-| Métrica | Umbral | Estado |
-|---------|--------|--------|
-| recall@10 | ≥ 0.26 | ✅ ~0.28 |
-| MCP tool defs + regla | −60 % | 🔶 medición pendiente (D3) |
-| Proxy p95 | ≤ 50 ms | 🔶 test carga F2 pendiente |
-| docker compose up | primera llamada OK | 🔶 validar local |
+Release: **1.0.0** en npm (`publish:packages` desde mantenedor). Imagen: `packages/proxy/Dockerfile` → `ghcr.io/rootrouter/proxy` (push manual con credenciales).

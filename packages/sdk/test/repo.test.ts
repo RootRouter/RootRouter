@@ -2,6 +2,8 @@
  * RepoGraph indexer tests.
  * Run: tsx test/repo.test.ts
  */
+import * as fs from 'fs';
+import * as os from 'os';
 import * as path from 'path';
 import { indexRepo, extractImports, detectLanguage, resolveJailedPath, repoNamespace, chunkId } from '../src/repo';
 import { selectContext } from '../src/select';
@@ -96,6 +98,30 @@ async function main() {
       indexed.items.map((i) => String((i.metadata as { repoRoot?: string })?.repoRoot ?? ''))
     );
     assert(roots.size === 1 && [...roots][0].length > 0, 'indexed chunks carry repoRoot metadata');
+  }
+
+  console.log('\n=== secrets: skip api key files ===');
+  {
+    const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'rr-secret-'));
+    fs.writeFileSync(path.join(tmp, 'leak.ts'), "const x = 'api_key=sk-abcdefghijklmnopqrstuvwxyz12';\n");
+    fs.writeFileSync(path.join(tmp, '.env'), 'SECRET=1\n');
+    const idx = indexRepo({ rootPath: tmp, agentId: 't' });
+    const leaked = idx.items.some((i) => i.text.includes('sk-abcdef') || i.text.includes('SECRET=1'));
+    assert(!leaked, 'no secret content indexed');
+    fs.rmSync(tmp, { recursive: true, force: true });
+  }
+
+  console.log('\n=== rootrouterignore ===');
+  {
+    const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'rr-ignore-'));
+    fs.writeFileSync(path.join(tmp, 'keep.ts'), 'export const keep = 1;\n');
+    fs.writeFileSync(path.join(tmp, 'skip.ts'), 'export const skip = 1;\n');
+    fs.writeFileSync(path.join(tmp, '.rootrouterignore'), 'skip.ts\n');
+    const idx = indexRepo({ rootPath: tmp, agentId: 't' });
+    const paths = idx.items.map((i) => String((i.metadata as { path?: string })?.path ?? ''));
+    assert(paths.some((p) => p.includes('keep.ts')), 'kept file indexed');
+    assert(!paths.some((p) => p.includes('skip.ts')), 'ignored file skipped');
+    fs.rmSync(tmp, { recursive: true, force: true });
   }
 
   console.log('\n=== Results ===');

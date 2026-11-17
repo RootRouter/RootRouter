@@ -2,6 +2,12 @@
 
 Where each layer runs, what it does, and how to combine them without stepping on storage or double-trimming context.
 
+## Recommended (SDD slice G)
+
+| Recipe | Command | Notes |
+|--------|---------|-------|
+| **Docker Compose (proxy + echo agent)** | `bash scripts/verify-compose.sh` | Proxy on `:8787`, store volume, Prometheus `/metrics` |
+
 ---
 
 ## Layers at a glance

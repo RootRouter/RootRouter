@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-17T04:15:45.571Z",
+  "generatedAt": "2026-11-17T04:20:36.346Z",
   "repoRoot": "/Users/brahma101/Projects/Work/RootRouter/Repositories/RootRouter",
   "queries": 53,
-  "chunksIndexed": 493,
+  "chunksIndexed": 386,
   "configs": [
     {
       "configPath": "/Users/brahma101/Projects/Work/RootRouter/Repositories/RootRouter/packages/sdk/evals/selection/configs/default.json",
@@ -16,10 +16,10 @@
       "aggregate": {
         "recallAt5": 0.22641509433962265,
         "recallAt10": 0.32075471698113206,
-        "precisionAt5": 0.049056603773584916,
-        "precisionAt10": 0.035190176699610665,
-        "ndcgAt10": 0.22561876901289907,
-        "meanTokensOut": 1998.132075471698
+        "precisionAt5": 0.045283018867924525,
+        "precisionAt10": 0.03522012578616353,
+        "ndcgAt10": 0.21457819350747764,
+        "meanTokensOut": 1996.301886792453
       },
       "perQuery": [
         {
@@ -29,17 +29,18 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 1997,
+          "tokensOut": 1999,
           "hitsAt10": [
-            "apps/dashboard/components/AgentTerminalSection.tsx",
             "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/repo/indexRepo.ts",
             "packages/sdk/src/models/index.ts",
-            "apps/dashboard/app/dashboard/topology/page.tsx",
-            "docs/insights/004-insights-driven-roadmap.md",
             "packages/sdk/src/spec/index.ts",
-            "apps/dashboard/app/layout.tsx",
-            "packages/sdk/test/fixtures/minirepo/src/utils.ts",
-            "packages/sdk/src/irp/index.ts"
+            "packages/sdk/src/models/catalogResolver.ts",
+            "packages/proxy/README.md",
+            "docs/skills/feng-shui/scripts/workspace_guard.py",
+            "packages/sdk/src/repo/graph.ts",
+            "packages/sdk/CHANGELOG.md",
+            "packages/sdk/test/fixtures/minirepo/src/utils.ts"
           ]
         },
         {
@@ -49,17 +50,17 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 1999,
+          "tokensOut": 1995,
           "hitsAt10": [
-            "packages/proxy/src/engine.ts",
+            "packages/sdk/demo/basic.ts",
             "packages/proxy/src/contextMeter.ts",
-            "packages/sdk/src/math/pca.ts",
-            "packages/sdk/src/cli/initHermes.ts",
+            "packages/sdk/demo/swarm-proxy.ts",
             "packages/sdk/src/models/registry.ts",
-            "docs/insights/002-agent-context-behavior-good-vs-bad.md",
+            "packages/sdk/src/cli/initHermes.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/proxy/src/engine.ts",
+            "docs/BENCHMARKS.md",
             "packages/sdk/src/models/index.ts",
-            "packages/sdk/src/select/contextEngine.ts",
-            "packages/sdk/src/repo/chunk.ts",
             "packages/sdk/src/irp/index.ts"
           ]
         },
@@ -70,16 +71,16 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 1998,
+          "tokensOut": 2000,
           "hitsAt10": [
             "packages/proxy/src/prometheus.ts",
             "packages/proxy/src/contextMeter.ts",
-            "packages/sdk/src/select/snapshot.ts",
             "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/select/snapshot.ts",
             "packages/sdk/src/cli/audit.ts",
             "packages/sdk/test/fixtures/minirepo/src/utils.ts",
             "packages/sdk/src/repo/index.ts",
-            "apps/dashboard/components/AuditSection.tsx",
+            "packages/sdk/src/logs/routerMetrics.ts",
             "packages/sdk/src/models/veniceCatalog.ts",
             "packages/sdk/src/types.ts"
           ]
@@ -91,18 +92,18 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 2000,
+          "tokensOut": 1996,
           "hitsAt10": [
-            "packages/sdk/demo/benchmark.ts",
-            "packages/sdk/src/spec/index.ts",
-            "packages/sdk/src/select/store/inMemoryStore.ts",
-            "docs/templates/codex-project-agents-rootrouter.md",
-            "packages/sdk/test/fixtures/minirepo/src/utils.ts",
-            "packages/mcp/src/server.ts",
             "packages/sdk/demo/basic.ts",
-            "packages/sdk/src/pipeline/index.ts",
-            "apps/dashboard/components/ChamberDistribution.tsx",
-            "packages/sdk/src/repo/index.ts"
+            "packages/mcp/src/server.ts",
+            "packages/sdk/test/fixtures/minirepo/src/main.ts",
+            "docs/templates/codex-project-agents-rootrouter.md",
+            "packages/proxy/src/server.ts",
+            "packages/sdk/src/spec/index.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/repo/index.ts",
+            "packages/sdk/CHANGELOG.md",
+            "packages/sdk/src/types.ts"
           ]
         },
         {
@@ -112,18 +113,18 @@
           "precisionAt5": 0.2,
           "precisionAt10": 0.1,
           "ndcgAt10": 1,
-          "tokensOut": 1999,
+          "tokensOut": 1992,
           "hitsAt10": [
             "packages/sdk/src/repo/graph.ts",
-            "packages/sdk/src/core/contextFilter.ts",
             "packages/sdk/src/math/pca.ts",
-            "apps/dashboard/components/ConvexClientProvider.tsx",
+            "packages/sdk/src/core/contextFilter.ts",
             "docs/templates/codex-project-agents-rootrouter.md",
-            "packages/sdk/demo/benchmark-queries.ts",
-            "packages/sdk/demo/loadEnv.ts",
+            "packages/sdk/COMMERCIAL.md",
+            "packages/sdk/evals/run-selection-eval.ts",
             "packages/sdk/src/irp/rank.ts",
-            "packages/sdk/src/spec/index.ts",
-            "apps/dashboard/components/SurfacesSection.tsx"
+            "packages/sdk/demo/loadEnv.ts",
+            "packages/sdk/src/models/veniceCatalog.ts",
+            "packages/sdk/src/spec/index.ts"
           ]
         },
         {
@@ -133,17 +134,17 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 2000,
+          "tokensOut": 1999,
           "hitsAt10": [
             "packages/proxy/src/prometheus.ts",
-            "packages/sdk/src/core/router.ts",
             "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/core/router.ts",
             "packages/proxy/src/engine.ts",
             "packages/sdk/src/pipeline/routing.ts",
-            "packages/proxy/test/filter.test.ts",
+            "packages/proxy/CHANGELOG.md",
             "packages/proxy/test/irpServer.test.ts",
+            "packages/proxy/test/filter.test.ts",
             "packages/sdk/src/select/snapshot.ts",
-            "packages/proxy/COMMERCIAL.md",
             "packages/sdk/src/core/contextFilter.ts"
           ]
         },
@@ -158,35 +159,35 @@
           "hitsAt10": [
             "packages/sdk/src/math/pca.ts",
             "packages/sdk/src/math/kmeans.ts",
-            "packages/sdk/src/spec/index.ts",
-            "packages/sdk/test/math.test.ts",
             "packages/proxy/test/irpServer.test.ts",
-            "apps/dashboard/hooks/useCeloTelemetry.ts",
-            "apps/dashboard/components/GridScanBackground.tsx",
+            "packages/sdk/src/spec/index.ts",
+            "docs/decisions/0004-dashboard-scope.md",
+            "packages/sdk/test/math.test.ts",
             "docs/NEXT.md",
             "packages/proxy/COMMERCIAL.md",
-            "packages/proxy/BETA.md"
+            "docs/templates/codex-project-agents-rootrouter.md",
+            "docs/SDD/001-production-readiness.md"
           ]
         },
         {
           "id": "proxy-engine",
-          "recallAt5": 0,
-          "recallAt10": 0,
-          "precisionAt5": 0,
-          "precisionAt10": 0,
-          "ndcgAt10": 0,
-          "tokensOut": 2000,
+          "recallAt5": 1,
+          "recallAt10": 1,
+          "precisionAt5": 0.2,
+          "precisionAt10": 0.1,
+          "ndcgAt10": 1,
+          "tokensOut": 1995,
           "hitsAt10": [
-            "apps/dashboard/app/dashboard/topology/page.tsx",
-            "apps/dashboard/app/dashboard/topology/layout.tsx",
-            "packages/mcp/src/server.ts",
-            "packages/sdk/src/math/pca.ts",
-            "apps/dashboard/components/GridScanBackground.tsx",
+            "packages/proxy/src/engine.ts",
             "packages/proxy/src/filter.ts",
-            "docs/NEXT.md",
+            "packages/sdk/src/math/pca.ts",
+            "packages/mcp/src/server.ts",
+            "packages/sdk/src/logs/selectionAudit.ts",
             "packages/sdk/src/spec/index.ts",
+            "packages/sdk/evals/run-selection-eval.ts",
             "docs/irp.md",
-            "packages/sdk/src/pipeline/routing.ts"
+            "packages/sdk/src/pipeline/routing.ts",
+            "packages/sdk/src/types.ts"
           ]
         },
         {
@@ -196,18 +197,18 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 1998,
+          "tokensOut": 1995,
           "hitsAt10": [
-            "packages/proxy/test/irpServer.test.ts",
             "packages/sdk/src/math/pca.ts",
+            "packages/proxy/src/engine.ts",
+            "packages/proxy/test/irpServer.test.ts",
             "packages/proxy/src/filter.ts",
             "packages/sdk/src/logs/routerMetrics.ts",
-            "packages/sdk/src/index.ts",
-            "packages/proxy/src/routingConfig.ts",
             "packages/proxy/test/contextMeter.test.ts",
-            "docs/insights/004-insights-driven-roadmap.md",
-            "packages/sdk/src/spec/index.ts",
-            "packages/sdk/src/select/embedding/contentHash.ts"
+            "packages/sdk/demo/swarm-proxy.ts",
+            "packages/sdk/src/cli/doctor.ts",
+            "packages/sdk/src/embeddings/api.ts",
+            "packages/sdk/src/core/contextFilter.ts"
           ]
         },
         {
@@ -215,17 +216,18 @@
           "recallAt5": 0,
           "recallAt10": 1,
           "precisionAt5": 0,
-          "precisionAt10": 0.1111111111111111,
-          "ndcgAt10": 0.31546487678572877,
-          "tokensOut": 1998,
+          "precisionAt10": 0.1,
+          "ndcgAt10": 0.3010299956639812,
+          "tokensOut": 1997,
           "hitsAt10": [
-            "docs/insights/001-cursor-agent-slice-workflow-feedback.md",
+            "docs/BENCHMARKS.md",
             "packages/sdk/src/math/pca.ts",
+            "packages/mcp/CHANGELOG.md",
             "packages/sdk/src/cli/audit.ts",
             "packages/sdk/src/cli/doctor.ts",
-            "packages/sdk/test/benchmark.test.ts",
             "packages/mcp/COMMERCIAL.md",
-            "apps/dashboard/app/dashboard/layout.tsx",
+            "packages/sdk/src/math/vectors.ts",
+            "packages/proxy/src/server.ts",
             "packages/mcp/src/server.ts",
             "packages/sdk/src/spec/index.ts"
           ]
@@ -237,17 +239,18 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 1999,
+          "tokensOut": 1998,
           "hitsAt10": [
             "packages/proxy/src/irpServer.ts",
             "packages/sdk/demo/benchmark.ts",
-            "packages/sdk/src/select/embedding/buildProvider.ts",
             "packages/sdk/src/math/pca.ts",
-            "packages/proxy/src/routingConfig.ts",
-            "packages/proxy/test/e2e-stateful.mjs",
+            "packages/sdk/src/select/embedding/buildProvider.ts",
+            "packages/mcp/test/smoke.mjs",
+            "packages/sdk/test/models.test.ts",
             "packages/proxy/test/irpServer.test.ts",
-            "docs/decisions/0001-product-shape.md",
-            "packages/sdk/src/irp/index.ts"
+            "docs/SDD/001-production-readiness.md",
+            "packages/proxy/src/messageStore.ts",
+            "packages/sdk/src/core/contextFilter.ts"
           ]
         },
         {
@@ -255,17 +258,20 @@
           "recallAt5": 1,
           "recallAt10": 1,
           "precisionAt5": 0.2,
-          "precisionAt10": 0.14285714285714285,
+          "precisionAt10": 0.1,
           "ndcgAt10": 1,
-          "tokensOut": 1998,
+          "tokensOut": 1994,
           "hitsAt10": [
             "packages/sdk/src/select/embedding/buildProvider.ts",
             "packages/sdk/src/cli/initHermes.ts",
             "packages/sdk/src/index.ts",
             "packages/proxy/README.md",
             "packages/sdk/src/logs/selectionAudit.ts",
-            "docs/SKILL.md",
-            "packages/proxy/COMMERCIAL.md"
+            "packages/sdk/src/config.ts",
+            "docs/skills/feng-shui/assets/openclaw/AGENTS.fragment.md",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/core/contextFilter.ts",
+            "docs/SDD/001-production-readiness.md"
           ]
         },
         {
@@ -275,39 +281,39 @@
           "precisionAt5": 0.2,
           "precisionAt10": 0.1,
           "ndcgAt10": 0.6309297535714575,
-          "tokensOut": 1996,
+          "tokensOut": 1995,
           "hitsAt10": [
             "docs/experimental/README.md",
             "packages/sdk/src/select/store/fileStore.ts",
             "packages/sdk/src/math/pca.ts",
             "packages/sdk/src/models/detectCapabilities.ts",
-            "packages/sdk/test/benchmark.test.ts",
-            "packages/sdk/src/index.ts",
+            "packages/sdk/demo/swarm-proxy.ts",
             "packages/proxy/test/e2e.mjs",
             "docs/skills/feng-shui/assets/openclaw/AGENTS.fragment.md",
-            "packages/proxy/src/engine.ts",
-            "docs/experimental/celo-telemetry.md"
+            "packages/sdk/src/index.ts",
+            "packages/sdk/test/benchmark.test.ts",
+            "packages/proxy/src/engine.ts"
           ]
         },
         {
           "id": "selection-audit",
           "recallAt5": 0,
-          "recallAt10": 0,
+          "recallAt10": 1,
           "precisionAt5": 0,
-          "precisionAt10": 0,
-          "ndcgAt10": 0,
-          "tokensOut": 1999,
+          "precisionAt10": 0.1,
+          "ndcgAt10": 0.3333333333333333,
+          "tokensOut": 1996,
           "hitsAt10": [
             "packages/sdk/demo/basic.ts",
-            "docs/insights/006-mcp-selection-audit-log.md",
-            "packages/sdk/src/repo/chunk.ts",
-            "packages/sdk/src/math/pca.ts",
-            "packages/proxy/src/lightweightRouter.ts",
-            "packages/sdk/src/index.ts",
+            "packages/mcp/CHANGELOG.md",
             "docs/irp.md",
-            "packages/mcp/src/server.ts",
+            "packages/mcp/README.md",
+            "packages/sdk/src/repo/chunk.ts",
+            "packages/proxy/src/lightweightRouter.ts",
+            "packages/sdk/src/logs/selectionAudit.ts",
             "packages/sdk/src/core/agentGraph.ts",
-            "packages/sdk/src/core/contextFilter.ts"
+            "packages/sdk/src/core/contextFilter.ts",
+            "packages/proxy/CHANGELOG.md"
           ]
         },
         {
@@ -316,19 +322,19 @@
           "recallAt10": 1,
           "precisionAt5": 0,
           "precisionAt10": 0.1,
-          "ndcgAt10": 0.2890648263178879,
+          "ndcgAt10": 0.3562071871080222,
           "tokensOut": 2000,
           "hitsAt10": [
             "packages/sdk/src/spec/index.ts",
-            "packages/sdk/src/math/vectors.ts",
-            "docs/irp.md",
-            "apps/dashboard/app/dashboard/layout.tsx",
-            "docs/templates/codex-project-agents-rootrouter.md",
-            "apps/dashboard/components/GridScanBackground.tsx",
+            "docs/templates/codex-global-agents-rootrouter.md",
             "packages/sdk/src/math/pca.ts",
+            "docs/irp.md",
+            "packages/sdk/test/fixtures/minirepo/src/main.ts",
+            "packages/sdk/src/spec/buildQueryFromSpec.ts",
+            "packages/sdk/src/math/vectors.ts",
             "packages/sdk/src/select/embedding/apiProvider.ts",
-            "packages/sdk/src/index.ts",
-            "packages/sdk/src/spec/buildQueryFromSpec.ts"
+            "packages/mcp/src/server.ts",
+            "docs/templates/codex-project-agents-rootrouter.md"
           ]
         },
         {
@@ -338,18 +344,18 @@
           "precisionAt5": 0.2,
           "precisionAt10": 0.1,
           "ndcgAt10": 0.38685280723454163,
-          "tokensOut": 2000,
+          "tokensOut": 1999,
           "hitsAt10": [
             "packages/mcp/COMMERCIAL.md",
             "packages/sdk/src/math/pca.ts",
             "packages/sdk/src/cli/storeCli.ts",
             "packages/sdk/src/core/graph.ts",
             "packages/sdk/src/cli/doctor.ts",
-            "packages/sdk/src/core/router.ts",
             "packages/proxy/test/stateful.test.ts",
+            "packages/sdk/src/core/router.ts",
+            "BETA.md",
             "packages/sdk/src/pipeline/types.ts",
-            "packages/proxy/src/contextMeter.ts",
-            "packages/mcp/BETA.md"
+            "packages/mcp/CHANGELOG.md"
           ]
         },
         {
@@ -359,18 +365,17 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 2000,
+          "tokensOut": 1998,
           "hitsAt10": [
             "packages/sdk/src/embeddings/tfidf.ts",
             "packages/sdk/src/embeddings/api.ts",
             "packages/sdk/src/cli/storeCli.ts",
-            "packages/sdk/test/benchmark.test.ts",
             "packages/mcp/README.md",
             "packages/sdk/src/math/pca.ts",
-            "apps/dashboard/components/HowItWorksSection.tsx",
+            "packages/sdk/test/benchmark.test.ts",
             "packages/sdk/test/math.test.ts",
             "docs/SDD/001-production-readiness.md",
-            "apps/dashboard/components/SurfacesSection.tsx"
+            "packages/sdk/src/spec/index.ts"
           ]
         },
         {
@@ -380,18 +385,18 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 1999,
+          "tokensOut": 1987,
           "hitsAt10": [
             "packages/sdk/src/core/contextFilter.ts",
             "packages/sdk/src/math/pca.ts",
+            "packages/proxy/src/contextMeter.ts",
             "packages/sdk/src/logs/selectionAudit.ts",
             "packages/sdk/src/irp/models.ts",
-            "packages/proxy/src/contextMeter.ts",
-            "packages/sdk/src/irp/rank.ts",
             "packages/proxy/src/irpServer.ts",
-            "docs/insights/005-business-model-routing-licensing-agent-economy.md",
-            "packages/sdk/src/logs/routerMetrics.ts",
-            "apps/dashboard/hooks/useCeloTelemetry.ts"
+            "packages/sdk/src/irp/rank.ts",
+            "packages/sdk/test/select.test.ts",
+            "packages/sdk/src/spec/index.ts",
+            "docs/SDD/001-production-readiness.md"
           ]
         },
         {
@@ -401,18 +406,18 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 1996,
+          "tokensOut": 1995,
           "hitsAt10": [
             "packages/sdk/src/pipeline/llmExecutor.ts",
             "packages/sdk/test/fixtures/minirepo/src/main.ts",
             "packages/sdk/src/math/pca.ts",
             "packages/sdk/src/pipeline/types.ts",
-            "docs/templates/codex-project-agents-rootrouter.md",
+            "docs/templates/codex-global-agents-rootrouter.md",
             "docs/irp.md",
+            "packages/sdk/test/spec.test.ts",
             "packages/sdk/src/select/store/inMemoryStore.ts",
-            "packages/sdk/src/models/openRouterCatalog.ts",
-            "docs/insights/004-insights-driven-roadmap.md",
-            "packages/sdk/test/spec.test.ts"
+            "packages/sdk/src/logs/selectionAudit.ts",
+            "packages/sdk/src/models/openRouterCatalog.ts"
           ]
         },
         {
@@ -432,7 +437,7 @@
             "packages/sdk/src/spec/buildQueryFromSpec.ts",
             "packages/sdk/src/core/router.ts",
             "docs/experimental/README.md",
-            "packages/mcp/COMMERCIAL.md",
+            "packages/sdk/COMMERCIAL.md",
             "packages/sdk/src/core/contextFilter.ts"
           ]
         },
@@ -443,18 +448,18 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 1994,
+          "tokensOut": 1988,
           "hitsAt10": [
             "packages/proxy/test/irpServer.test.ts",
-            "apps/dashboard/app/dashboard/topology/page.tsx",
+            "packages/proxy/src/filter.ts",
+            "CONTRIBUTING.md",
+            "docs/irp.md",
             "packages/sdk/src/cli/init.ts",
             "README.md",
-            "apps/dashboard/components/TokensOverTimeChart.tsx",
-            "docs/irp.md",
-            "docs/SDD/001-production-readiness.md",
-            "packages/sdk/src/core/contextFilter.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/proxy/src/topologyPersistence.ts",
             "packages/sdk/src/types.ts",
-            "apps/dashboard/hooks/useCeloTelemetry.ts"
+            "packages/sdk/src/core/contextFilter.ts"
           ]
         },
         {
@@ -464,17 +469,1144 @@
           "precisionAt5": 0.2,
           "precisionAt10": 0.1,
           "ndcgAt10": 1,
-          "tokensOut": 2000,
+          "tokensOut": 1997,
           "hitsAt10": [
             "packages/proxy/src/hermesAgentId.ts",
             "packages/sdk/src/math/pca.ts",
-            "packages/sdk/demo/basic.ts",
             "packages/sdk/src/math/kmeans.ts",
+            "packages/sdk/demo/basic.ts",
             "docs/irp.md",
+            "packages/sdk/src/cli/doctor.ts",
+            "packages/sdk/src/models/index.ts",
             "docs/skills/feng-shui/assets/openclaw/BOOTSTRAP.fragment.md",
             "packages/proxy/test/hermesAgentId.test.ts",
-            "docs/insights/001-cursor-agent-slice-workflow-feedback.md",
+            "docs/SDD/001-production-readiness.md"
+          ]
+        },
+        {
+          "id": "message-store",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 1996,
+          "hitsAt10": [
+            "packages/sdk/src/irp/rank.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/pipeline/index.ts",
+            "packages/sdk/src/pipeline/types.ts",
+            "packages/sdk/src/cli/storeCli.ts",
+            "packages/sdk/src/logs/selectionAudit.ts",
+            "packages/sdk/COMMERCIAL.md",
+            "packages/sdk/src/irp/models.ts",
             "packages/sdk/src/cli/doctor.ts",
+            "docs/experimental/celo-telemetry.md"
+          ]
+        },
+        {
+          "id": "lightweight-router",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 1998,
+          "hitsAt10": [
+            "packages/sdk/src/cli/index.ts",
+            "packages/sdk/src/cli/audit.ts",
+            "packages/sdk/src/select/embedding/apiProvider.ts",
+            "packages/sdk/demo/basic.ts",
+            "packages/sdk/src/select/embedding/contentHash.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/demo/swarm-proxy.ts",
+            "docs/NEXT.md",
+            "packages/sdk/test/spec.test.ts",
+            "packages/sdk/src/core/contextFilter.ts"
+          ]
+        },
+        {
+          "id": "benchmark-demo",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 1995,
+          "hitsAt10": [
+            "packages/sdk/demo/basic.ts",
+            "packages/sdk/demo/benchmark-queries.ts",
+            "packages/sdk/src/math/pca.ts",
+            "BETA.md",
+            "CONTRIBUTING.md",
+            "packages/sdk/src/config.ts",
+            "packages/sdk/src/repo/chunk.ts",
+            "packages/sdk/test/irp.test.ts",
+            "packages/sdk/src/logs/routerMetrics.ts",
+            "packages/sdk/src/repo/indexRepo.ts"
+          ]
+        },
+        {
+          "id": "swarm-demo",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 1994,
+          "hitsAt10": [
+            "packages/sdk/demo/basic.ts",
+            "packages/sdk/src/math/pca.ts",
+            "CONTRIBUTING.md",
+            "packages/sdk/src/spec/buildQueryFromSpec.ts",
+            "BETA.md",
+            "packages/sdk/src/core/graph.ts",
+            "docs/templates/codex-project-agents-rootrouter.md",
+            "docs/SDD/001-production-readiness.md",
+            "packages/sdk/src/core/contextFilter.ts"
+          ]
+        },
+        {
+          "id": "celo-telemetry",
+          "recallAt5": 0,
+          "recallAt10": 1,
+          "precisionAt5": 0,
+          "precisionAt10": 0.1,
+          "ndcgAt10": 0.3010299956639812,
+          "tokensOut": 1993,
+          "hitsAt10": [
+            "docs/experimental/celo-telemetry.md",
+            "packages/sdk/src/celo/erc8004.ts",
+            "packages/sdk/src/math/pca.ts",
+            "docs/experimental/README.md",
+            "packages/sdk/BETA.md",
+            "packages/sdk/test/benchmark.test.ts",
+            "packages/sdk/scripts/deploy.ts",
+            "packages/proxy/src/messageStore.ts",
+            "packages/sdk/src/celo/telemetry.ts",
+            "docs/SDD/001-production-readiness.md"
+          ]
+        },
+        {
+          "id": "contracts-solidity",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 1997,
+          "hitsAt10": [
+            "packages/sdk/src/cli/init.ts",
+            "packages/sdk/src/repo/imports.ts",
+            "packages/sdk/src/repo/graph.ts",
+            "packages/sdk/test/math.test.ts",
+            "docs/NEXT.md",
+            "docs/experimental/celo-telemetry.md",
+            "packages/proxy/src/topologyPersistence.ts",
+            "packages/sdk/src/math/pca.ts",
+            "docs/architecture.md",
+            "docs/skills/feng-shui/assets/openclaw/BOOTSTRAP.fragment.md"
+          ]
+        },
+        {
+          "id": "architecture-doc",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 1996,
+          "hitsAt10": [
+            "docs/experimental/README.md",
+            "docs/BENCHMARKS.md",
+            "packages/sdk/src/core/agentGraph.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/core/contextFilter.ts",
+            "packages/sdk/src/cli/agentsMd.ts",
+            "packages/sdk/src/pipeline/promptBuilder.ts",
+            "packages/sdk/src/select/embedding/contentHash.ts",
+            "BETA.md",
+            "packages/proxy/src/messageStore.ts"
+          ]
+        },
+        {
+          "id": "benchmarks-doc",
+          "recallAt5": 1,
+          "recallAt10": 1,
+          "precisionAt5": 0.2,
+          "precisionAt10": 0.16666666666666666,
+          "ndcgAt10": 0.5,
+          "tokensOut": 1998,
+          "hitsAt10": [
+            "packages/sdk/demo/basic.ts",
+            "packages/sdk/src/math/pca.ts",
+            "docs/BENCHMARKS.md",
+            "packages/proxy/src/filter.ts",
+            "docs/SKILL.md",
+            "packages/proxy/src/contextMeter.ts"
+          ]
+        },
+        {
+          "id": "sdd-readiness",
+          "recallAt5": 1,
+          "recallAt10": 1,
+          "precisionAt5": 0.2,
+          "precisionAt10": 0.1,
+          "ndcgAt10": 1,
+          "tokensOut": 1999,
+          "hitsAt10": [
+            "docs/SDD/001-production-readiness.md",
+            "CONTRIBUTING.md",
+            "BETA.md",
+            "packages/sdk/src/repo/imports.ts",
+            "docs/decisions/0001-product-shape.md",
+            "packages/proxy/test/lightweightRouter.test.ts",
+            "docs/irp.md",
+            "packages/sdk/src/math/kmeans.ts",
+            "packages/sdk/test/fixtures/minirepo/src/main.ts",
+            "packages/sdk/src/cli/initHermes.ts"
+          ]
+        },
+        {
+          "id": "decision-product",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 1998,
+          "hitsAt10": [
+            "packages/sdk/src/repo/imports.ts",
+            "docs/experimental/README.md",
+            "packages/sdk/src/repo/graph.ts",
+            "docs/SDD/001-production-readiness.md",
+            "packages/sdk/test/spec.test.ts",
+            "packages/sdk/src/config.ts",
+            "packages/sdk/src/models/detectCapabilities.ts",
+            "docs/experimental/celo-telemetry.md",
+            "packages/proxy/src/server.ts",
+            "packages/sdk/test/fixtures/minirepo/src/main.ts"
+          ]
+        },
+        {
+          "id": "decision-positioning",
+          "recallAt5": 1,
+          "recallAt10": 1,
+          "precisionAt5": 0.2,
+          "precisionAt10": 0.1,
+          "ndcgAt10": 1,
+          "tokensOut": 1998,
+          "hitsAt10": [
+            "docs/decisions/0002-positioning.md",
+            "packages/sdk/src/repo/walk.ts",
+            "docs/decisions/0003-cache-aware-trimming.md",
+            "packages/sdk/src/repo/graph.ts",
+            "packages/sdk/src/models/detectCapabilities.ts",
+            "packages/proxy/src/contextMeter.ts",
+            "packages/proxy/src/filter.ts",
+            "packages/sdk/test/spec.test.ts",
+            "packages/sdk/src/math/kmeans.ts",
+            "packages/proxy/README.md"
+          ]
+        },
+        {
+          "id": "ci-workflow",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 1993,
+          "hitsAt10": [
+            "packages/proxy/src/filter.ts",
+            "CONTRIBUTING.md",
+            "packages/sdk/src/repo/graph.ts",
+            "packages/sdk/src/repo/chunk.ts",
+            "packages/sdk/demo/benchmark-queries.ts",
+            "packages/proxy/src/contextMeter.ts",
+            "packages/sdk/demo/basic.ts",
+            "README.md",
+            "packages/proxy/CHANGELOG.md",
+            "packages/sdk/src/math/pca.ts"
+          ]
+        },
+        {
+          "id": "root-package",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 1993,
+          "hitsAt10": [
+            "packages/proxy/test/contextMeter.test.ts",
+            "packages/proxy/test/e2e-stateful.mjs",
+            "packages/sdk/test/chat-pipeline.e2e.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/test/initHermes.test.ts",
+            "packages/sdk/src/core/graph.ts",
+            "packages/sdk/evals/run-selection-eval.ts",
+            "packages/sdk/src/math/kmeans.ts",
+            "packages/sdk/src/core/collector.ts",
+            "packages/sdk/src/rootRouter.ts"
+          ]
+        },
+        {
+          "id": "proxy-package",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 1999,
+          "hitsAt10": [
+            "packages/sdk/src/core/collector.ts",
+            "packages/sdk/src/math/kmeans.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/demo/benchmark-queries.ts",
+            "packages/proxy/test/contextMeter.test.ts",
+            "packages/sdk/test/models.test.ts",
+            "packages/proxy/test/irpServer.test.ts",
+            "packages/sdk/test/math.test.ts",
+            "docs/experimental/celo-telemetry.md",
+            "packages/proxy/CHANGELOG.md"
+          ]
+        },
+        {
+          "id": "mcp-package",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 1998,
+          "hitsAt10": [
+            "packages/sdk/test/chat-pipeline.e2e.ts",
+            "packages/sdk/test/benchmark.test.ts",
+            "packages/sdk/src/math/kmeans.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/core/collector.ts",
+            "packages/sdk/src/cli/doctor.ts",
+            "packages/sdk/demo/benchmark-queries.ts",
+            "docs/PUBLISH.md",
+            "docs/SDD/001-production-readiness.md",
+            "packages/sdk/src/core/contextFilter.ts"
+          ]
+        },
+        {
+          "id": "sdk-export",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 1999,
+          "hitsAt10": [
+            "packages/proxy/src/server.ts",
+            "packages/sdk/src/logs/routerMetrics.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/test/benchmark.test.ts",
+            "packages/sdk/src/logs/localTelemetry.ts",
+            "packages/sdk/test/chat-pipeline.e2e.ts",
+            "packages/proxy/test/irpServer.test.ts",
+            "packages/proxy/src/contextMeter.ts",
+            "packages/sdk/src/spec/index.ts",
+            "packages/sdk/src/pipeline/index.ts"
+          ]
+        },
+        {
+          "id": "repo-security",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 1996,
+          "hitsAt10": [
+            "docs/BENCHMARKS.md",
+            "packages/sdk/src/logs/selectionAudit.ts",
+            "packages/sdk/src/cli/agentsMd.ts",
+            "packages/mcp/COMMERCIAL.md",
+            "packages/sdk/src/cli/doctor.ts",
+            "packages/proxy/test/contextMeter.test.ts",
+            "packages/sdk/test/benchmark.test.ts",
+            "packages/sdk/src/repo/imports.ts",
+            "packages/sdk/src/pipeline/index.ts",
+            "packages/sdk/src/math/pca.ts"
+          ]
+        },
+        {
+          "id": "repo-rootignore",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 1993,
+          "hitsAt10": [
+            "packages/sdk/src/core/agentGraph.ts",
+            "packages/sdk/src/models/index.ts",
+            "packages/sdk/src/select/selector.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/select/pathFilter.ts",
+            "packages/sdk/src/core/router.ts",
+            "packages/sdk/test/math.test.ts",
+            "packages/sdk/test/fixtures/minirepo/src/main.ts",
+            "packages/mcp/CHANGELOG.md",
+            "packages/proxy/test/filter.test.ts"
+          ]
+        },
+        {
+          "id": "ann-hnsw",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 1994,
+          "hitsAt10": [
+            "packages/proxy/src/engine.ts",
+            "packages/proxy/CHANGELOG.md",
+            "packages/proxy/src/irpServer.ts",
+            "packages/sdk/src/types.ts",
+            "packages/proxy/test/e2e.mjs",
+            "packages/sdk/test/models.test.ts",
+            "packages/sdk/src/cli/initHermes.ts",
+            "docs/skills/organize-space/scripts/inventory.py",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/select/embedding/tfidfProvider.ts"
+          ]
+        },
+        {
+          "id": "snapshot-selection",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 1997,
+          "hitsAt10": [
+            "packages/proxy/src/prometheus.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/pipeline/routing.ts",
+            "packages/sdk/src/irp/index.ts",
+            "packages/sdk/src/logs/selectionAudit.ts",
+            "packages/mcp/CHANGELOG.md",
+            "packages/sdk/demo/swarm.ts",
+            "packages/sdk/src/logs/routerMetrics.ts",
+            "packages/proxy/test/filter.test.ts",
+            "packages/sdk/src/models/veniceCatalog.ts"
+          ]
+        },
+        {
+          "id": "pipeline-chat",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 1991,
+          "hitsAt10": [
+            "packages/proxy/src/hermesAgentId.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/pipeline/index.ts",
+            "packages/sdk/src/logs/routerMetrics.ts",
+            "packages/sdk/src/pipeline/routing.ts",
+            "packages/sdk/src/irp/index.ts",
+            "packages/sdk/src/logs/selectionAudit.ts",
+            "packages/sdk/src/select/embedding/onnxProvider.ts",
+            "docs/skills/feng-shui/assets/openclaw/BOOTSTRAP.fragment.md",
+            "docs/irp.md"
+          ]
+        },
+        {
+          "id": "root-router-class",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 2000,
+          "hitsAt10": [
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/repo/types.ts",
+            "packages/sdk/templates/codex-global-agents-rootrouter.md",
+            "docs/irp.md",
+            "packages/sdk/src/math/kmeans.ts",
+            "packages/sdk/src/cli/index.ts",
+            "packages/proxy/src/messageStore.ts",
+            "packages/sdk/test/spec.test.ts",
+            "packages/proxy/src/hermesAgentId.ts",
+            "packages/sdk/src/pipeline/routing.ts"
+          ]
+        },
+        {
+          "id": "deploy-readme",
+          "recallAt5": 1,
+          "recallAt10": 1,
+          "precisionAt5": 0.2,
+          "precisionAt10": 0.2,
+          "ndcgAt10": 0.8315546295836225,
+          "tokensOut": 1997,
+          "hitsAt10": [
+            "deploy/README.md",
+            "docs/irp.md",
+            "packages/proxy/CHANGELOG.md",
+            "packages/sdk/src/core/contextFilter.ts",
+            "packages/proxy/README.md",
+            "README.md",
+            "packages/sdk/src/irp/models.ts",
+            "packages/sdk/src/cli/initHermes.ts",
+            "packages/proxy/src/irpServer.ts",
+            "docs/SDD/001-production-readiness.md"
+          ]
+        },
+        {
+          "id": "templates-slice",
+          "recallAt5": 0,
+          "recallAt10": 1,
+          "precisionAt5": 0,
+          "precisionAt10": 0.1,
+          "ndcgAt10": 0.3010299956639812,
+          "tokensOut": 1995,
+          "hitsAt10": [
+            "docs/SDD/001-production-readiness.md",
+            "packages/sdk/src/cli/storeCli.ts",
+            "docs/decisions/0004-dashboard-scope.md",
+            "packages/sdk/src/cli/initHermes.ts",
+            "docs/decisions/0002-positioning.md",
+            "packages/proxy/src/server.ts",
+            "docs/NEXT.md",
+            "packages/sdk/demo/swarm.ts",
+            "docs/templates/slice-handoff.md",
+            "packages/mcp/CHANGELOG.md"
+          ]
+        },
+        {
+          "id": "insights-workflow",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 1999,
+          "hitsAt10": [
+            "packages/sdk/demo/basic.ts",
+            "packages/sdk/src/irp/rank.ts",
+            "packages/sdk/src/core/agentGraph.ts",
+            "packages/sdk/src/irp/models.ts",
+            "packages/sdk/src/repo/graph.ts",
+            "packages/sdk/src/select/snapshot.ts",
+            "packages/sdk/src/math/pca.ts",
+            "docs/SDD/001-production-readiness.md",
+            "packages/sdk/test/fixtures/minirepo/README.md"
+          ]
+        },
+        {
+          "id": "insights-problem",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 1999,
+          "hitsAt10": [
+            "docs/BENCHMARKS.md",
+            "docs/decisions/0003-cache-aware-trimming.md",
+            "packages/mcp/test/smoke.mjs",
+            "packages/sdk/src/math/pca.ts",
+            "docs/decisions/0002-positioning.md",
+            "packages/sdk/test/spec.test.ts",
+            "packages/sdk/src/math/vectors.ts",
+            "packages/sdk/src/select/selector.ts",
+            "packages/sdk/src/core/contextFilter.ts",
+            "packages/proxy/CHANGELOG.md"
+          ]
+        },
+        {
+          "id": "experimental-readme",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 2000,
+          "hitsAt10": [
+            "docs/experimental/celo-telemetry.md",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/celo/telemetry.ts",
+            "docs/SDD/001-production-readiness.md",
+            "packages/sdk/src/core/agentGraph.ts",
+            "packages/sdk/src/spec/buildQueryFromSpec.ts",
+            "docs/experimental/algebraic-layer.md",
+            "packages/sdk/demo/basic.ts",
+            "packages/sdk/test/spec.test.ts",
+            "packages/sdk/src/core/contextFilter.ts"
+          ]
+        },
+        {
+          "id": "where-mcp-select",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 2000,
+          "hitsAt10": [
+            "packages/sdk/src/pipeline/types.ts",
+            "docs/BENCHMARKS.md",
+            "docs/irp.md",
+            "packages/sdk/src/irp/index.ts",
+            "packages/sdk/src/embeddings/api.ts",
+            "docs/skills/organize-space/ORGANIZE-SPACE.md",
+            "packages/sdk/src/spec/buildQueryFromSpec.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/proxy/README.md",
+            "docs/SDD/001-production-readiness.md"
+          ]
+        },
+        {
+          "id": "where-proxy-filter",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 1996,
+          "hitsAt10": [
+            "docs/irp.md",
+            "packages/sdk/src/pipeline/routing.ts",
+            "README.md",
+            "packages/mcp/src/server.ts",
+            "packages/proxy/test/irpServer.test.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/proxy/src/irpServer.ts",
+            "packages/sdk/src/irp/index.ts",
+            "packages/sdk/src/core/contextFilter.ts",
+            "packages/sdk/src/spec/index.ts"
+          ]
+        },
+        {
+          "id": "bugfix-store",
+          "recallAt5": 1,
+          "recallAt10": 1,
+          "precisionAt5": 0.2,
+          "precisionAt10": 0.1,
+          "ndcgAt10": 1,
+          "tokensOut": 1999,
+          "hitsAt10": [
+            "packages/sdk/src/select/store/fileStore.ts",
+            "packages/sdk/test/benchmark.test.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/proxy/src/contextMeter.ts",
+            "BETA.md",
+            "packages/sdk/demo/benchmark-queries.ts",
+            "packages/sdk/src/pipeline/contextRetrieval.ts",
+            "packages/sdk/src/rootRouter.ts",
+            "packages/mcp/CHANGELOG.md",
+            "packages/sdk/demo/swarm-proxy.ts"
+          ]
+        },
+        {
+          "id": "spec-driven",
+          "recallAt5": 1,
+          "recallAt10": 1,
+          "precisionAt5": 0.2,
+          "precisionAt10": 0.1,
+          "ndcgAt10": 0.43067655807339306,
+          "tokensOut": 1991,
+          "hitsAt10": [
+            "packages/sdk/src/spec/index.ts",
+            "packages/sdk/test/fixtures/minirepo/src/main.ts",
+            "docs/templates/codex-project-agents-rootrouter.md",
+            "packages/sdk/src/spec/buildQueryFromSpec.ts",
+            "docs/irp.md",
+            "packages/sdk/src/math/pca.ts",
+            "docs/templates/codex-global-agents-rootrouter.md",
+            "packages/mcp/src/server.ts",
+            "packages/sdk/src/cli/index.ts",
+            "packages/sdk/src/index.ts"
+          ]
+        }
+      ]
+    },
+    {
+      "configPath": "/Users/brahma101/Projects/Work/RootRouter/Repositories/RootRouter/packages/sdk/evals/selection/configs/chambers.json",
+      "config": {
+        "name": "chambers-boost",
+        "tokenBudget": 4000,
+        "useChambers": true,
+        "mmrLambda": 0.7,
+        "embedding": "tfidf"
+      },
+      "aggregate": {
+        "recallAt5": 0.22641509433962265,
+        "recallAt10": 0.32075471698113206,
+        "precisionAt5": 0.045283018867924525,
+        "precisionAt10": 0.0339622641509434,
+        "ndcgAt10": 0.1827211095669482,
+        "meanTokensOut": 3995.509433962264
+      },
+      "perQuery": [
+        {
+          "id": "context-engine-mmr",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 3986,
+          "hitsAt10": [
+            "packages/sdk/src/models/index.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/spec/index.ts",
+            "docs/NEXT.md",
+            "packages/sdk/src/irp/index.ts",
+            "packages/sdk/src/models/detectCapabilities.ts",
+            "packages/sdk/src/pipeline/types.ts",
+            "packages/proxy/src/filter.ts",
+            "docs/irp.md",
+            "packages/sdk/src/topology/loadRecommend.ts"
+          ]
+        },
+        {
+          "id": "context-selector",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 3998,
+          "hitsAt10": [
+            "packages/sdk/demo/basic.ts",
+            "packages/sdk/demo/swarm-proxy.ts",
+            "packages/proxy/src/engine.ts",
+            "docs/BENCHMARKS.md",
+            "docs/NEXT.md",
+            "packages/proxy/src/contextMeter.ts",
+            "packages/sdk/src/repo/indexRepo.ts",
+            "packages/sdk/src/select/index.ts",
+            "docs/experiments/cache-trim-cost.md",
+            "packages/sdk/test/irp.test.ts"
+          ]
+        },
+        {
+          "id": "repo-index",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 3997,
+          "hitsAt10": [
+            "packages/proxy/src/prometheus.ts",
+            "packages/sdk/test/fixtures/minirepo/src/utils.ts",
+            "packages/proxy/src/contextMeter.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/select/snapshot.ts",
+            "packages/sdk/src/cli/audit.ts",
+            "packages/sdk/src/repo/index.ts",
+            "packages/sdk/src/logs/routerMetrics.ts",
+            "packages/sdk/src/models/veniceCatalog.ts",
+            "packages/sdk/demo/swarm.ts"
+          ]
+        },
+        {
+          "id": "repo-walk",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 3997,
+          "hitsAt10": [
+            "docs/templates/codex-project-agents-rootrouter.md",
+            "packages/sdk/demo/basic.ts",
+            "packages/sdk/src/pipeline/index.ts",
+            "packages/sdk/src/spec/index.ts",
+            "packages/sdk/src/repo/index.ts",
+            "packages/mcp/src/server.ts",
+            "docs/NEXT.md",
+            "packages/sdk/test/fixtures/minirepo/src/main.ts",
+            "docs/irp.md",
+            "packages/proxy/src/server.ts"
+          ]
+        },
+        {
+          "id": "repo-graph",
+          "recallAt5": 1,
+          "recallAt10": 1,
+          "precisionAt5": 0.2,
+          "precisionAt10": 0.1,
+          "ndcgAt10": 1,
+          "tokensOut": 4000,
+          "hitsAt10": [
+            "packages/sdk/src/repo/graph.ts",
+            "packages/sdk/src/repo/chunk.ts",
+            "packages/sdk/src/core/contextFilter.ts",
+            "packages/sdk/demo/benchmark-queries.ts",
+            "packages/sdk/evals/run-selection-eval.ts",
+            "packages/sdk/demo/benchmark-live.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/COMMERCIAL.md",
+            "docs/PUBLISH.md",
+            "packages/proxy/test/irpServer.test.ts"
+          ]
+        },
+        {
+          "id": "proxy-filter",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 3995,
+          "hitsAt10": [
+            "packages/proxy/test/filter.test.ts",
+            "packages/sdk/src/core/router.ts",
+            "packages/proxy/test/irpServer.test.ts",
+            "packages/sdk/src/pipeline/llmExecutor.ts",
+            "packages/proxy/COMMERCIAL.md",
+            "packages/sdk/src/logs/routerMetrics.ts",
+            "packages/sdk/src/core/contextFilter.ts",
+            "docs/NEXT.md",
+            "packages/sdk/src/irp/rank.ts",
+            "packages/sdk/src/models/veniceCatalog.ts"
+          ]
+        },
+        {
+          "id": "proxy-server",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 3995,
+          "hitsAt10": [
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/math/kmeans.ts",
+            "packages/proxy/test/irpServer.test.ts",
+            "packages/sdk/src/spec/index.ts",
+            "docs/decisions/0004-dashboard-scope.md",
+            "packages/sdk/test/math.test.ts",
+            "docs/NEXT.md",
+            "docs/PUBLISH.md",
+            "packages/proxy/COMMERCIAL.md",
+            "docs/templates/codex-project-agents-rootrouter.md"
+          ]
+        },
+        {
+          "id": "proxy-engine",
+          "recallAt5": 1,
+          "recallAt10": 1,
+          "precisionAt5": 0.2,
+          "precisionAt10": 0.1,
+          "ndcgAt10": 1,
+          "tokensOut": 3994,
+          "hitsAt10": [
+            "packages/proxy/src/engine.ts",
+            "packages/proxy/src/filter.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/proxy/test/e2e-stateful.mjs",
+            "packages/mcp/src/server.ts",
+            "packages/sdk/src/spec/index.ts",
+            "packages/sdk/src/logs/selectionAudit.ts",
+            "packages/sdk/evals/run-selection-eval.ts",
+            "packages/sdk/src/cli/init.ts",
+            "packages/proxy/test/stateful.test.ts"
+          ]
+        },
+        {
+          "id": "proxy-context-meter",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 4000,
+          "hitsAt10": [
+            "packages/proxy/src/filter.ts",
+            "packages/proxy/src/engine.ts",
+            "packages/sdk/demo/swarm-proxy.ts",
+            "packages/sdk/src/select/embedding/cachedProvider.ts",
+            "docs/SDD/001-production-readiness.md",
+            "packages/sdk/src/math/pca.ts",
+            "docs/NEXT.md",
+            "packages/sdk/src/pipeline/routing.ts",
+            "packages/sdk/src/pipeline/promptBuilder.ts",
+            "packages/sdk/src/core/agentGraph.ts"
+          ]
+        },
+        {
+          "id": "mcp-server",
+          "recallAt5": 0,
+          "recallAt10": 1,
+          "precisionAt5": 0,
+          "precisionAt10": 0.1,
+          "ndcgAt10": 0.2890648263178879,
+          "tokensOut": 3997,
+          "hitsAt10": [
+            "docs/BENCHMARKS.md",
+            "packages/mcp/COMMERCIAL.md",
+            "README.md",
+            "packages/mcp/CHANGELOG.md",
+            "packages/sdk/test/math.test.ts",
+            "packages/proxy/test/irpServer.test.ts",
+            "packages/sdk/src/cli/initHermes.ts",
+            "packages/sdk/src/cli/audit.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/mcp/src/server.ts"
+          ]
+        },
+        {
+          "id": "embedding-tfidf",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 3998,
+          "hitsAt10": [
+            "packages/sdk/src/rootRouter.ts",
+            "packages/sdk/src/embeddings/api.ts",
+            "docs/decisions/0001-product-shape.md",
+            "packages/mcp/src/server.ts",
+            "packages/sdk/test/models.test.ts",
+            "packages/proxy/src/irpServer.ts",
+            "packages/sdk/test/benchmark.test.ts",
+            "packages/mcp/test/smoke.mjs",
+            "packages/proxy/test/e2e-stateful.mjs",
+            "docs/providers/openrouter.md"
+          ]
+        },
+        {
+          "id": "embedding-build",
+          "recallAt5": 0,
+          "recallAt10": 1,
+          "precisionAt5": 0,
+          "precisionAt10": 0.1,
+          "ndcgAt10": 0.3010299956639812,
+          "tokensOut": 3997,
+          "hitsAt10": [
+            "packages/sdk/src/config.ts",
+            "packages/sdk/src/cli/initHermes.ts",
+            "docs/FENG-SHUI.md",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/core/graph.ts",
+            "docs/SKILL.md",
+            "packages/proxy/src/topologyTracker.ts",
+            "packages/sdk/demo/benchmark-live.ts",
+            "packages/sdk/src/select/embedding/buildProvider.ts",
+            "packages/sdk/demo/basic.ts"
+          ]
+        },
+        {
+          "id": "file-store",
+          "recallAt5": 0,
+          "recallAt10": 1,
+          "precisionAt5": 0,
+          "precisionAt10": 0.1,
+          "ndcgAt10": 0.3010299956639812,
+          "tokensOut": 3994,
+          "hitsAt10": [
+            "docs/NEXT.md",
+            "packages/sdk/src/select/embedding/tfidfProvider.ts",
+            "packages/sdk/demo/swarm-proxy.ts",
+            "packages/sdk/src/logs/selectionAudit.ts",
+            "packages/sdk/src/cli/agentsMd.ts",
+            "packages/sdk/src/rootRouter.ts",
+            "docs/experimental/README.md",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/select/store/fileStore.ts",
+            "packages/sdk/src/models/detectCapabilities.ts"
+          ]
+        },
+        {
+          "id": "selection-audit",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 3996,
+          "hitsAt10": [
+            "packages/sdk/demo/basic.ts",
+            "packages/mcp/README.md",
+            "packages/sdk/src/repo/chunk.ts",
+            "packages/proxy/src/lightweightRouter.ts",
+            "packages/sdk/src/core/contextFilter.ts",
+            "packages/proxy/test/filter.test.ts",
+            "packages/sdk/test/select.test.ts",
+            "docs/templates/slice-handoff.md",
+            "packages/sdk/test/benchmark.test.ts",
+            "packages/sdk/src/cli/audit.ts"
+          ]
+        },
+        {
+          "id": "spec-selection",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 3999,
+          "hitsAt10": [
+            "packages/sdk/src/spec/index.ts",
+            "docs/irp.md",
+            "docs/templates/codex-project-agents-rootrouter.md",
+            "packages/sdk/src/select/embedding/apiProvider.ts",
+            "packages/mcp/src/server.ts",
+            "packages/sdk/src/index.ts",
+            "packages/sdk/test/spec.test.ts",
+            "docs/skills/organize-space/scripts/inventory.py",
+            "packages/sdk/src/math/pca.ts",
+            "docs/architecture.md"
+          ]
+        },
+        {
+          "id": "cli-doctor",
+          "recallAt5": 0,
+          "recallAt10": 1,
+          "precisionAt5": 0,
+          "precisionAt10": 0.1,
+          "ndcgAt10": 0.3562071871080222,
+          "tokensOut": 3990,
+          "hitsAt10": [
+            "packages/mcp/COMMERCIAL.md",
+            "packages/sdk/src/math/pca.ts",
+            "packages/mcp/CHANGELOG.md",
+            "packages/sdk/src/cli/storeCli.ts",
+            "packages/sdk/src/core/graph.ts",
+            "packages/sdk/src/cli/doctor.ts",
+            "packages/sdk/COMMERCIAL.md",
+            "COMMERCIAL.md",
+            "packages/proxy/COMMERCIAL.md",
+            "packages/proxy/test/stateful.test.ts"
+          ]
+        },
+        {
+          "id": "cli-init",
+          "recallAt5": 1,
+          "recallAt10": 1,
+          "precisionAt5": 0.2,
+          "precisionAt10": 0.1,
+          "ndcgAt10": 0.43067655807339306,
+          "tokensOut": 3996,
+          "hitsAt10": [
+            "packages/sdk/src/embeddings/tfidf.ts",
+            "packages/sdk/src/embeddings/api.ts",
+            "packages/sdk/src/cli/storeCli.ts",
+            "packages/sdk/src/cli/init.ts",
+            "packages/sdk/demo/benchmark.ts",
+            "docs/deployment-matrix.md",
+            "packages/sdk/src/select/embedding/tfidfProvider.ts",
+            "packages/sdk/src/spec/buildQueryFromSpec.ts",
+            "packages/mcp/COMMERCIAL.md",
+            "packages/sdk/evals/run-selection-eval.ts"
+          ]
+        },
+        {
+          "id": "agent-graph",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 3998,
+          "hitsAt10": [
+            "packages/sdk/src/core/contextFilter.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/proxy/src/contextMeter.ts",
+            "packages/sdk/src/logs/selectionAudit.ts",
+            "packages/sdk/src/irp/models.ts",
+            "packages/proxy/src/irpServer.ts",
+            "packages/sdk/src/irp/rank.ts",
+            "packages/proxy/README.md",
+            "packages/sdk/src/pipeline/llmExecutor.ts",
+            "packages/sdk/src/core/router.ts"
+          ]
+        },
+        {
+          "id": "model-router",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 3999,
+          "hitsAt10": [
+            "packages/sdk/src/select/store/inMemoryStore.ts",
+            "docs/experimental/README.md",
+            "packages/sdk/src/pipeline/llmExecutor.ts",
+            "packages/sdk/test/fixtures/minirepo/src/main.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/celo/telemetry.ts",
+            "packages/sdk/src/core/vectorSpace.ts",
+            "docs/templates/codex-project-agents-rootrouter.md",
+            "packages/sdk/src/pipeline/types.ts",
+            "docs/irp.md"
+          ]
+        },
+        {
+          "id": "vector-space",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 3995,
+          "hitsAt10": [
+            "docs/skills/organize-space/ORGANIZE-SPACE.md",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/cli/initHermes.ts",
+            "packages/sdk/src/pipeline/contextRetrieval.ts",
+            "docs/architecture.md",
+            "docs/experimental/algebraic-layer.md",
+            "packages/sdk/src/pipeline/types.ts",
+            "packages/sdk/src/irp/rank.ts",
+            "packages/proxy/test/irpServer.test.ts",
+            "README.md"
+          ]
+        },
+        {
+          "id": "irp-server",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 3997,
+          "hitsAt10": [
+            "packages/sdk/src/cli/doctor.ts",
+            "CONTRIBUTING.md",
+            "packages/proxy/src/filter.ts",
+            "packages/proxy/src/topologyPersistence.ts",
+            "packages/proxy/test/irpServer.test.ts",
+            "packages/sdk/src/spec/buildQueryFromSpec.ts",
+            "docs/irp.md",
+            "packages/sdk/src/cli/init.ts",
+            "README.md",
+            "packages/sdk/src/embeddings/tfidf.ts"
+          ]
+        },
+        {
+          "id": "hermes-agent-id",
+          "recallAt5": 1,
+          "recallAt10": 1,
+          "precisionAt5": 0.2,
+          "precisionAt10": 0.1,
+          "ndcgAt10": 0.6309297535714575,
+          "tokensOut": 3997,
+          "hitsAt10": [
+            "packages/sdk/demo/basic.ts",
+            "packages/proxy/src/hermesAgentId.ts",
+            "packages/sdk/src/cli/doctor.ts",
+            "packages/sdk/src/math/kmeans.ts",
+            "docs/antseed-onepager.md",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/cli/init.ts",
+            "docs/templates/shamy-agents-onboarding.md",
+            "packages/sdk/src/models/veniceCatalog.ts",
             "packages/sdk/src/models/index.ts"
           ]
         },
@@ -485,39 +1617,39 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 1995,
+          "tokensOut": 3996,
           "hitsAt10": [
             "packages/sdk/src/irp/rank.ts",
-            "packages/sdk/src/math/pca.ts",
-            "packages/sdk/BETA.md",
             "packages/sdk/src/pipeline/types.ts",
-            "packages/sdk/src/cli/storeCli.ts",
-            "packages/sdk/src/pipeline/index.ts",
-            "packages/sdk/src/cli/doctor.ts",
-            "packages/proxy/COMMERCIAL.md",
-            "docs/insights/004-insights-driven-roadmap.md",
-            "packages/sdk/src/core/contextFilter.ts"
+            "packages/proxy/test/irpServer.test.ts",
+            "packages/sdk/src/core/contextFilter.ts",
+            "docs/decisions/0003-cache-aware-trimming.md",
+            "packages/sdk/src/spec/index.ts",
+            "packages/sdk/src/irp/index.ts",
+            "docs/irp.md",
+            "packages/sdk/src/core/router.ts",
+            "packages/proxy/test/contextMeter.test.ts"
           ]
         },
         {
           "id": "lightweight-router",
-          "recallAt5": 0,
+          "recallAt5": 1,
           "recallAt10": 1,
-          "precisionAt5": 0,
+          "precisionAt5": 0.2,
           "precisionAt10": 0.1,
-          "ndcgAt10": 0.3010299956639812,
-          "tokensOut": 1995,
+          "ndcgAt10": 0.6309297535714575,
+          "tokensOut": 3999,
           "hitsAt10": [
-            "packages/sdk/src/cli/index.ts",
-            "packages/sdk/src/cli/audit.ts",
             "packages/sdk/src/select/embedding/apiProvider.ts",
-            "packages/sdk/src/select/embedding/contentHash.ts",
+            "packages/proxy/src/lightweightRouter.ts",
+            "docs/providers/openrouter.md",
             "packages/sdk/src/math/pca.ts",
             "packages/sdk/src/config.ts",
-            "docs/NEXT.md",
-            "docs/providers/openrouter.md",
-            "packages/proxy/src/lightweightRouter.ts",
-            "packages/sdk/test/spec.test.ts"
+            "packages/sdk/test/spec.test.ts",
+            "packages/sdk/test/select.test.ts",
+            "README.md",
+            "packages/proxy/README.md",
+            "packages/proxy/test/lightweightRouter.test.ts"
           ]
         },
         {
@@ -527,60 +1659,60 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 1997,
+          "tokensOut": 4000,
           "hitsAt10": [
             "packages/sdk/demo/basic.ts",
-            "BETA.md",
             "packages/sdk/demo/benchmark-queries.ts",
+            "packages/sdk/src/math/pca.ts",
+            "BETA.md",
             "CONTRIBUTING.md",
             "packages/sdk/src/config.ts",
-            "packages/sdk/src/math/pca.ts",
-            "apps/dashboard/app/layout.tsx",
-            "apps/dashboard/app/dashboard/topology/page.tsx",
-            "packages/sdk/test/irp.test.ts",
-            "docs/SDD/001-production-readiness.md"
+            "packages/sdk/src/repo/chunk.ts",
+            "packages/sdk/src/select/types.ts",
+            "docs/SKILL.md",
+            "packages/sdk/src/repo/security.ts"
           ]
         },
         {
           "id": "swarm-demo",
-          "recallAt5": 0,
-          "recallAt10": 0,
-          "precisionAt5": 0,
-          "precisionAt10": 0,
-          "ndcgAt10": 0,
-          "tokensOut": 1998,
-          "hitsAt10": [
-            "packages/sdk/demo/basic.ts",
-            "CONTRIBUTING.md",
-            "packages/sdk/src/math/pca.ts",
-            "packages/sdk/src/spec/buildQueryFromSpec.ts",
-            "BETA.md",
-            "apps/dashboard/components/HeroSnapshotGraphs.tsx",
-            "packages/sdk/src/pipeline/routing.ts",
-            "docs/templates/codex-project-agents-rootrouter.md",
-            "docs/SDD/001-production-readiness.md",
-            "packages/sdk/src/core/contextFilter.ts"
-          ]
-        },
-        {
-          "id": "celo-telemetry",
           "recallAt5": 1,
           "recallAt10": 1,
           "precisionAt5": 0.2,
           "precisionAt10": 0.1,
           "ndcgAt10": 0.5,
-          "tokensOut": 1995,
+          "tokensOut": 3996,
+          "hitsAt10": [
+            "packages/sdk/demo/basic.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/demo/swarm.ts",
+            "CONTRIBUTING.md",
+            "BETA.md",
+            "docs/templates/codex-project-agents-rootrouter.md",
+            "packages/sdk/src/repo/types.ts",
+            "packages/sdk/test/spec.test.ts",
+            "packages/sdk/src/config.ts",
+            "packages/sdk/src/repo/chunk.ts"
+          ]
+        },
+        {
+          "id": "celo-telemetry",
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 3995,
           "hitsAt10": [
             "docs/experimental/celo-telemetry.md",
-            "BETA.md",
-            "packages/sdk/src/celo/telemetry.ts",
-            "docs/experimental/README.md",
-            "packages/sdk/src/math/pca.ts",
-            "packages/sdk/test/benchmark.test.ts",
             "packages/sdk/scripts/deploy.ts",
-            "packages/proxy/src/messageStore.ts",
-            "packages/sdk/src/pipeline/types.ts",
-            "packages/proxy/test/contextMeter.test.ts"
+            "README.md",
+            "packages/sdk/src/celo/erc8004.ts",
+            "docs/experimental/README.md",
+            "packages/sdk/demo/swarm.ts",
+            "packages/proxy/test/lightweightRouter.test.ts",
+            "docs/decisions/0002-positioning.md",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/logs/localTelemetry.ts"
           ]
         },
         {
@@ -590,18 +1722,18 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 1999,
+          "tokensOut": 3997,
           "hitsAt10": [
             "packages/sdk/src/cli/init.ts",
             "packages/sdk/src/repo/imports.ts",
-            "apps/dashboard/components/HowItWorksSection.tsx",
             "packages/sdk/src/repo/graph.ts",
-            "docs/NEXT.md",
+            "packages/proxy/CHANGELOG.md",
             "packages/sdk/test/math.test.ts",
-            "apps/dashboard/app/dashboard/page.tsx",
+            "docs/NEXT.md",
             "docs/experimental/celo-telemetry.md",
-            "packages/sdk/src/math/pca.ts",
-            "packages/mcp/src/server.ts"
+            "packages/proxy/src/messageStore.ts",
+            "packages/proxy/src/topologyPersistence.ts",
+            "packages/sdk/src/math/pca.ts"
           ]
         },
         {
@@ -611,38 +1743,39 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 1995,
+          "tokensOut": 3992,
           "hitsAt10": [
-            "docs/insights/001-cursor-agent-slice-workflow-feedback.md",
+            "docs/SKILL.md",
+            "packages/sdk/src/cli/agentsMd.ts",
+            "packages/sdk/src/select/embedding/contentHash.ts",
             "packages/sdk/src/core/agentGraph.ts",
-            "docs/insights/008-workspace-and-agent-topology.md",
-            "packages/sdk/src/core/contextFilter.ts",
+            "docs/SDD/001-production-readiness.md",
             "docs/BENCHMARKS.md",
-            "docs/experimental/celo-telemetry.md",
-            "packages/sdk/src/math/pca.ts",
-            "apps/dashboard/components/HeroSnapshotGraphs.tsx",
-            "packages/sdk/src/pipeline/promptBuilder.ts",
-            "docs/SDD/001-production-readiness.md"
+            "packages/sdk/src/core/graph.ts",
+            "packages/mcp/README.md",
+            "packages/sdk/demo/benchmark.ts",
+            "packages/proxy/src/filter.ts"
           ]
         },
         {
           "id": "benchmarks-doc",
-          "recallAt5": 0,
-          "recallAt10": 0,
-          "precisionAt5": 0,
-          "precisionAt10": 0,
-          "ndcgAt10": 0,
-          "tokensOut": 2000,
+          "recallAt5": 1,
+          "recallAt10": 1,
+          "precisionAt5": 0.2,
+          "precisionAt10": 0.1,
+          "ndcgAt10": 0.6309297535714575,
+          "tokensOut": 3996,
           "hitsAt10": [
-            "apps/dashboard/components/AgentTerminalSection.tsx",
-            "apps/dashboard/app/dashboard/topology/page.tsx",
-            "packages/sdk/src/math/pca.ts",
-            "packages/sdk/demo/benchmark-live.ts",
-            "apps/dashboard/app/page.tsx",
-            "packages/sdk/src/types.ts",
-            "docs/SDD/001-production-readiness.md",
-            "packages/sdk/src/rootRouter.ts",
-            "packages/sdk/src/select/store/inMemoryStore.ts"
+            "packages/sdk/demo/basic.ts",
+            "docs/BENCHMARKS.md",
+            "docs/SKILL.md",
+            "packages/sdk/src/repo/security.ts",
+            "packages/proxy/src/filter.ts",
+            "packages/sdk/BETA.md",
+            "packages/sdk/src/select/types.ts",
+            "packages/sdk/src/logs/selectionAudit.ts",
+            "packages/sdk/test/irp.test.ts",
+            "CONTRIBUTING.md"
           ]
         },
         {
@@ -652,18 +1785,18 @@
           "precisionAt5": 0.2,
           "precisionAt10": 0.1,
           "ndcgAt10": 1,
-          "tokensOut": 1996,
+          "tokensOut": 3986,
           "hitsAt10": [
             "docs/SDD/001-production-readiness.md",
+            "CONTRIBUTING.md",
             "BETA.md",
             "packages/sdk/src/repo/imports.ts",
-            "CONTRIBUTING.md",
-            "docs/SDD/PROGRESS.md",
-            "docs/insights/001-cursor-agent-slice-workflow-feedback.md",
+            "packages/sdk/test/fixtures/minirepo/src/utils.ts",
             "docs/decisions/0001-product-shape.md",
             "packages/proxy/test/lightweightRouter.test.ts",
-            "docs/irp.md",
-            "packages/sdk/src/math/kmeans.ts"
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/math/kmeans.ts",
+            "packages/sdk/src/cli/initHermes.ts"
           ]
         },
         {
@@ -673,18 +1806,18 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 2000,
+          "tokensOut": 3997,
           "hitsAt10": [
             "packages/sdk/src/repo/imports.ts",
-            "docs/SDD/001-production-readiness.md",
-            "packages/sdk/src/repo/graph.ts",
-            "docs/experimental/README.md",
-            "packages/sdk/src/config.ts",
-            "packages/sdk/test/spec.test.ts",
-            "packages/sdk/src/models/detectCapabilities.ts",
             "docs/experimental/celo-telemetry.md",
-            "packages/sdk/src/select/store/fileStore.ts",
-            "packages/sdk/src/math/pca.ts"
+            "packages/sdk/test/spec.test.ts",
+            "README.md",
+            "packages/sdk/src/repo/graph.ts",
+            "packages/sdk/demo/swarm.ts",
+            "packages/proxy/test/lightweightRouter.test.ts",
+            "packages/sdk/src/select/types.ts",
+            "docs/decisions/0002-positioning.md",
+            "packages/proxy/src/server.ts"
           ]
         },
         {
@@ -693,19 +1826,19 @@
           "recallAt10": 1,
           "precisionAt5": 0.2,
           "precisionAt10": 0.1,
-          "ndcgAt10": 1,
-          "tokensOut": 1995,
+          "ndcgAt10": 0.38685280723454163,
+          "tokensOut": 3999,
           "hitsAt10": [
-            "docs/decisions/0002-positioning.md",
-            "packages/sdk/src/repo/walk.ts",
-            "packages/sdk/src/models/detectCapabilities.ts",
-            "packages/sdk/src/repo/graph.ts",
-            "packages/proxy/src/filter.ts",
             "packages/proxy/src/contextMeter.ts",
+            "docs/decisions/0003-cache-aware-trimming.md",
+            "packages/sdk/src/repo/walk.ts",
+            "packages/proxy/src/filter.ts",
+            "docs/decisions/0002-positioning.md",
+            "packages/sdk/src/repo/graph.ts",
+            "packages/sdk/src/models/detectCapabilities.ts",
             "packages/sdk/test/spec.test.ts",
             "packages/sdk/src/models/catalogResolver.ts",
-            "apps/dashboard/components/HowItWorksSection.tsx",
-            "apps/dashboard/hooks/useCeloTelemetry.ts"
+            "packages/sdk/src/math/kmeans.ts"
           ]
         },
         {
@@ -715,18 +1848,18 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 2000,
+          "tokensOut": 3992,
           "hitsAt10": [
-            "docs/insights/001-cursor-agent-slice-workflow-feedback.md",
             "packages/proxy/src/filter.ts",
             "packages/sdk/demo/benchmark-queries.ts",
-            "packages/sdk/src/cli/init.ts",
-            "packages/sdk/src/repo/security.ts",
-            "packages/proxy/src/contextMeter.ts",
-            "packages/sdk/src/select/contextEngine.ts",
-            "apps/dashboard/hooks/useCeloTelemetry.ts",
-            "apps/dashboard/components/SurfacesSection.tsx",
-            "docs/SDD/001-production-readiness.md"
+            "packages/sdk/src/repo/graph.ts",
+            "packages/sdk/src/repo/chunk.ts",
+            "packages/sdk/demo/benchmark.ts",
+            "packages/proxy/test/irpServer.test.ts",
+            "packages/sdk/src/cli/storeCli.ts",
+            "packages/sdk/src/select/types.ts",
+            "docs/PUBLISH.md",
+            "docs/SKILL.md"
           ]
         },
         {
@@ -736,18 +1869,18 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 1998,
+          "tokensOut": 3995,
           "hitsAt10": [
-            "packages/sdk/test/chat-pipeline.e2e.ts",
+            "packages/proxy/test/regression.test.ts",
             "packages/proxy/test/contextMeter.test.ts",
-            "packages/proxy/test/irpServer.test.ts",
-            "packages/sdk/test/initHermes.test.ts",
-            "packages/sdk/demo/basic.ts",
-            "packages/sdk/evals/run-selection-eval.ts",
             "packages/sdk/src/math/kmeans.ts",
-            "packages/proxy/README.md",
-            "packages/sdk/src/rootRouter.ts",
-            "docs/SDD/001-production-readiness.md"
+            "packages/sdk/test/chat-pipeline.e2e.ts",
+            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/src/embeddings/api.ts",
+            "packages/sdk/src/core/graph.ts",
+            "packages/sdk/evals/run-selection-eval.ts",
+            "packages/sdk/demo/benchmark-queries.ts",
+            "packages/proxy/src/irpServer.ts"
           ]
         },
         {
@@ -757,18 +1890,18 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 1995,
+          "tokensOut": 3994,
           "hitsAt10": [
-            "packages/sdk/test/repo.test.ts",
-            "packages/sdk/test/benchmark.test.ts",
-            "packages/sdk/src/core/collector.ts",
+            "packages/sdk/test/irp.test.ts",
+            "packages/sdk/test/select.test.ts",
+            "packages/proxy/test/hermesAgentId.test.ts",
+            "docs/experimental/celo-telemetry.md",
+            "packages/sdk/src/irp/rank.ts",
             "packages/sdk/src/math/kmeans.ts",
             "packages/sdk/src/math/pca.ts",
-            "packages/proxy/test/contextMeter.test.ts",
-            "apps/dashboard/components/AgentTerminalSection.tsx",
-            "packages/sdk/demo/benchmark-queries.ts",
-            "packages/proxy/test/hermesAgentId.test.ts",
-            "packages/sdk/src/core/contextFilter.ts"
+            "packages/sdk/src/core/collector.ts",
+            "packages/proxy/test/filter.test.ts",
+            "docs/decisions/0001-product-shape.md"
           ]
         },
         {
@@ -778,18 +1911,18 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 1997,
+          "tokensOut": 3999,
           "hitsAt10": [
             "packages/sdk/test/chat-pipeline.e2e.ts",
             "packages/sdk/test/benchmark.test.ts",
-            "packages/sdk/src/math/kmeans.ts",
-            "packages/sdk/src/math/pca.ts",
             "packages/sdk/demo/benchmark-queries.ts",
-            "packages/sdk/src/core/collector.ts",
-            "packages/sdk/src/cli/doctor.ts",
             "docs/PUBLISH.md",
-            "apps/dashboard/components/SurfacesSection.tsx",
-            "docs/SDD/001-production-readiness.md"
+            "packages/sdk/src/irp/rank.ts",
+            "docs/templates/codex-project-agents-rootrouter.md",
+            "packages/proxy/test/hermesAgentId.test.ts",
+            "packages/proxy/test/contextMeter.test.ts",
+            "packages/sdk/src/core/collector.ts",
+            "packages/mcp/test/smoke.mjs"
           ]
         },
         {
@@ -799,18 +1932,18 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 2000,
+          "tokensOut": 3998,
           "hitsAt10": [
             "packages/sdk/test/chat-pipeline.e2e.ts",
             "packages/sdk/test/benchmark.test.ts",
-            "apps/dashboard/app/dashboard/topology/layout.tsx",
+            "packages/proxy/src/server.ts",
+            "packages/sdk/src/core/collector.ts",
+            "packages/sdk/src/logs/localTelemetry.ts",
             "packages/sdk/src/math/pca.ts",
-            "apps/dashboard/components/ChamberDistribution.tsx",
-            "apps/dashboard/components/SurfacesSection.tsx",
-            "docs/templates/codex-project-agents-rootrouter.md",
-            "packages/proxy/test/irpServer.test.ts",
-            "packages/proxy/test/contextMeter.test.ts",
-            "packages/sdk/src/models/openRouterCatalog.ts"
+            "packages/proxy/README.md",
+            "packages/sdk/src/cli/audit.ts",
+            "packages/sdk/src/logs/routerMetrics.ts",
+            "docs/providers/openrouter.md"
           ]
         },
         {
@@ -820,16 +1953,18 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 2000,
+          "tokensOut": 3994,
           "hitsAt10": [
-            "docs/insights/001-cursor-agent-slice-workflow-feedback.md",
-            "apps/dashboard/components/AgentTerminalSection.tsx",
             "packages/sdk/src/repo/imports.ts",
-            "packages/sdk/test/benchmark.test.ts",
-            "packages/mcp/COMMERCIAL.md",
             "docs/BENCHMARKS.md",
-            "packages/sdk/src/core/contextFilter.ts",
-            "docs/SDD/001-production-readiness.md"
+            "packages/mcp/COMMERCIAL.md",
+            "packages/sdk/src/logs/selectionAudit.ts",
+            "packages/mcp/BETA.md",
+            "packages/sdk/src/cli/agentsMd.ts",
+            "packages/sdk/src/cli/doctor.ts",
+            "packages/sdk/test/benchmark.test.ts",
+            "packages/sdk/src/pipeline/index.ts",
+            "packages/sdk/src/math/pca.ts"
           ]
         },
         {
@@ -839,18 +1974,18 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 1998,
+          "tokensOut": 3990,
           "hitsAt10": [
             "packages/sdk/src/core/agentGraph.ts",
+            "packages/sdk/src/core/graph.ts",
             "packages/sdk/src/models/index.ts",
-            "packages/sdk/src/select/selector.ts",
             "packages/sdk/src/math/pca.ts",
             "packages/sdk/src/select/pathFilter.ts",
-            "packages/sdk/test/repo.test.ts",
             "packages/sdk/test/math.test.ts",
             "packages/sdk/test/fixtures/minirepo/src/main.ts",
-            "packages/proxy/test/filter.test.ts",
-            "docs/insights/001-cursor-agent-slice-workflow-feedback.md"
+            "packages/sdk/src/select/selector.ts",
+            "packages/sdk/test/benchmark.test.ts",
+            "packages/sdk/src/select/ann/hnswIndex.ts"
           ]
         },
         {
@@ -860,18 +1995,18 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 2000,
+          "tokensOut": 4000,
           "hitsAt10": [
-            "apps/dashboard/public/feng-shui/scripts/inventory.py",
-            "packages/proxy/src/routingConfig.ts",
+            "packages/proxy/src/engine.ts",
+            "packages/proxy/CHANGELOG.md",
             "packages/proxy/src/irpServer.ts",
-            "docs/insights/005-business-model-routing-licensing-agent-economy.md",
-            "packages/sdk/src/select/embedding/tfidfProvider.ts",
-            "packages/sdk/test/models.test.ts",
+            "packages/sdk/src/types.ts",
             "packages/proxy/test/e2e.mjs",
-            "packages/sdk/src/models/veniceCatalog.ts",
-            "apps/dashboard/components/SurfacesSection.tsx",
-            "packages/sdk/src/core/contextFilter.ts"
+            "packages/mcp/src/server.ts",
+            "packages/proxy/test/regression.test.ts",
+            "packages/sdk/src/core/contextFilter.ts",
+            "packages/sdk/test/benchmark.test.ts",
+            "packages/sdk/src/math/pca.ts"
           ]
         },
         {
@@ -881,18 +2016,18 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 2000,
+          "tokensOut": 4000,
           "hitsAt10": [
             "packages/proxy/src/prometheus.ts",
-            "packages/sdk/src/logs/routerMetrics.ts",
-            "packages/sdk/src/math/pca.ts",
-            "packages/sdk/src/irp/index.ts",
             "packages/sdk/src/pipeline/routing.ts",
-            "packages/proxy/src/engine.ts",
+            "packages/sdk/src/logs/selectionAudit.ts",
             "packages/sdk/demo/swarm.ts",
             "packages/proxy/test/filter.test.ts",
-            "packages/sdk/src/spec/index.ts",
-            "packages/sdk/src/core/contextFilter.ts"
+            "packages/sdk/src/logs/routerMetrics.ts",
+            "packages/sdk/src/pipeline/index.ts",
+            "packages/sdk/src/index.ts",
+            "packages/proxy/src/engine.ts",
+            "packages/proxy/test/lightweightRouter.test.ts"
           ]
         },
         {
@@ -902,18 +2037,18 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 2000,
+          "tokensOut": 3999,
           "hitsAt10": [
-            "packages/proxy/src/hermesAgentId.ts",
-            "packages/sdk/src/logs/routerMetrics.ts",
-            "packages/sdk/src/pipeline/index.ts",
-            "packages/sdk/src/math/pca.ts",
-            "packages/sdk/src/pipeline/routing.ts",
             "packages/sdk/src/irp/index.ts",
-            "docs/insights/001-cursor-agent-slice-workflow-feedback.md",
-            "packages/sdk/src/logs/selectionAudit.ts",
-            "docs/insights/008-workspace-and-agent-topology.md",
-            "apps/dashboard/components/AgentTerminalSection.tsx"
+            "packages/proxy/src/messageStore.ts",
+            "packages/proxy/src/hermesAgentId.ts",
+            "packages/sdk/src/pipeline/contextRetrieval.ts",
+            "packages/sdk/src/math/pca.ts",
+            "docs/irp.md",
+            "packages/sdk/src/logs/routerMetrics.ts",
+            "docs/skills/feng-shui/assets/openclaw/BOOTSTRAP.fragment.md",
+            "packages/sdk/src/index.ts",
+            "packages/sdk/src/pipeline/routing.ts"
           ]
         },
         {
@@ -923,101 +2058,102 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 1999,
+          "tokensOut": 3999,
           "hitsAt10": [
+            "packages/sdk/templates/codex-global-agents-rootrouter.md",
             "packages/sdk/src/math/pca.ts",
-            "docs/templates/agent-playbook-snippet.md",
-            "packages/proxy/src/messageStore.ts",
-            "docs/templates/codex-global-agents-rootrouter.md",
-            "docs/irp.md",
-            "packages/sdk/templates/codex-project-agents-rootrouter.md",
-            "packages/sdk/src/math/kmeans.ts",
-            "packages/proxy/test/irpServer.test.ts",
             "packages/sdk/src/repo/types.ts",
-            "BETA.md"
+            "packages/sdk/src/cli/runtimeStores.ts",
+            "packages/sdk/demo/benchmark.ts",
+            "scripts/sync-legal.mjs",
+            "packages/sdk/src/irp/types.ts",
+            "packages/sdk/src/repo/imports.ts",
+            "docs/SKILL.md",
+            "packages/sdk/BETA.md"
           ]
         },
         {
           "id": "deploy-readme",
           "recallAt5": 1,
           "recallAt10": 1,
-          "precisionAt5": 0.4,
+          "precisionAt5": 0.2,
           "precisionAt10": 0.2,
-          "ndcgAt10": 0.8772153153380493,
-          "tokensOut": 1996,
+          "ndcgAt10": 0.8065735963827293,
+          "tokensOut": 3986,
           "hitsAt10": [
             "deploy/README.md",
+            "docs/NEXT.md",
             "docs/irp.md",
+            "docs/experimental/README.md",
+            "docs/SDD/001-production-readiness.md",
             "packages/sdk/src/core/contextFilter.ts",
-            "README.md",
             "packages/proxy/README.md",
-            "packages/sdk/src/irp/models.ts",
-            "packages/sdk/src/cli/initHermes.ts",
-            "apps/dashboard/components/HeroSnapshotGraphs.tsx",
-            "apps/dashboard/components/ConvexClientProvider.tsx",
-            "docs/insights/002-agent-context-behavior-good-vs-bad.md"
+            "README.md",
+            "packages/proxy/CHANGELOG.md",
+            "docs/decisions/0004-dashboard-scope.md"
           ]
         },
         {
           "id": "templates-slice",
           "recallAt5": 0,
-          "recallAt10": 0,
+          "recallAt10": 1,
           "precisionAt5": 0,
-          "precisionAt10": 0,
-          "ndcgAt10": 0,
-          "tokensOut": 1996,
+          "precisionAt10": 0.1,
+          "ndcgAt10": 0.2890648263178879,
+          "tokensOut": 3995,
           "hitsAt10": [
-            "docs/BENCHMARKS.md",
             "docs/SDD/001-production-readiness.md",
+            "docs/decisions/0004-dashboard-scope.md",
+            "packages/sdk/src/cli/agentsMd.ts",
+            "packages/mcp/CHANGELOG.md",
+            "deploy/README.md",
             "packages/sdk/src/cli/storeCli.ts",
-            "packages/sdk/src/cli/initHermes.ts",
-            "packages/sdk/demo/swarm.ts",
-            "docs/NEXT.md",
-            "packages/sdk/src/math/pca.ts",
-            "apps/dashboard/components/HowItWorksSection.tsx",
-            "docs/experimental/README.md",
-            "apps/dashboard/components/SurfacesSection.tsx"
+            "docs/decisions/0002-positioning.md",
+            "packages/sdk/CHANGELOG.md",
+            "packages/proxy/src/server.ts",
+            "docs/templates/slice-handoff.md"
           ]
         },
         {
           "id": "insights-workflow",
-          "recallAt5": 1,
-          "recallAt10": 1,
-          "precisionAt5": 0.2,
-          "precisionAt10": 0.1111111111111111,
-          "ndcgAt10": 1,
-          "tokensOut": 1998,
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 3990,
           "hitsAt10": [
-            "docs/insights/001-cursor-agent-slice-workflow-feedback.md",
-            "packages/sdk/src/irp/rank.ts",
-            "packages/sdk/demo/swarm.ts",
-            "packages/sdk/src/core/agentGraph.ts",
-            "apps/dashboard/components/SurfacesSection.tsx",
-            "packages/sdk/src/math/pca.ts",
+            "packages/sdk/demo/basic.ts",
+            "packages/sdk/src/repo/graph.ts",
             "packages/sdk/src/select/snapshot.ts",
-            "docs/SDD/001-production-readiness.md",
-            "apps/dashboard/components/TokensOverTimeChart.tsx"
+            "packages/sdk/src/irp/rank.ts",
+            "packages/mcp/src/server.ts",
+            "SUBMISSION.md",
+            "packages/sdk/test/select.test.ts",
+            "packages/sdk/src/cli/agentsMd.ts",
+            "docs/SKILL.md",
+            "packages/proxy/src/irpServer.ts"
           ]
         },
         {
           "id": "insights-problem",
-          "recallAt5": 1,
-          "recallAt10": 1,
-          "precisionAt5": 0.2,
-          "precisionAt10": 0.1,
-          "ndcgAt10": 1,
-          "tokensOut": 2000,
+          "recallAt5": 0,
+          "recallAt10": 0,
+          "precisionAt5": 0,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 3993,
           "hitsAt10": [
-            "docs/insights/003-how-rootrouter-works-problem-and-fix.md",
-            "packages/sdk/test/spec.test.ts",
-            "docs/insights/001-cursor-agent-slice-workflow-feedback.md",
+            "docs/SDD/001-production-readiness.md",
+            "docs/BENCHMARKS.md",
+            "docs/decisions/0003-cache-aware-trimming.md",
+            "packages/sdk/src/rootRouter.ts",
+            "packages/sdk/CHANGELOG.md",
             "packages/mcp/test/smoke.mjs",
-            "docs/decisions/0002-positioning.md",
             "packages/sdk/src/math/pca.ts",
-            "docs/irp.md",
-            "apps/dashboard/hooks/useCeloTelemetry.ts",
-            "packages/sdk/src/core/router.ts",
-            "COMMERCIAL.md"
+            "deploy/README.md",
+            "packages/sdk/src/math/vectors.ts",
+            "packages/sdk/test/spec.test.ts"
           ]
         },
         {
@@ -1027,39 +2163,39 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 1998,
+          "tokensOut": 3994,
           "hitsAt10": [
             "docs/experimental/celo-telemetry.md",
-            "docs/experimental/algebraic-layer.md",
-            "packages/sdk/src/core/agentGraph.ts",
+            "packages/sdk/src/celo/telemetry.ts",
+            "packages/sdk/src/select/pathFilter.ts",
             "docs/SDD/001-production-readiness.md",
             "packages/sdk/src/math/pca.ts",
-            "packages/sdk/src/spec/buildQueryFromSpec.ts",
+            "packages/sdk/src/core/agentGraph.ts",
             "packages/sdk/src/celo/erc8004.ts",
-            "packages/sdk/demo/basic.ts",
-            "packages/proxy/BETA.md",
-            "apps/dashboard/hooks/useCeloTelemetry.ts"
+            "docs/decisions/0004-dashboard-scope.md",
+            "packages/sdk/src/spec/buildQueryFromSpec.ts",
+            "packages/sdk/src/rootRouter.ts"
           ]
         },
         {
           "id": "where-mcp-select",
           "recallAt5": 0,
-          "recallAt10": 1,
+          "recallAt10": 0,
           "precisionAt5": 0,
-          "precisionAt10": 0.1,
-          "ndcgAt10": 0.3010299956639812,
-          "tokensOut": 2000,
+          "precisionAt10": 0,
+          "ndcgAt10": 0,
+          "tokensOut": 3997,
           "hitsAt10": [
             "packages/sdk/src/pipeline/types.ts",
-            "packages/sdk/src/cli/doctor.ts",
             "docs/irp.md",
             "docs/skills/organize-space/ORGANIZE-SPACE.md",
             "packages/sdk/src/irp/index.ts",
-            "packages/sdk/src/math/pca.ts",
-            "docs/insights/002-agent-context-behavior-good-vs-bad.md",
-            "packages/sdk/src/spec/buildQueryFromSpec.ts",
-            "packages/mcp/src/server.ts",
-            "apps/dashboard/public/feng-shui/ORGANIZE-SPACE.md"
+            "packages/proxy/src/irpServer.ts",
+            "packages/sdk/src/irp/rank.ts",
+            "packages/sdk/src/cli/doctor.ts",
+            "packages/sdk/src/index.ts",
+            "packages/sdk/src/logs/routerMetrics.ts",
+            "packages/sdk/src/math/pca.ts"
           ]
         },
         {
@@ -1069,18 +2205,18 @@
           "precisionAt5": 0,
           "precisionAt10": 0,
           "ndcgAt10": 0,
-          "tokensOut": 1998,
+          "tokensOut": 3987,
           "hitsAt10": [
             "packages/sdk/src/pipeline/routing.ts",
-            "docs/irp.md",
-            "README.md",
-            "packages/mcp/src/server.ts",
-            "packages/proxy/test/irpServer.test.ts",
-            "packages/sdk/src/cli/init.ts",
+            "packages/proxy/src/irpServer.ts",
+            "docs/NEXT.md",
+            "packages/proxy/src/irp/server.ts",
+            "docs/SDD/001-production-readiness.md",
+            "packages/sdk/src/irp/models.ts",
             "packages/sdk/src/math/pca.ts",
-            "packages/sdk/src/spec/index.ts",
-            "packages/sdk/src/irp/index.ts",
-            "packages/sdk/src/core/contextFilter.ts"
+            "deploy/README.md",
+            "docs/irp.md",
+            "docs/skills/feng-shui/references/placement-policy.md"
           ]
         },
         {
@@ -1089,43 +2225,47 @@
           "recallAt10": 1,
           "precisionAt5": 0.2,
           "precisionAt10": 0.1,
-          "ndcgAt10": 1,
-          "tokensOut": 1996,
+          "ndcgAt10": 0.5,
+          "tokensOut": 3997,
           "hitsAt10": [
-            "packages/sdk/src/select/store/fileStore.ts",
             "packages/sdk/test/benchmark.test.ts",
             "BETA.md",
-            "packages/sdk/src/pipeline/contextRetrieval.ts",
-            "packages/sdk/demo/benchmark-queries.ts",
-            "packages/sdk/scripts/deploy.ts",
-            "packages/sdk/src/math/pca.ts",
-            "packages/sdk/src/rootRouter.ts",
-            "packages/sdk/src/models/index.ts",
-            "packages/mcp/src/server.ts"
+            "packages/sdk/src/select/store/fileStore.ts",
+            "packages/sdk/demo/benchmark.ts",
+            "packages/sdk/src/select/embedding/tfidfProvider.ts",
+            "packages/sdk/src/logs/selectionAudit.ts",
+            "COMMERCIAL.md",
+            "packages/sdk/test/select.test.ts",
+            "docs/templates/codex-global-agents-rootrouter.md",
+            "packages/sdk/src/select/types.ts"
           ]
         },
         {
           "id": "spec-driven",
-          "recallAt5": 0,
+          "recallAt5": 1,
           "recallAt10": 1,
-          "precisionAt5": 0,
+          "precisionAt5": 0.2,
           "precisionAt10": 0.1,
-          "ndcgAt10": 0.3562071871080222,
-          "tokensOut": 1999,
+          "ndcgAt10": 0.6309297535714575,
+          "tokensOut": 3995,
           "hitsAt10": [
             "packages/sdk/src/spec/index.ts",
-            "docs/templates/codex-project-agents-rootrouter.md",
-            "packages/sdk/test/fixtures/minirepo/src/main.ts",
-            "docs/irp.md",
-            "apps/dashboard/app/dashboard/layout.tsx",
             "packages/sdk/src/spec/buildQueryFromSpec.ts",
+            "docs/templates/codex-global-agents-rootrouter.md",
+            "packages/sdk/test/fixtures/minirepo/src/main.ts",
+            "docs/templates/codex-project-agents-rootrouter.md",
+            "packages/proxy/src/topologyPersistence.ts",
+            "docs/irp.md",
             "packages/sdk/src/math/pca.ts",
-            "packages/mcp/src/server.ts",
-            "packages/sdk/src/index.ts",
-            "docs/templates/codex-global-agents-rootrouter.md"
+            "packages/proxy/src/hermesAgentId.ts",
+            "packages/mcp/src/server.ts"
           ]
         }
       ]
     }
-  ]
+  ],
+  "diff": {
+    "recallAt10": 0,
+    "ndcgAt10": -0.03185708394052944
+  }
 }

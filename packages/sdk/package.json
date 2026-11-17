@@ -1,6 +1,6 @@
 {
   "name": "rootrouter",
-  "version": "0.2.0-beta.1",
+  "version": "1.0.0",
   "description": "Algebraic agent infrastructure for AI swarms on Celo — root-pair telemetry, interaction graphs, symmetry-aware routing, and context selection",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -21,6 +21,7 @@
     "dev": "tsx watch src/index.ts",
     "demo:basic": "tsx demo/basic.ts",
     "demo:swarm": "tsx demo/swarm.ts",
+    "demo:swarm-proxy": "tsx demo/swarm-proxy.ts",
     "demo:benchmark": "tsx demo/benchmark.ts",
     "demo:benchmark-live": "tsx demo/benchmark-live.ts",
     "demo:benchmark-live:session": "tsx demo/benchmark-live.ts --profile session",

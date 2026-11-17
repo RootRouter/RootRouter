@@ -178,6 +178,8 @@ export interface ContextStore {
   upsert(items: ContextItem[]): void;
   /** Fetch a single item by id. */
   get(id: string): ContextItem | undefined;
+  /** Remove an item by id. */
+  delete?(id: string): boolean;
   /** Return all items, optionally scoped to an agent. */
   all(agentId?: string): ContextItem[];
   /** Number of stored items. */

@@ -193,6 +193,18 @@ export function writeCursorRootRouterRule(
 
   fs.mkdirSync(rulesDir, { recursive: true });
   fs.writeFileSync(rulePath, content, 'utf8');
+
+  const fullCandidates = [
+    path.resolve(__dirname, '../../templates/cursor-rootrouter-mcp-rule-full.mdc'),
+    path.resolve(__dirname, '../../../../docs/templates/cursor-rootrouter-mcp-rule-full.mdc'),
+  ];
+  const fullTemplate = fullCandidates.find((p) => fs.existsSync(p));
+  if (fullTemplate) {
+    let full = fs.readFileSync(fullTemplate, 'utf8');
+    full = full.replaceAll('{{AGENT_ID}}', agentId).replaceAll('{{STORE_PATH}}', storePath);
+    fs.writeFileSync(path.join(rulesDir, 'rootrouter-mcp-full.mdc'), full, 'utf8');
+  }
+
   return `wrote agent rule at ${rulePath}`;
 }
 

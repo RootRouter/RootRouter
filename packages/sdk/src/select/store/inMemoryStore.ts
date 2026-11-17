@@ -42,9 +42,14 @@ export class InMemoryContextStore implements ContextStore {
   }
 
   all(agentId?: string): ContextItem[] {
-    const values = Array.from(this.items.values());
+    let values = Array.from(this.items.values());
+    const ttlDays = Number(process.env.ROOTROUTER_STORE_TTL_DAYS ?? 0);
+    if (ttlDays > 0) {
+      const cutoff = Date.now() - ttlDays * 86_400_000;
+      values = values.filter((i) => (i.timestamp ?? 0) >= cutoff);
+    }
     if (agentId === undefined) return values;
-    return values.filter(i => i.agentId === agentId);
+    return values.filter((i) => i.agentId === agentId);
   }
 
   get size(): number {

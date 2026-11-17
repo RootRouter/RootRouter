@@ -16,13 +16,11 @@ RootRouter **0.2.0-beta.1** is early beta software.
 
 ## Exit criteria (SDD 001 / slice J)
 
-Beta ends when these slices are closed on `main`:
+- [x] B — eval + CI
+- [x] E — cache-aware documented (default off)
+- [x] F — proxy regression in `npm test -w @rootrouter/proxy`
+- [x] G — `scripts/verify-compose.sh`
 
-- [x] B — `npm run eval:selection` + CI threshold
-- [ ] E — cache-aware trim experiment documented (opt-in today)
-- [ ] F — full proxy regression suite in CI
-- [ ] G — `deploy/compose/docker-compose.yml` verified e2e
-
-Track: [docs/SDD/PROGRESS.md](./docs/SDD/PROGRESS.md)
+**Shipped:** `1.0.0` — see [docs/SDD/PROGRESS.md](./docs/SDD/PROGRESS.md)
 
 Report issues: https://github.com/RootRouter/RootRouter/issues

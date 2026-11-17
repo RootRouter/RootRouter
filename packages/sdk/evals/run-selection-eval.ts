@@ -163,7 +163,11 @@ function parseArgs(): { configs: string[]; outPath: string; repoRoot: string } {
   let repoRoot = REPO_ROOT_DEFAULT;
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--config' && args[i + 1]) {
-      configs.push(path.resolve(args[++i]));
+      const raw = args[++i];
+      const abs = path.resolve(raw);
+      const cfg =
+        fs.existsSync(abs) ? abs : path.join(EVAL_DIR, 'selection/configs', path.basename(raw));
+      configs.push(cfg);
     } else if (args[i] === '--out' && args[i + 1]) {
       outPath = path.resolve(args[++i]);
     } else if (args[i] === '--repo' && args[i + 1]) {
@@ -217,13 +221,15 @@ async function main(): Promise<void> {
   console.log(JSON.stringify(payload, null, 2));
 
   const thresholdPath = path.join(repoRoot, 'benchmarks/results/eval-selection-threshold.json');
-  if (fs.existsSync(thresholdPath) && results.length > 0) {
+  const defaultResult =
+    results.find((r) => r.configPath.includes('default.json')) ?? results[0];
+  if (fs.existsSync(thresholdPath) && defaultResult) {
     const threshold = JSON.parse(fs.readFileSync(thresholdPath, 'utf8')) as {
       recallAt10Min: number;
     };
-    if (results[0].aggregate.recallAt10 < threshold.recallAt10Min) {
+    if (defaultResult.aggregate.recallAt10 < threshold.recallAt10Min) {
       console.error(
-        `FAIL: recall@10 ${results[0].aggregate.recallAt10.toFixed(3)} < ${threshold.recallAt10Min}`
+        `FAIL: recall@10 ${defaultResult.aggregate.recallAt10.toFixed(3)} < ${threshold.recallAt10Min}`
       );
       process.exit(1);
     }

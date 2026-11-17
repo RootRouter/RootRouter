@@ -1,0 +1,10 @@
+---
+description: Full RootRouter MCP playbook (request when debugging cold slices)
+alwaysApply: false
+---
+
+# RootRouter MCP — full playbook
+
+Store: `{{STORE_PATH}}` · agentId: `{{AGENT_ID}}` · Skill: `.cursor/skills/rootrouter/SKILL.md`
+
+Cold: spec → index_repo → select_for_spec / select_context (pointers) → anchors → stats at handoff.

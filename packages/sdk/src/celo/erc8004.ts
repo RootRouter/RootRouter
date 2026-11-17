@@ -7,6 +7,7 @@ const IDENTITY_REGISTRY_ABI = [
 ];
 
 /**
+ * @experimental ERC-8004 registration — frozen; not on the production path (SDD slice K).
  * ERC8004Registration: ERC-8004 compatible agent registration on Celo.
  * If not configured, all methods gracefully return null.
  */

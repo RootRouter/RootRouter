@@ -17,9 +17,16 @@ import {
   readHermesActiveProjectSlug,
   resolveProxyAgentId,
 } from './hermesAgentId.js';
-import { getContextMeterSnapshot, recordContextSample } from './contextMeter.js';
+import { getContextMeterSnapshot, recordCachedTokens, recordContextSample } from './contextMeter.js';
 import { renderPrometheusMetrics, recordPrometheusRequest } from './prometheus.js';
-import { exportTopologyJson, recordTopologyRequest, recommendAgentForQuery } from './topologyTracker.js';
+import {
+  exportTopologyJson,
+  initTopologyFromSnapshot,
+  recordTopologyRequest,
+  recommendAgentForQuery,
+} from './topologyTracker.js';
+import { loadTopologySnapshot, persistTopology } from './topologyPersistence.js';
+import { handleStoreAdmin } from './storeAdmin.js';
 
 const PORT = Number(process.env.PORT ?? 8787);
 const UPSTREAM_ORIGIN = (process.env.ROOTROUTER_UPSTREAM_ORIGIN ?? 'https://openrouter.ai').replace(/\/$/, '');
@@ -90,6 +97,11 @@ function copyUpstreamResponseHeaders(upstream: Response): Record<string, string>
 
 async function handle(req: http.IncomingMessage, res: http.ServerResponse): Promise<void> {
   const url = req.url ?? '/';
+
+  if (url.startsWith('/store/')) {
+    const handled = await handleStoreAdmin(req, res, url.replace(/\?.*$/, ''), getEngine());
+    if (handled) return;
+  }
 
   if (req.method === 'GET' && (url === '/healthz' || url === '/')) {
     const engine = getEngine();
@@ -246,6 +258,7 @@ async function handle(req: http.IncomingMessage, res: http.ServerResponse): Prom
             tokensBefore: outcome.tokensBefore,
             tokensSaved: outcome.tokensSaved,
           });
+          persistTopology();
           if (swarmMode === 'suggest') {
             const lastUser = [...parsed.messages].reverse().find((m) => m.role === 'user');
             const q = lastUser ? messageText(lastUser.content) : '';
@@ -335,8 +348,32 @@ async function handle(req: http.IncomingMessage, res: http.ServerResponse): Prom
     respHeaders['x-rootrouter-degraded'] = 'true';
   }
 
-  res.writeHead(upstream.status, respHeaders);
+  const upstreamType = (upstream.headers.get('content-type') ?? '').toLowerCase();
+  const isSse = upstreamType.includes('text/event-stream');
 
+  if (!isSse && upstream.body) {
+    const buf = Buffer.from(await upstream.arrayBuffer());
+  try {
+      const parsedUsage = JSON.parse(buf.toString('utf8')) as {
+        usage?: {
+          prompt_tokens_details?: { cached_tokens?: number };
+          cache_read_input_tokens?: number;
+        };
+      };
+      const cached =
+        parsedUsage.usage?.prompt_tokens_details?.cached_tokens ??
+        parsedUsage.usage?.cache_read_input_tokens ??
+        0;
+      if (cached > 0) recordCachedTokens(cached);
+    } catch {
+      /* not JSON */
+    }
+    res.writeHead(upstream.status, respHeaders);
+    res.end(buf);
+    return;
+  }
+
+  res.writeHead(upstream.status, respHeaders);
   if (upstream.body) {
     Readable.fromWeb(upstream.body as unknown as Parameters<typeof Readable.fromWeb>[0]).pipe(res);
   } else {
@@ -346,6 +383,8 @@ async function handle(req: http.IncomingMessage, res: http.ServerResponse): Prom
 
 async function main() {
   await initEngine();
+  const topo = loadTopologySnapshot();
+  initTopologyFromSnapshot(topo?.ranking);
   const server = http.createServer((req, res) => {
     handle(req, res).catch((err) => {
       console.error('[rootrouter-proxy] handler error:', err);

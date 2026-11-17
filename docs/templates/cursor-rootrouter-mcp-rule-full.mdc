@@ -1,0 +1,12 @@
+---
+description: Full RootRouter MCP playbook (request when debugging cold slices)
+alwaysApply: false
+---
+
+# RootRouter MCP — full playbook
+
+See also `.cursor/skills/rootrouter/SKILL.md` and [rootrouter-mcp in repo docs](https://github.com/RootRouter/RootRouter/blob/main/docs/templates/cursor-rootrouter-mcp-rule-full.mdc).
+
+Store: `{{STORE_PATH}}` · agentId: `{{AGENT_ID}}`
+
+Cold workflow: read spec → `index_repo` once → `select_for_spec` or shaped `select_context` (mode `pointers` default) → read anchor files → `stats` at handoff.

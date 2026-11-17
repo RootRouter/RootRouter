@@ -57,6 +57,8 @@ export const DEFAULT_PATH_EXCLUDES = [
   '**/package-lock.json',
   '**/pnpm-lock.yaml',
   '**/yarn.lock',
+  'apps/dashboard/**',
+  'docs/insights/**',
 ];
 
 export function loadDefaultPathExcludes(repoRoot: string): (relPosix: string) => boolean {

@@ -26,6 +26,7 @@ import {
   buildSelectionFromSpec,
   indexRepo,
   listSelectionAudit,
+  recommendAgentFromTopologyFile,
   resolveActiveSpecPath,
   summarizeSelectionAudit,
   type ContextItem,
@@ -419,14 +420,15 @@ server.registerTool(
     },
   },
   async ({ query }) => {
-    const s = engine.stats();
-    const rec = {
-      agentId: defaultAgentId,
-      evidence: `MCP store scope; items=${s.items}; query="${query.slice(0, 80)}"`,
-    };
+    const fromTopo = recommendAgentFromTopologyFile(query);
+    const rec =
+      fromTopo ?? {
+        agentId: defaultAgentId,
+        evidence: `fallback MCP scope; store items=${engine.stats().items}`,
+      };
     return {
       content: [{ type: 'text', text: `${rec.agentId} — ${rec.evidence}` }],
-      structuredContent: rec,
+      structuredContent: { ...rec },
     };
   }
 );

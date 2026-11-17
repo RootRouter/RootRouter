@@ -1,0 +1,21 @@
+{
+  "title": "RootRouter Proxy",
+  "schemaVersion": 39,
+  "panels": [
+    {
+      "title": "Requests",
+      "type": "stat",
+      "targets": [{ "expr": "rootrouter_requests_total" }]
+    },
+    {
+      "title": "Tokens saved",
+      "type": "stat",
+      "targets": [{ "expr": "rootrouter_tokens_saved_total" }]
+    },
+    {
+      "title": "Cached tokens",
+      "type": "stat",
+      "targets": [{ "expr": "rootrouter_cached_tokens_total" }]
+    }
+  ]
+}

@@ -1,6 +1,12 @@
 import { AgentTopologyGraph } from 'rootrouter';
-
 const graph = new AgentTopologyGraph();
+
+export function initTopologyFromSnapshot(
+  ranking: Array<{ agentId: string }> | undefined
+): void {
+  if (!ranking) return;
+  for (const row of ranking) graph.registerAgent(row.agentId);
+}
 
 export interface AgentRequestStat {
   agentId: string;

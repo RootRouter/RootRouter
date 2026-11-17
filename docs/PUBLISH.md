@@ -49,7 +49,7 @@ npm view @rootrouter/mcp version
 
 ## Versioning
 
-Current release: **0.2.0-beta.0** (early beta — see [BETA.md](../BETA.md)).
+Current release: **1.0.0** (SDD 001 — see [BETA.md](../BETA.md) and [docs/SDD/PROGRESS.md](./SDD/PROGRESS.md)).
 
 Bump versions together in:
 
