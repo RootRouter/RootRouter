@@ -54,6 +54,8 @@ npm view @rootrouter/mcp version
 
 Current release: **1.0.2** (SDD 001 — see [BETA.md](../BETA.md) and [docs/SDD/PROGRESS.md](./SDD/PROGRESS.md)).
 
+**Git:** merge SDD / release work to **`main`** before tagging or publishing (npm tarballs can come from any branch, but `repository.directory` and GitHub should match what users install).
+
 npm maintainer: **gerryalvrz** (`rootrouter` and `@rootrouter/*`).
 
 Bump versions together in:
